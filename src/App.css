@@ -1,0 +1,31 @@
+:root{
+  --background-color-text: #FFF5E0;
+  --background-color-main: #141E46;
+  --background-color-accent1: #FF6969;
+  --background-color-accent2: #BB2525;
+  --hero-canvas-height: 350px;
+}
+*{
+  box-sizing: border-box;
+}
+html{
+  margin: 0;
+}
+body {
+  margin: 0;
+  background-color: var(--background-color-main);
+}
+
+#hero-canvas{
+  position: relative;
+  /* border: 1px solid black; */
+  left: 50%;
+  width: 350px;
+  height: 350px;
+}
+
+.nav{
+  height: fit-content;
+  width: 100%;
+  background-color: var(--background-color-text);
+}
