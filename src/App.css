@@ -1,6 +1,7 @@
 :root{
-  --background-color-text: #FFF5E0;
-  --background-color-main: #141E46;
+  --background-color-main: #FFF5E0;
+  --background-color-content: #141E46;
+  --text-color-main: white;
   --background-color-accent1: #FF6969;
   --background-color-accent2: #BB2525;
   --hero-canvas-height: 350px;
@@ -8,12 +9,18 @@
 *{
   box-sizing: border-box;
 }
-html{
-  margin: 0;
-}
+html { scroll-behavior: smooth; }
 body {
-  margin: 0;
+  margin: 0 0 0 0;
+  padding: 175px 0 0 0;
   background-color: var(--background-color-main);
+  height: 100vh;
+}
+#root{
+  margin: 0;
+  /* border: 10px solid black; */
+  min-height: 100%;
+  width: 100%;
 }
 
 #hero-canvas{
@@ -22,10 +29,68 @@ body {
   left: 50%;
   width: 350px;
   height: 350px;
+  z-index: 5;
+}
+.App {
+  /* overflow-y: scroll; */
+  min-height: 100%;
 }
 
 .nav{
-  height: fit-content;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 175px;
   width: 100%;
-  background-color: var(--background-color-text);
+  background-color: var(--background-color-content);
+}
+
+.nav ul {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  width: 80%
+}
+.nav-image-backer{
+  position: absolute;
+  border-radius: 50%;
+  /* border: 1px solid yellow; */
+  width: 400px;
+  height: 400px;
+  background-color: var(--background-color-content);
+}
+.nav-image-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-image {
+  position: relative;
+  background-image: url("../assets/images/linkedin-oct-2023.jpg");
+  background-size: 115%;
+  background-position: 25% 45%;
+  width: 350px;
+  height: 350px;
+  border: 1px solid black;
+  border-radius: 50%;
+  box-shadow: 0 0 20px black;
+}
+
+.animated-nav {
+  width: 90px;
+  height: 90px;
+  background-color: black;
+}
+
+.content {
+  font-family: sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--text-color-main);
+  max-width: 80vw;
+  background-color: var(--background-color-content);
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border: 1px solid black;
 }

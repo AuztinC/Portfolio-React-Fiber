@@ -1,12 +1,13 @@
-import { Suspense, useRef, useEffect } from 'react'
+import { Suspense, useRef, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import CSS_Logo from '../assets/obj/css_logo/CSS_Logo'
 import  HTML_Logo  from '../assets/obj/html_logo/Scene'
 import JS_Logo from '../assets/obj/javascript_1/Scene'
 import React_Logo from '../assets/obj/react_logo_circle/Scene'
+import { MeshDistortMaterial } from '@react-three/drei'
 import { OrbitControls } from '@react-three/drei'
-
+import { useSpring, animated } from '@react-spring/web'
 const sizes = {
   width: window.innerWidth,
   height: window.innerHeight
@@ -20,7 +21,7 @@ const cursor = {
 const Camera = () => {
   const { camera } = useThree()
   const cameraRef = useRef(camera);
-  var mouseTolerance = 2;
+  var mouseTolerance = 5;
   useEffect(()=>{
     window.addEventListener("mousemove", (event)=>{
       cursor.x = event.clientX / sizes.width - 0.5;
@@ -42,22 +43,36 @@ const Camera = () => {
   );
 };
 
-function BG_wall(){
-  
-  return (
-    <mesh position={[0,0,-40]} scale={[500,500,1]} receiveShadow>
-      <boxGeometry args={[1, 1, 1, 5, 5, 5]} />
-      <meshToonMaterial color="#CEAD6D" />
-    </mesh>
-  )
-}
-
 function HeroCanvas() {
+  const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
+  const [selectedLogo, setSelectedLogo] = useState(null)
+  
+  const [props, api] = useSpring(()=>({
+    from: { rotation: [0, 0, 0] }
+}))
+const handleClick =(ev)=>{
+  setSelectedLogo(ev.eventObject)
+  api.start({
+    from: { rotation: [0, 0, 0] },
+    to: { rotation: [0, 3.3, 0] }
+  })
+}
+useEffect(()=>{
+  
+}, [selectedLogo])
+
   return (
     <div id="hero-canvas">
       <Canvas camera={{ fov: 75, position: [0,0, 80]}} shadows>
           <Camera />
-          {/* <BG_wall /> */}
+          {/* <mesh position={[0, 0, 15]} scale={5}>
+          <torusKnotGeometry args={[2, 1, 32]} />
+          <AnimatedMeshDistortMaterial
+                speed={5}
+                distort={.2}
+                color={'red'}
+            />
+          </mesh> */}
           <ambientLight color="#DEF" intensity={.4} />
           <pointLight // low down light left
             position={[-15, -10, 50 ]}
@@ -82,9 +97,9 @@ function HeroCanvas() {
             shadow-mapSize-width={2048}
           />
           <Suspense fallback={ null }>
-            <JS_Logo position={[0, 0, 1]} scale={5}/>
+            <JS_Logo position={[0, 0, 1]} scale={5} />
             <CSS_Logo position={[20, -5, 10]} scale={0.13} />
-            <HTML_Logo position={[-20, -5, 10]} scale={0.13} />
+            <HTML_Logo position={[-20, -5, 10]} scale={0.13} onClick={handleClick} style={{props}}/>
             <React_Logo position={[-25, -10, 10]} scale={5} />
           </Suspense>
           {/* <OrbitControls/> */}
