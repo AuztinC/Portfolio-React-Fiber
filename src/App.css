@@ -8,6 +8,7 @@
 }
 *{
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 html { scroll-behavior: smooth; }
 body {
@@ -23,47 +24,46 @@ body {
   width: 100%;
 }
 
-#hero-canvas{
-  position: relative;
-  /* border: 1px solid black; */
-  left: 50%;
-  width: 350px;
-  height: 350px;
-  z-index: 5;
-}
+
 .App {
   /* overflow-y: scroll; */
   min-height: 100%;
 }
 
 .nav{
+  z-index: 1;
   position: fixed;
   top: 0;
   display: flex;
   justify-content: space-between;
-  height: 175px;
+  align-items: center;
+  height: 150px;
   width: 100%;
-  background-color: var(--background-color-content);
+  /* background-color: var(--background-color-main); */
 }
 
 .nav ul {
-  border: 1px solid black;
+  opacity: 0;
+  color: black;
+  font-size: 2em;
+  list-style-type: none;
   display: flex;
   justify-content: space-around;
   width: 80%
 }
+
 .nav-image-backer{
   position: absolute;
   border-radius: 50%;
-  /* border: 1px solid yellow; */
   width: 400px;
   height: 400px;
-  background-color: var(--background-color-content);
+  background-color: var(--background-color-main);
 }
 .nav-image-container{
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 5;
 }
 .nav-image {
   position: relative;
@@ -77,20 +77,98 @@ body {
   box-shadow: 0 0 20px black;
 }
 
+
 .animated-nav {
   width: 90px;
   height: 90px;
   background-color: black;
 }
 
+.hero-section {
+  padding-right: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 350px;
+}
+/* .hero-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+} */
+.hero-content h1 {
+  font-size: 3em;
+}
+@keyframes slideAnim {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.looper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.looper__innerList {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.looper__innerList[data-animate="true"] .looper__listInstance {
+  animation: slideAnim linear infinite;   
+}
+
+.looper__listInstance {
+  display: flex;
+  width: max-content;
+
+  animation: none;
+}
+.skills-container {
+  width: 100%;
+  left: 0;
+  top: 0;
+  /* position: inherit; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 175px;
+  background-color: rgb(255, 255, 255);
+  border-top: 1px solid var(--background-color-content);
+  border-bottom: 1px solid var(--background-color-content);
+  z-index: 0;
+}
+.skills-container img {
+  height: 125px;
+  margin-left: 15px;
+}
 .content {
+  padding: 2em;
+  padding-top: 1em;
+  line-height: 2em;
   font-family: sans-serif;
   font-weight: 500;
   letter-spacing: 0.12em;
   color: var(--text-color-main);
-  max-width: 80vw;
+  /* max-width: 80vw; */
   background-color: var(--background-color-content);
   margin-top: 25px;
   margin-bottom: 25px;
   border: 1px solid black;
+}
+
+#js-canvas{
+  position: relative;
+  /* border: 1px solid black; */
+  left: 50%;
+  width: 350px;
+  height: 350px;
+  z-index: 5;
 }

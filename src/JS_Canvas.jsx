@@ -43,18 +43,19 @@ const Camera = () => {
   );
 };
 
-function HeroCanvas() {
-  const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
+function JS_Canvas() {
+  // const AnimatedMeshDistortMaterial = animated(MeshDistortMaterial)
   const [selectedLogo, setSelectedLogo] = useState(null)
   
   const [props, api] = useSpring(()=>({
-    from: { rotation: [0, 0, 0] }
+    from: { rotate  : [0] }
 }))
 const handleClick =(ev)=>{
+  console.log("logo clicked")
   setSelectedLogo(ev.eventObject)
   api.start({
-    from: { rotation: [0, 0, 0] },
-    to: { rotation: [0, 3.3, 0] }
+    from: { rotation: [0] },
+    to: { rotation: [1] }
   })
 }
 useEffect(()=>{
@@ -62,17 +63,9 @@ useEffect(()=>{
 }, [selectedLogo])
 
   return (
-    <div id="hero-canvas">
+    <div id="js-canvas">
       <Canvas camera={{ fov: 75, position: [0,0, 80]}} shadows>
           <Camera />
-          {/* <mesh position={[0, 0, 15]} scale={5}>
-          <torusKnotGeometry args={[2, 1, 32]} />
-          <AnimatedMeshDistortMaterial
-                speed={5}
-                distort={.2}
-                color={'red'}
-            />
-          </mesh> */}
           <ambientLight color="#DEF" intensity={.4} />
           <pointLight // low down light left
             position={[-15, -10, 50 ]}
@@ -99,7 +92,7 @@ useEffect(()=>{
           <Suspense fallback={ null }>
             <JS_Logo position={[0, 0, 1]} scale={5} />
             <CSS_Logo position={[20, -5, 10]} scale={0.13} />
-            <HTML_Logo position={[-20, -5, 10]} scale={0.13} onClick={handleClick} style={{props}}/>
+            <HTML_Logo position={[-20, -5, 10]} scale={0.13} onClick={handleClick} style={{ rotate: '360deg'}}/>
             <React_Logo position={[-25, -10, 10]} scale={5} />
           </Suspense>
           {/* <OrbitControls/> */}
@@ -109,4 +102,4 @@ useEffect(()=>{
   )
 }
 
-export default HeroCanvas
+export default JS_Canvas
