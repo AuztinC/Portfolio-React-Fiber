@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mossy Wooden Stairs
+* source:	https://sketchfab.com/3d-models/mossy-wooden-stairs-afb4d9581d004c90897650c8b511392e
+* author:	JGeidatzis (https://sketchfab.com/JGeidatzis)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mossy Wooden Stairs" (https://sketchfab.com/3d-models/mossy-wooden-stairs-afb4d9581d004c90897650c8b511392e) by JGeidatzis (https://sketchfab.com/JGeidatzis) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
