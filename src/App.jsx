@@ -12,8 +12,8 @@ function App() {
   const hero = useRef()
   const img = useRef()
   const App = useRef()
-  const navLiftRef = useRef()
-  const navRef = useRef()
+  const dummyLiftRef = useRef()
+  const dummyRef = useRef()
   const [hidden, setHidden] = useState(true)
   const { scrollYProgress } = useScroll({
     target: hero,
@@ -48,10 +48,10 @@ function App() {
   return (
     
   <div className='App' ref={App} style={{height: '100%'}}>
-    <div ref={(navRef)} className='nav'>
+    <div ref={(dummyRef)} className='dummy'>
       {/* <span>Austin Cripe</span> */}
       
-        <motion.div className='nav-image-container'
+        <motion.div className='dummy-image-container'
           ref={img} 
           style={{
               scale,
@@ -60,11 +60,11 @@ function App() {
               top: imgYtemplate
           }}
         >
-          <div className='nav-image-backer' hidden={hidden}></div>
-          <div className='nav-image' ></div>
+          <div className='dummy-image-backer' hidden={hidden}></div>
+          <div className='dummy-image' ></div>
         </motion.div>
       
-      <motion.ul ref={navLiftRef} style={{ opacity  }}>
+      <motion.ul ref={dummyLiftRef} style={{ opacity  }}>
           {/* <li><animated.div className='animated-nav' /></li> */}
           {/* <li>About</li>
           <li>Projects</li>
@@ -81,9 +81,12 @@ function App() {
       <Skills />
     </section>
     
-    <Content />
-    <Content />
-    <Content />
+    <section className='section-pannels'>
+      {/* <Content />
+      <Content />
+      <Content /> */}
+      
+    </section>
   </div>
     
       

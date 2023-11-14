@@ -30,7 +30,8 @@ body {
   min-height: 100%;
 }
 
-.nav{
+.dummy{
+  pointer-events: none;
   z-index: 1;
   position: fixed;
   top: 0;
@@ -42,7 +43,7 @@ body {
   /* background-color: var(--background-color-main); */
 }
 
-.nav ul {
+.dummy ul {
   opacity: 0;
   color: black;
   font-size: 2em;
@@ -52,20 +53,20 @@ body {
   width: 80%
 }
 
-.nav-image-backer{
+.dummy-image-backer{
   position: absolute;
   border-radius: 50%;
   width: 400px;
   height: 400px;
   background-color: var(--background-color-main);
 }
-.nav-image-container{
+.dummy-image-container{
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 5;
 }
-.nav-image {
+.dummy-image {
   position: relative;
   background-image: url("../assets/images/linkedin-oct-2023.jpg");
   background-size: 115%;
@@ -75,13 +76,6 @@ body {
   border: 1px solid black;
   border-radius: 50%;
   box-shadow: 0 0 20px black;
-}
-
-
-.animated-nav {
-  width: 90px;
-  height: 90px;
-  background-color: black;
 }
 
 .hero-section {
@@ -103,29 +97,20 @@ body {
   width: 100%;
 }
 .hero-content {
+  pointer-events: none;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   color: white;
 }
-#js-canvas{
-  position: relative;
-  /* border: 1px solid black; */
-  left: 50%;
-  width: 350px;
-  height: 350px;
-  z-index: 5;
-}
-
-/* .hero-content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-} */
 
 .hero-content h1 {
   font-size: 3em;
 }
+.section-pannels {
+  min-height: 900px;
+}
+
 @keyframes slideAnim {
   from {
     transform: translateX(0%);
@@ -161,18 +146,38 @@ body {
   left: 0;
   top: 0;
   /* position: inherit; */
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   align-items: center;
   height: 175px;
   background-color: rgb(255, 255, 255);
   border-top: 1px solid var(--background-color-content);
   border-bottom: 1px solid var(--background-color-content);
-  z-index: 0;
 }
 .skills-container img {
   height: 125px;
   margin-left: 15px;
+  margin-right: 15px;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
+.nav-container {
+  /* background-color: white; */
+  position: relative;
+  left: 0;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.nav-container div {
+  font-size: 2em;
+  margin-right: 15%;
 }
 .content {
   padding: 2em;

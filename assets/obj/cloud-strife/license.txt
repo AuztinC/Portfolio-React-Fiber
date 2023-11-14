@@ -1,0 +1,11 @@
+Model Information:
+* title:	cloud-strife
+* source:	https://sketchfab.com/3d-models/cloud-strife-7a04341c1e3d4345a3079c113f1ebeeb
+* author:	rogeriofsalves1 (https://sketchfab.com/rogeriofsalves1)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "cloud-strife" (https://sketchfab.com/3d-models/cloud-strife-7a04341c1e3d4345a3079c113f1ebeeb) by rogeriofsalves1 (https://sketchfab.com/rogeriofsalves1) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
