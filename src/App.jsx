@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useSpring, useMotionValue, useMotionValueEvent, useMotionTemplate, useTransform } from 'framer-motion'
+import { motion, useScroll, useSpring, useAnimation, useMotionValueEvent, useMotionTemplate, useTransform, animate } from 'framer-motion'
 import JS_Canvas from './JS_Canvas'
 import Skills from './Skills'
 // import Nav from './Nav'
@@ -12,9 +12,8 @@ function App() {
   const hero = useRef()
   const img = useRef()
   const App = useRef()
-  const dummyLiftRef = useRef()
   const dummyRef = useRef()
-  const [hidden, setHidden] = useState(true)
+  const [enteredWebsite, setEnteredWebsite] = useState(true)
   const { scrollYProgress } = useScroll({
     target: hero,
     offset: ["start 175px", "end 200px"]
@@ -26,8 +25,8 @@ function App() {
   })
   
   const scale = useTransform(scaleImg, [0, 1], [1.2, .5])
-  const imgX = useTransform(scrollYProgress, [0, 1], [10, 0])
-  const imgY = useTransform(scrollYProgress, [0, 1], [30, 2])
+  const imgX = useTransform(scrollYProgress, [0, 1], [10, 3])
+  const imgY = useTransform(scrollYProgress, [0, 1], [30, 3.5])
   const opacity = useTransform(scrollYProgress, [0, 1], [0, 1])
   const imgXtemplate = useMotionTemplate`${imgX}vw`
   const imgYtemplate = useMotionTemplate`${imgY}vh`
@@ -35,16 +34,25 @@ function App() {
     return pos === 1 ? "relative" : "relative"
   })
   
+  const animationControls = useAnimation()
   useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     // console.log(latest)
     if(latest === 1){
-      setHidden(false)
+      setEnteredWebsite(false)
     } else {
-      setHidden(true)
+      setEnteredWebsite(true)
     }
+  })
+  useEffect(()=>{
+    // console.log(loopCont.current)
+    if(enteredWebsite){
+        animationControls.start({ opacity: 0 }, { duration: 1 })
+    } else {
+        animationControls.start({ opacity: 1 }, { duration: 1 })
+    }
+  }, [enteredWebsite])
     
       // console.log("Page scroll: ", latest)
-  })
   return (
     
   <div className='App' ref={App} style={{height: '100%'}}>
@@ -60,17 +68,10 @@ function App() {
               top: imgYtemplate
           }}
         >
-          <div className='dummy-image-backer' hidden={hidden}></div>
+          <div className='dummy-image-backer' animate={ animationControls }></div>
           <div className='dummy-image' ></div>
         </motion.div>
       
-      <motion.ul ref={dummyLiftRef} style={{ opacity  }}>
-          {/* <li><animated.div className='animated-nav' /></li> */}
-          {/* <li>About</li>
-          <li>Projects</li>
-          <li>Contact</li> */}
-          
-      </motion.ul>
     </div>
     
     <section className='hero-section' ref={hero}>

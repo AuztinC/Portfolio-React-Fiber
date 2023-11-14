@@ -54,6 +54,7 @@ body {
 }
 
 .dummy-image-backer{
+  opacity: 0;
   position: absolute;
   border-radius: 50%;
   width: 400px;
@@ -107,9 +108,7 @@ body {
 .hero-content h1 {
   font-size: 3em;
 }
-.section-pannels {
-  min-height: 900px;
-}
+
 
 @keyframes slideAnim {
   from {
@@ -141,13 +140,22 @@ body {
 
   animation: none;
 }
+.loop-container {
+  /* background-color: blue; */
+   position: relative;
+   width: 100%;
+   left: 0;
+   top: 0;
+}
 .skills-container {
+  overflow: hidden;
+  /* overflow-y: hidden; */
+  padding-top: 20px;
   width: 100%;
   left: 0;
   top: 0;
-  /* position: inherit; */
-  /* display: flex; */
-  /* justify-content: space-between; */
+  position: relative;
+  /* display:flex; */
   align-items: center;
   height: 175px;
   background-color: rgb(255, 255, 255);
@@ -158,26 +166,36 @@ body {
   height: 125px;
   margin-left: 15px;
   margin-right: 15px;
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); */
+ 
 }
 .nav-container {
-  /* background-color: white; */
-  position: relative;
-  left: 0;
-  top: 0%;
-  width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: space-around;
   align-items: center;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100vw;
+  height: 175px;
+  /* margin-left: 20vw; */
+}
+.nav-container div:first-child{
+  background-color: var(--background-color-accent2);
 }
 .nav-container div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  /* padding-right: 25px; */
+  /* padding-left: 25px; */
   font-size: 2em;
-  margin-right: 15%;
+  transition: all .3s;
+}
+.nav-container div:hover {
+  background-color: var(--background-color-accent2);
 }
 .content {
   padding: 2em;
@@ -201,4 +219,10 @@ body {
   width: 350px;
   height: 350px;
   z-index: 5;
+}
+
+
+
+.section-pannels {
+  min-height: 950px;
 }
