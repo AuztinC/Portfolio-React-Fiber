@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, SpotLight, useDepthBuffer } from '@react-three/drei'
+import Nod_Modes from './Nod_Modes'
 import Stairs_Model from '../assets/obj/mossy_wooden_stairs/Scene'
 import Nintendo_Model from '../assets/obj/nintendo_64_logo/Scene'
 import Skateboard_Model from '../assets/obj/skateboard_01/Scene'
@@ -53,7 +54,7 @@ const sizes = {
 	  light.current.target.position.lerp(vec.set((state.pointer.x * viewport.width) / 2, (state.pointer.y * viewport.height) / 2, 0), 0.1)
 	  light.current.target.updateMatrixWorld()
 	})
-	return <spotLight castShadow ref={light} penumbra={1} distance={100} angle={0.75} attenuation={100} anglePower={.5} intensity={2000} {...props} />
+	return <spotLight castShadow ref={light} penumbra={1} distance={100} angle={0.75} attenuation={100} anglePower={.5} intensity={15000} {...props} />
   }
   
   
@@ -94,12 +95,15 @@ export default function Hero_Content() {
   return (
   <>
   
-  	<div className='hero-canvas'>
+  	{/* <div className='hero-canvas'>
 	  <Canvas camera={{ fov: 75, position: [0,0, 50]}}>
-		<Camera />
-		  <Scene />
-		  <OrbitControls />
+	  <Camera />
+	  <Scene />
+	  <OrbitControls />
 	  </Canvas>
+	</div>	 */}
+	<div className='hero-canvas'>
+		<Nod_Modes />
 	</div>	
 	<div className="hero-content">
 		<h1>Austin Cripe</h1>

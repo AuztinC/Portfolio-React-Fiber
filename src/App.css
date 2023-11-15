@@ -1,10 +1,13 @@
 :root{
-  --background-color-main: #FFF5E0;
+  --background-color-main: #0b0709;
   --background-color-content: #141E46;
   --text-color-main: white;
-  --background-color-accent1: #FF6969;
+  --background-color-accent1: #686461;
   --background-color-accent2: #BB2525;
   --hero-canvas-height: 350px;
+  --container-border: 2px solid black;
+  --container-border-radius: 5px;
+  --container-text-shadow: 0 5px 10px -5px black;
 }
 *{
   box-sizing: border-box;
@@ -26,8 +29,11 @@ body {
 
 
 .App {
-  /* overflow-y: scroll; */
-  min-height: 100%;
+  /* position: relative; */
+  /* overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y mandatory;
+  min-height: 100%; */
 }
 
 .dummy{
@@ -62,12 +68,13 @@ body {
   background-color: var(--background-color-main);
 }
 .dummy-image-container{
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5;
 }
 .dummy-image {
+  z-index: 5;
   position: relative;
   background-image: url("../assets/images/linkedin-oct-2023.jpg");
   background-size: 115%;
@@ -108,7 +115,14 @@ body {
 .hero-content h1 {
   font-size: 3em;
 }
-
+.skills-section {
+  border-top: 1px solid var(--background-color-content);
+  border-bottom: 1px solid var(--background-color-content);
+  background-color: white;
+  margin: 0;
+  height: 20vh;
+  z-index: 5;
+}
 
 @keyframes slideAnim {
   from {
@@ -148,19 +162,19 @@ body {
    top: 0;
 }
 .skills-container {
+  scroll-snap-align: center;
   overflow: hidden;
-  /* overflow-y: hidden; */
-  padding-top: 20px;
+  padding-top: 1.2%;
   width: 100%;
+  height: 175px;
   left: 0;
   top: 0;
   position: relative;
   /* display:flex; */
   align-items: center;
-  height: 175px;
   background-color: rgb(255, 255, 255);
-  border-top: 1px solid var(--background-color-content);
-  border-bottom: 1px solid var(--background-color-content);
+
+  /* z-index: 1; */
 }
 .skills-container img {
   height: 125px;
@@ -176,13 +190,13 @@ body {
   left: 0;
   top: 100%;
   width: 100vw;
-  height: 175px;
+  height: 125%;
   /* margin-left: 20vw; */
 }
-.nav-container div:first-child{
+.nav-container a:first-child{
   background-color: var(--background-color-accent2);
 }
-.nav-container div {
+.nav-container a {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -191,10 +205,18 @@ body {
   width: 100%;
   /* padding-right: 25px; */
   /* padding-left: 25px; */
+  text-shadow: 0px 0px 2px white;
+  text-decoration: none;
+  color: black;
   font-size: 2em;
+  font-weight: 600;
   transition: all .3s;
 }
-.nav-container div:hover {
+.nav-container a:hover {
+  /* color: white; */
+  background-color: var(--background-color-accent2);
+}
+.selected {
   background-color: var(--background-color-accent2);
 }
 .content {
@@ -212,6 +234,52 @@ body {
   border: 1px solid black;
 }
 
+/* ---- after nav bar ---- */
+
+.section-pannels {
+height: 200vh;
+}
+
+.projects-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color-accent1);
+  width: 100%;
+  height: 100%;
+}
+.projects-column{
+  box-shadow: var(--container-text-shadow);
+  background-color: #BB2525;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+  width: 40vw;
+  max-width: 600px;
+  margin: 2%;
+  padding: 15px;
+  border: var(--container-border);
+  border-radius: var(--container-border-radius);
+}
+.project{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: var(--container-text-shadow);
+  border: 1px solid black;
+  border-radius: var(--container-border-radius);
+  width: 80%;
+  height: 30%;
+  margin: 2%;
+}
+.project img {
+  /* width: 100%; */
+  height: 100%;
+}
+
 #js-canvas{
   position: relative;
   /* border: 1px solid black; */
@@ -223,6 +291,3 @@ body {
 
 
 
-.section-pannels {
-  min-height: 950px;
-}

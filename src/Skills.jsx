@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState} from 'react'
-import { motion, useScroll, useSpring, useMotionValueEvent,useTransform, useAnimate, useAnimation, animationControls } from 'framer-motion'
+import { motion, useScroll, useSpring, useMotionValueEvent,useTransform, useAnimate, useAnimation, animationControls, useMotionTemplate } from 'framer-motion'
 import InfiniteLooper from './InfiniteLooper'
 import { useFrame } from '@react-three/fiber'
+import { Link, useLocation } from 'react-router-dom'
 
 const logoImages = [
 <img className='skills-item' src="../assets/images/logo-express-js.png" alt="express" />,
@@ -46,80 +47,93 @@ const Loop_Container = ({ position })=>{
     )
 }
 
-const Nav_Container = ({ position })=>{
+const Nav_Container = ({ position, enteredWebsite })=>{
+    const location = useLocation()
     const [navCont, animate] = useAnimate()
+    
     useEffect(()=>{
+        let timer = null
         if(position === 'fixed'){
-            // navCont.current.style.display = 'flex'
-            animate(navCont.current, { top: '-100%' }, { duration: 1})
+            animate(navCont.current, { top: '-105%' }, { duration: 1})
             animate(navCont.current, { opacity: 1 }, { duration: 1})
+            navCont.current.style.display = 'flex'
+            clearTimeout(timer)
         } else {
             navCont.current.style.position = 'relative'
-            animate(navCont.current, { top: '0%' }, { duration: 1})
+            animate(navCont.current, { top: '15%' }, { duration: 1})
             animate(navCont.current, { opacity: 0 }, { duration: 1})
         }
     }, [position])
     
+    // console.log(location.pathname === '/Projects')
     return (
     <motion.div className='nav-container' ref={ navCont }>
-        <div></div>
-        <div>Projects</div>
-        <div>Contact</div>
-        <div>About</div>
+        <Link to={'/'} className={`nav-link `}></Link>
+        <Link to={'/Projects'} className={`nav-link ${ location.pathname === '/Projects' ? 'selected' : ''}`}>Projects</Link>
+        <Link to={'/Contact'} className={`nav-link ${ location.pathname === '/Contact' ? 'selected' : ''}`}>Contact</Link>
+        <Link to={'/About'} className={`nav-link ${ location.pathname === '/About' ? 'selected' : ''}`}>About</Link>
     </motion.div>
         
     )
 }
 
 
-export default function Skills() {
+export default function Skills({ position }) {
+    const img = useRef()
     const skills = useRef()
-    const loopCont = useRef()
-
-    const [position, setPoition] = useState('')
     const { scrollY } = useScroll()
     const { scrollYProgress } = useScroll({
         target: skills,
-        offset: ["start 575px", "start 0px"]
+        offset: ["start 525px", "start 0px"]
     })
-    
-    useMotionValueEvent(scrollY, "change", (latest) =>{
-        if(latest >= 500){
-            setPoition("fixed")
+    const scaleImg = useSpring(scrollYProgress, {
+        stiffness: 400,
+        damping: 100,
+        restDelta: 0
+      })
+    const scale = useTransform(scaleImg, [0, 1], [1.2, .5])
+    const imgX = useTransform(scrollYProgress, [0, 1], [10, 0])
+    const imgY = useTransform(scrollYProgress, [0, 1], [20, 2])
+    const opacity = useTransform(scrollYProgress, [0, 1], [0, 1])
+    const imgXtemplate = useMotionTemplate`${imgX}vw`
+    const imgYtemplate = useMotionTemplate`${imgY}vh`
+    const [enteredWebsite, setEnteredWebsite] = useState(false)
+    useMotionValueEvent(scrollYProgress, "change", (latest) =>{
+        // console.log(latest)
+        if(latest === 1){
+          setEnteredWebsite(false)
         } else {
-            setPoition("inherit")
+          setEnteredWebsite(true)
         }
-        //   console.log("Page scroll: ", latest)
-    })
+      })
+
     useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     //   console.log("Page scroll: ", latest)
     })
-    // useEffect(()=>{
-    //     if(position === 'fixed'){
-    //         // navCont.current.style.display = 'flex'
-    //         animate(navCont.current, { top: '0%' }, { duration: 1})
-    //         animate(loopCont.current, { top: '100%' }, { duration: 1})
-    //     } else {
-    //         navCont.current.style.position = 'relative'
-    //         animate(navCont.current, { top: '100%' }, { duration: 1})
-    //     }
-    // }, [position])
     
   return (
   <>
+  <div className='dummy'>
+      {/* <span>Austin Cripe</span> */}
+      
+        <motion.div className='dummy-image-container'
+          ref={img} 
+          style={{
+              scale,
+            //   position,
+              left: imgXtemplate,
+              top: imgYtemplate
+          }}
+        >
+          {/* <div className='dummy-image-backer' animate={ animationControls }></div> */}
+          <div className='dummy-image' ></div>
+        </motion.div>
+      
+    </div>
 	<motion.div className='skills-container' ref={ skills } style={{ position }} >
-        {/* <InfiniteLooper speed="150" direction="left"  > 
-            <motion.div className='loop-container' ref={ loopCont }>
-                <img className='skills-item' src="../assets/images/logo-express-js.png" alt="express" />
-                <img className='skills-item' src="../assets/images/logo-github.png" alt="" />
-                <img className='skills-item' src="../assets/images/logo-nodejs.png" alt="" />
-                <img className='skills-item' src="../assets/images/logo-postgreSQL.png" alt="" />
-                <img className='skills-item' src="../assets/images/logo-socketio.png" alt="" />
-                <img className='skills-item' src="../assets/images/logo-three-js.png" alt="" />
-            </motion.div>
-        </InfiniteLooper> */}
-        <Loop_Container position={ position } />
-        <Nav_Container position={ position } />
+
+        <Loop_Container position={ position } enteredWebsite={ enteredWebsite } />
+        <Nav_Container position={ position } enteredWebsite={ enteredWebsite }/>
         
 	</motion.div>
     
