@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 
 
-const Scene = () => {
+const Sphere = () => {
 	const cluster = Array(20).fill()
 	const randomLocation = Math.round(Math.random()*25)
 	return (
@@ -29,8 +29,8 @@ function Nod_Modes() {
 	<Canvas camera={{ position: [0, 0, 10]}} shadows>
 		<ambientLight intensity={1}/>
 		<pointLight position={[0, 0, 10]} intensity={1000}/>
-		<Scene />
-		<OrbitControls />
+		<Sphere />
+		{/* <OrbitControls /> */}
 	</Canvas>
   )
 }

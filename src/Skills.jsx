@@ -11,9 +11,9 @@ const logoImages = [
 <img className='skills-item' src="../assets/images/logo-postgreSQL.png" alt="" />,
 <img className='skills-item' src="../assets/images/logo-socketio.png" alt="" />,
 <img className='skills-item' src="../assets/images/logo-three-js.png" alt="" />,
-{/* <img className='skills-item' src="../assets/images/logo" alt="" />
-<img className='skills-item' src="../assets/images/logo" alt="" />
-<img className='skills-item' src="../assets/images/logo" alt="" /> */}
+<img className='skills-item' src="../assets/images/logo-html-2" alt="" />,
+<img className='skills-item' src="../assets/images/logo-js-2" alt="" />,
+<img className='skills-item' src="../assets/images/logo-css-2" alt="" />,
 ]
 
 
@@ -37,10 +37,13 @@ const Loop_Container = ({ position })=>{
         <motion.div className='loop-container' animate={ animationControls }>
             <img className='skills-item' src="../assets/images/logo-express-js.png" alt="express" />
             <img className='skills-item' src="../assets/images/logo-github.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo-html-2.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-nodejs.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-postgreSQL.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo-js-2.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-socketio.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-three-js.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo-css-2.png" alt="" />
         </motion.div>
     </InfiniteLooper>
         
@@ -69,9 +72,9 @@ const Nav_Container = ({ position, enteredWebsite })=>{
     return (
     <motion.div className='nav-container' ref={ navCont }>
         <Link to={'/'} className={`nav-link `}></Link>
-        <Link to={'/Projects'} className={`nav-link ${ location.pathname === '/Projects' ? 'selected' : ''}`}>Projects</Link>
-        <Link to={'/Contact'} className={`nav-link ${ location.pathname === '/Contact' ? 'selected' : ''}`}>Contact</Link>
-        <Link to={'/About'} className={`nav-link ${ location.pathname === '/About' ? 'selected' : ''}`}>About</Link>
+        <Link to={'/Projects'} className={`nav-link ${ location.pathname === '/Projects' ? 'selected' : ''}`}><span></span>Projects</Link>
+        <Link to={'/Contact'} className={`nav-link ${ location.pathname === '/Contact' ? 'selected' : ''}`}><span></span>Contact</Link>
+        <Link to={'/About'} className={`nav-link ${ location.pathname === '/About' ? 'selected' : ''}`}><span></span>About</Link>
     </motion.div>
         
     )

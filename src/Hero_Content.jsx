@@ -95,16 +95,16 @@ export default function Hero_Content() {
   return (
   <>
   
-  	{/* <div className='hero-canvas'>
+  	<div className='hero-canvas'>
 	  <Canvas camera={{ fov: 75, position: [0,0, 50]}}>
 	  <Camera />
 	  <Scene />
 	  <OrbitControls />
 	  </Canvas>
-	</div>	 */}
-	<div className='hero-canvas'>
-		<Nod_Modes />
 	</div>	
+	{/* <div className='hero-canvas'>
+		<Nod_Modes />
+	</div>	 */}
 	<div className="hero-content">
 		<h1>Austin Cripe</h1>
 		<p>Full stack developer</p>
