@@ -41,8 +41,8 @@ function Rememberer() {
         </video>
         <motion.div className='project-overlay-bg' style={{ opacity }}>
             <div>
-                <button className='project-overlay-btn'>Repo</button>
-                <button className='project-overlay-btn'>Deployed</button>
+                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Rememberer' target='_blank'>Repo</a></button>
+                <button className='project-overlay-btn'><a href='https://auztinc.github.io/Rememberer/' target='_blank'>Deployed</a></button>
                 
             </div>
             

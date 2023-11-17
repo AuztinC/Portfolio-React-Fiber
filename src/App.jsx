@@ -3,18 +3,19 @@ import { motion, useScroll, useSpring, useAnimation, useMotionValueEvent, useTra
 import Skills from './Skills'
 import Hero_Content from './Hero_Content'
 import AnimatedRoutes from './AnimatedRoutes'
+import Socials from './Socials'
 
 
 
 function App() {
   const [position, setPoition] = useState('')
+  const [enteredWebsite, setEnteredWebsite] = useState(true)
   const hero = useRef()
   const App = useRef()
+  const skills = useRef()
   const sectionMargin = useRef(0)
   const sectionPannels = useRef(0)
-  const [enteredWebsite, setEnteredWebsite] = useState(true)
   const { scrollY } = useScroll()
-  const skills = useRef()
   const { scrollYProgress } = useScroll({
     target: hero,
     offset: ["start 175px", "end 200px"]
@@ -24,10 +25,8 @@ function App() {
     damping: 100,
     restDelta: 0
   })
+  const opacity = useTransform(scrollYProgress, [0, .7], [0, 1])
 
-  // const position = useTransform(scrollYProgress, (pos)=>{
-  //   return pos === 1 ? "relative" : "relative"
-  // })
   useMotionValueEvent(scrollY, "change", (latest) =>{
     if(latest >= 500){
         setPoition("fixed")
@@ -77,9 +76,10 @@ function App() {
       <Skills position={ position }/>
     </motion.section> 
     
-    <section className='section-pannels' ref={ sectionPannels } style={{marginTop: `${sectionMargin.current}px`}}>
+    <motion.section className='section-pannels' ref={ sectionPannels } style={{marginTop: `${sectionMargin.current}px`, opacity}}>
       <AnimatedRoutes />
-    </section>
+    </motion.section>
+    <Socials />
   </div>
     
       

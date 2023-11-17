@@ -41,8 +41,8 @@ function Avacardios() {
         </video>
         <motion.div className='project-overlay-bg' style={{ opacity }}>
             <div>
-                <button className='project-overlay-btn'>Repo</button>
-                <button className='project-overlay-btn'>Deployed</button>
+                <button className='project-overlay-btn'><a href='https://github.com/Avacardios/Avacardios' target='_blank'>Repo</a></button>
+                <button className='project-overlay-btn'><a href='https://avacardios-store.onrender.com/' target='_blank'>Deployed</a></button>
                 
             </div>
             

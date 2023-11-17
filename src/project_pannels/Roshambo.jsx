@@ -41,8 +41,8 @@ function Roshambo() {
         </video>
         <motion.div className='project-overlay-bg' style={{ opacity }}>
             <div>
-                <button className='project-overlay-btn'>Repo</button>
-                <button className='project-overlay-btn'>Deployed</button>
+                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/RoShamBo' target='_blank'>Repo</a></button>
+                {/* <button className='project-overlay-btn'>Deployed</button> */}
                 
             </div>
             

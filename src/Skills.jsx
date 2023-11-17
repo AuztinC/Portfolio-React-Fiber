@@ -39,6 +39,7 @@ const Loop_Container = ({ position })=>{
             <img className='skills-item' src="../assets/images/logo-github.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-html-2.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-nodejs.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo-react.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-postgreSQL.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-js-2.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-socketio.png" alt="" />
@@ -72,9 +73,9 @@ const Nav_Container = ({ position, enteredWebsite })=>{
     return (
     <motion.div className='nav-container' ref={ navCont }>
         <Link to={'/'} className={`nav-link `}></Link>
+        <Link to={'/About'} className={`nav-link ${ location.pathname === '/About' ? 'selected' : ''}`}><span></span>About</Link>
         <Link to={'/Projects'} className={`nav-link ${ location.pathname === '/Projects' ? 'selected' : ''}`}><span></span>Projects</Link>
         <Link to={'/Contact'} className={`nav-link ${ location.pathname === '/Contact' ? 'selected' : ''}`}><span></span>Contact</Link>
-        <Link to={'/About'} className={`nav-link ${ location.pathname === '/About' ? 'selected' : ''}`}><span></span>About</Link>
     </motion.div>
         
     )
@@ -97,7 +98,7 @@ export default function Skills({ position }) {
     const scale = useTransform(scaleImg, [0, 1], [1.2, .5])
     const imgX = useTransform(scrollYProgress, [0, 1], [10, 0])
     const imgY = useTransform(scrollYProgress, [0, 1], [20, 2])
-    const opacity = useTransform(scrollYProgress, [0, 1], [0, 1])
+
     const imgXtemplate = useMotionTemplate`${imgX}vw`
     const imgYtemplate = useMotionTemplate`${imgY}vh`
     const [enteredWebsite, setEnteredWebsite] = useState(false)
