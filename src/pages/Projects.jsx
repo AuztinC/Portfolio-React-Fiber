@@ -15,19 +15,16 @@ import Project_popout from '../project_pannels/Project_popout'
 //   position: [x, y]
 // }
 
-function Projects() {
+function Projects({ windowSize }) {
+
   const [selectedProject, setSelectedProject] = useState(null)
   useEffect(() => {
-    window.addEventListener('click', handleclick)
-    
-    return () => {
-      window.removeEventListener('click', handleclick)
+    if(windowSize <= 750){ // 750 PIXELS
+      console.log(windowSize)
     }
-  }, [])
-  function handleclick(ev){
-    console.log(ev.target)
-  }
-  
+  }, [windowSize])
+
+
   return (
     <motion.div className='projects-container' 
     initial={{ y: '100%' }}
@@ -36,14 +33,14 @@ function Projects() {
     >
         <div className='projects-div'>
           <div className='projects-column'>
-            <Hangman setSelectedProject={ setSelectedProject }/>
-            <Rememberer setSelectedProject={ setSelectedProject }/>
-            <Roshambo setSelectedProject={ setSelectedProject }/>
+            <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+            <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+            <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
             
-          </div>
+        </div>
           <div className='projects-column'>
-            <Avacardios setSelectedProject={ setSelectedProject }/>
-            <Testris setSelectedProject={ setSelectedProject }/>
+            <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+            <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
             {/* <Chatapp /> */}
           </div>
         <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>

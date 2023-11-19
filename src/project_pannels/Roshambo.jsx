@@ -1,7 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { motion, useSpring } from 'framer-motion'
-
-function Roshambo() {
+const DEPLOYED_SITE = ''
+const REPO = 'https://github.com/AuztinC/RoShamBo'
+const imageSrc = [
+]
+const details = `This project was a blast. A first introduction to both servers and websocket communication, among many other tools such as Nodemon, and Cors. RoShamBo helped me understand server/client relationship and improve my logic building. <br/>
+Tools used: HTML, CSS, React, Javascript, Express, Socket.io  <br/>
+<a href=${REPO} target='_blank'>Repo</a>  
+`
+function Roshambo({ setSelectedProject, selectedProject }) {
     const roshambo = useRef()
     const video = useRef()
     const [hovered, setHovered] = useState(null)
@@ -26,6 +33,25 @@ function Roshambo() {
             video.current.currentTime = 0
         }
     }, [hovered])
+    function Popout(){
+        if(selectedProject === null){
+            setSelectedProject({ 
+                images: imageSrc, 
+                video: 'roshambo/no-edit.mp4', 
+                details, position: [getOffset(roshambo.current).left, getOffset(roshambo.current).top] 
+            })
+        } else return 
+    }
+    function getOffset( el ) {
+        var _x = 0;
+        var _y = 0;
+        while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+            _x += el.offsetLeft - el.scrollLeft;
+            _y += el.offsetTop - el.scrollTop;
+            el = el.offsetParent;
+        }
+        return { top: _y, left: _x };
+    }
   return (
     <motion.div className='project' 
         ref={ roshambo } 
@@ -40,16 +66,16 @@ function Roshambo() {
             Your browser does not support the video tag.
         </video>
         <motion.div className='project-overlay-bg' style={{ opacity }}>
-            <div>
+        
                 <button className='project-overlay-btn'><a href='https://github.com/AuztinC/RoShamBo' target='_blank'>Repo</a></button>
                 {/* <button className='project-overlay-btn'>Deployed</button> */}
                 
-            </div>
             
-            <div>
-                <button className='project-overlay-btn'>More Info</button>
+            
+        
+                <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
                 
-            </div>
+            
             
             
         </motion.div>

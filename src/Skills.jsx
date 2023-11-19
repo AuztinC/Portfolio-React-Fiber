@@ -51,7 +51,7 @@ const Loop_Container = ({ position })=>{
     )
 }
 
-const Nav_Container = ({ position, enteredWebsite })=>{
+const Nav_Container = ({ position, enteredWebsite, windowSize })=>{
     const location = useLocation()
     const [navCont, animate] = useAnimate()
     
@@ -72,7 +72,7 @@ const Nav_Container = ({ position, enteredWebsite })=>{
     // console.log(location.pathname === '/Projects')
     return (
     <motion.div className='nav-container' ref={ navCont }>
-        <Link to={'/'} className={`nav-link `}></Link>
+        <Link to={'/'} className={`nav-link `} style={{ display: windowSize.width <= 900 ? 'none' : 'inline'}}></Link>
         <Link to={'/About'} className={`nav-link ${ location.pathname === '/About' ? 'selected' : ''}`}><span></span>About</Link>
         <Link to={'/Projects'} className={`nav-link ${ location.pathname === '/Projects' ? 'selected' : ''}`}><span></span>Projects</Link>
         <Link to={'/Contact'} className={`nav-link ${ location.pathname === '/Contact' ? 'selected' : ''}`}><span></span>Contact</Link>
@@ -82,26 +82,34 @@ const Nav_Container = ({ position, enteredWebsite })=>{
 }
 
 
-export default function Skills({ position }) {
+export default function Skills({ position, windowSize }) {
     const img = useRef()
     const skills = useRef()
     const { scrollY } = useScroll()
     const { scrollYProgress } = useScroll({
-        target: skills,
-        offset: ["start 525px", "start 0px"]
+      target: skills,
+      offset: ["start 525px", "start 0px"]
     })
     const scaleImg = useSpring(scrollYProgress, {
-        stiffness: 400,
-        damping: 100,
-        restDelta: 0
-      })
-    const scale = useTransform(scaleImg, [0, 1], [1.2, .5])
-    const imgX = useTransform(scrollYProgress, [0, 1], [10, 0])
-    const imgY = useTransform(scrollYProgress, [0, 1], [20, 2])
-
+      stiffness: 400,
+      damping: 100,
+      restDelta: 0
+    })
+    const scale = useTransform(scaleImg, [0, .8], [windowSize.width <= 900 ? .9 : 1.2 , windowSize.width <= 900 ? .3 : .5])
+    const imgX = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 0 : 10, windowSize.width <= 900 ? 0 : 0])
+    const imgY = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 20 : 20, windowSize.width <= 900 ? 12 : 2])
+    const opacity = useTransform(scrollYProgress, [.4, 1], [windowSize.width <= 400 ? 1 : 1, windowSize.width <= 400 ? 0 : 1])
+    
     const imgXtemplate = useMotionTemplate`${imgX}vw`
     const imgYtemplate = useMotionTemplate`${imgY}vh`
     const [enteredWebsite, setEnteredWebsite] = useState(false)
+    
+    useEffect(() => {
+      if(windowSize <= 750){ // 750 PIXELS
+        
+      }
+    }, [windowSize])
+    
     useMotionValueEvent(scrollYProgress, "change", (latest) =>{
         // console.log(latest)
         if(latest === 1){
@@ -126,7 +134,8 @@ export default function Skills({ position }) {
               scale,
             //   position,
               left: imgXtemplate,
-              top: imgYtemplate
+              top: imgYtemplate,
+              opacity
           }}
         >
           {/* <div className='dummy-image-backer' animate={ animationControls }></div> */}
@@ -137,7 +146,7 @@ export default function Skills({ position }) {
 	<motion.div className='skills-container' ref={ skills } style={{ position }} >
 
         <Loop_Container position={ position } enteredWebsite={ enteredWebsite } />
-        <Nav_Container position={ position } enteredWebsite={ enteredWebsite }/>
+        <Nav_Container position={ position } enteredWebsite={ enteredWebsite } windowSize={ windowSize }/>
         
 	</motion.div>
     

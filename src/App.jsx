@@ -10,6 +10,7 @@ import Socials from './Socials'
 function App() {
   const [position, setPoition] = useState('')
   const [enteredWebsite, setEnteredWebsite] = useState(true)
+  const [windowSize, setWindowSize] = useState({})
   const hero = useRef()
   const App = useRef()
   const skills = useRef()
@@ -26,7 +27,22 @@ function App() {
     restDelta: 0
   })
   const opacity = useTransform(scrollYProgress, [0, .7], [0, 1])
-
+  
+  
+  useEffect(()=>{
+    window.addEventListener('resize', (event)=>handleResize(event))
+    if(window.innerWidth <= 750){
+        // projectOverlay.current.style.pointerEvents = 'none'
+        setWindowSize({width: window.innerWidth, height: window.innerHeight})
+    }
+    return(window.removeEventListener('resize', handleResize))
+  }, [])
+  function handleResize(event){
+    // console.log(event.target.innerWidth)
+    setWindowSize({width: event.target.innerWidth, height: event.target.innerHeight})
+  }
+  
+  
   useMotionValueEvent(scrollY, "change", (latest) =>{
     if(latest >= 500){
         setPoition("fixed")
@@ -69,17 +85,17 @@ function App() {
   <div className='App' ref={App} style={{height: '100%'}}>
 
     <section className='hero-section' ref={hero}>
-      <Hero_Content />
+      <Hero_Content  windowSize={ windowSize }/>
     </section>
     
     <motion.section className='skills-section' ref={ skills } style={{ position }}>
-      <Skills position={ position }/>
+      <Skills position={ position } windowSize={ windowSize }/>
     </motion.section> 
     
     <motion.section className='section-pannels' ref={ sectionPannels } style={{marginTop: `${sectionMargin.current}px`, opacity}}>
-      <AnimatedRoutes />
+      <AnimatedRoutes  windowSize={ windowSize }/>
     </motion.section>
-    <Socials />
+    <Socials  windowSize={ windowSize }/>
   </div>
     
       

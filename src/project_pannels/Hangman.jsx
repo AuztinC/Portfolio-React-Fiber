@@ -1,7 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { motion, useSpring } from 'framer-motion'
-
-function Hangman() {
+const DEPLOYED_SITE = 'https://ac-hangman.netlify.app/'
+const REPO = 'https://github.com/AuztinC/HangMan'
+const imageSrc = [
+    '../assets/images/projects/hangman/home_full.PNG',
+    '../assets/images/projects/hangman/loss_full.PNG'
+]
+const details = `A really fun project using multi-dementional arrays and canvas. Users scores are saved to local storage. This project vastly helped my knowledge of arrays and loops, building my overall Javascript fundementals. <br/>
+Tools used: HTML, CSS, Javascript  <br/>
+<a href=${REPO} target='_blank'>Repo</a>  <br/>
+<a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a>
+`
+function Hangman({ setSelectedProject, selectedProject }) {
     const hangman = useRef()
     const video = useRef()
     const [hovered, setHovered] = useState(null)
@@ -26,30 +36,50 @@ function Hangman() {
             video.current.currentTime = 0
         }
     }, [hovered])
-    useEffect(()=>{
-        if(hovered){
-            scale.set(1.2)
-        } else {
-            scale.set(1)
+    function Popout(){
+        if(selectedProject === null){
+            setSelectedProject({ 
+                images: imageSrc, 
+                video: 'hangman/quick-full.mp4', 
+                details, position: [getOffset(hangman.current).left, getOffset(hangman.current).top] 
+            })
+        } else{
+            return
         }
-    }, [hovered])
+        
+    }
+    function getOffset( el ) {
+        var _x = 0;
+        var _y = 0;
+        while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+            _x += el.offsetLeft - el.scrollLeft;
+            _y += el.offsetTop - el.scrollTop;
+            el = el.offsetParent;
+        }
+        return { top: _y, left: _x };
+    }
   return (
-    <motion.div className='project' ref={ hangman } onPointerLeave={()=>setHovered(null)} onPointerEnter={()=>setHovered(hangman)} style={ { scale } } >
+    <motion.div className='project' 
+    ref={ hangman } 
+    onPointerLeave={()=>setHovered(null)} 
+    onPointerEnter={()=>setHovered(hangman)} 
+    style={ { scale } } 
+    >
         <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/hangman/quick-full.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
         </video>
         <motion.div className='project-overlay-bg' style={{ opacity }}>
-            <div>
+            
                 <button className='project-overlay-btn'><a href='https://github.com/AuztinC/HangMan' target='_blank'>Repo</a></button>
                 <button className='project-overlay-btn'><a href='https://ac-hangman.netlify.app/' target='_blank'>Deployed</a></button>
                 
-            </div>
             
-            <div>
-                <button className='project-overlay-btn'>More Info</button>
+            
+            
+                <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
                 
-            </div>
+            
             
             
         </motion.div>

@@ -5,14 +5,14 @@ import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import About from './pages/About'
 
-function AnimatedRoutes() {
+function AnimatedRoutes({ windowSize }) {
     const location = useLocation()
   return (
     <AnimatePresence>
         <Routes location={ location } key={ location.pathname }>
-            <Route path='/About' element={ <About /> } />
-            <Route path='/Projects' element={ <Projects /> } />
-            <Route path='/Contact' element={ <Contact /> } />
+            <Route path='/About' element={ <About windowSize={ windowSize }/> } />
+            <Route path='/Projects' element={ <Projects windowSize={ windowSize }/> } />
+            <Route path='/Contact' element={ <Contact windowSize={ windowSize }/> } />
         </Routes>
     </AnimatePresence>
   )

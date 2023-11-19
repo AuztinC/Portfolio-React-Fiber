@@ -8,6 +8,7 @@ function Project_popout({ selectedProject, setSelectedProject }) {
     // console.log(position)
     const popout = useRef()
     const detailsRef = useRef()
+    const videoRef = useRef()
     const topY = useSpring(-100, {
         stiffness: 300,
         damping: 100
@@ -18,6 +19,7 @@ function Project_popout({ selectedProject, setSelectedProject }) {
             topY.set(-100)
         } else {
             topY.set(50)
+            videoRef.current.play()
         }
     }, [selectedProject])
     
@@ -27,6 +29,9 @@ function Project_popout({ selectedProject, setSelectedProject }) {
     
     function closeWindow() {
         topY.set(-100)
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+        setTimeout(()=>setSelectedProject(null), 300)
     }
     
     
@@ -38,7 +43,7 @@ function Project_popout({ selectedProject, setSelectedProject }) {
     <motion.div className='project-popout' ref={ popout } style={{top: topTemplate}}>
         <Carousel className='popout-carousel' showThumbs={false} dynamicHeight>
             
-                <video muted={true} controls>
+                <video muted={true} controls ref={ videoRef } loop>
                     <source src={`../assets/images/projects/${ video }`} type="video/mp4"/>
                     Your browser does not support the video tag.
                 </video>

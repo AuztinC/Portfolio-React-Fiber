@@ -40,16 +40,16 @@ function Chatapp() {
             Your browser does not support the video tag.
         </video>
         <motion.div className='project-overlay-bg' style={{ opacity }}>
-            <div>
+            
                 <button className='project-overlay-btn'>Repo</button>
                 <button className='project-overlay-btn'>Deployed</button>
                 
-            </div>
             
-            <div>
+            
+            
                 <button className='project-overlay-btn'>More Info</button>
                 
-            </div>
+            
             
             
         </motion.div>

@@ -51,16 +51,6 @@ a {
   /* background-color: var(--background-color-main); */
 }
 
-.dummy ul {
-  opacity: 0;
-  color: black;
-  font-size: 2em;
-  list-style-type: none;
-  display: flex;
-  justify-content: space-around;
-  width: 80%
-}
-
 .dummy-image-backer{
   opacity: 0;
   position: absolute;
@@ -75,6 +65,8 @@ a {
   justify-content: center;
   align-items: center;
 }
+/*  width: 350px;
+  height: 350px; */
 .dummy-image {
   z-index: 5;
   position: relative;
@@ -100,7 +92,7 @@ a {
 .hero-canvas {
   z-index: 0;
   /* background: url('/assets/images/cloud-backdrop.jpg'); */
-  background-color: black;
+  background-color: #333;
   position: absolute;
   top: 0;
   left: 0;
@@ -382,10 +374,11 @@ overflow-x: hidden;
 }
 .project-overlay-bg{
   display: flex;
-  padding-top: 10%;
+  /* padding-top: 10%; */
   position: absolute;
   flex-direction: column;
-  align-items: end;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, .6);
@@ -395,7 +388,7 @@ overflow-x: hidden;
   width: 100%;
 }
 .project-overlay-btn{
-  margin: 10px;
+  margin: 2%;
   background-color: var(--background-color-main);
   padding: 8px;
   line-height: 1rem;
@@ -452,6 +445,7 @@ overflow-x: hidden;
 }
 
 .about-container{
+  /* margin-top: 45px; */
   padding: 15px;
   display: flex;
   justify-content: center;
@@ -493,5 +487,9 @@ overflow-x: hidden;
   max-width: 100%;
 }
 
-
+@media screen and (max-width: 400px) {
+  .about-container {
+    padding-top: 150px;
+  }
+}
 

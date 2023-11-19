@@ -1,10 +1,19 @@
 import * as THREE from 'three'
-import React, { useRef, useState, useMemo, useEffect, Suspense } from 'react'
+import React, { useRef, useState, useMemo, useEffect, Suspense, useLayoutEffect } from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { EffectComposer, Vignette, Bloom, DepthOfField } from '@react-three/postprocessing'
 import { KernelSize, Resolution  } from 'postprocessing'
 import { Fairy } from '../assets/obj/fairy/Scene'
 import Fantasy_Landscape from '../assets/obj/fantasy_landscape/Scene'
+import { Clone, OrbitControls } from '@react-three/drei'
+import { useLoader } from '@react-three/fiber'
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+import ArcScene from '../assets/obj/arc-scene/Arc-scene'
+
+
+
+
+
 
 const allSpheres = []
 function Sphere({ geometry, x, y, z, s }) {
@@ -34,19 +43,19 @@ function RandomSpheres() {
   allSpheres.push(data)
   return data.map((props, i) => <Sphere key={i} {...props} geometry={geometry} />)
 }
-// function RandomFairies() {
-//   const [geometry] = useState(() => new THREE.SphereGeometry(1, 32, 32), [])
-//   const data = useMemo(() => {
-//     return new Array(10).fill().map((_, i) => ({
-//       x: Math.random() * 20,
-//       y: Math.random() * 10,
-//       z: Math.random() * -15,
-//       s: Math.random() + .5,
-//     }))
-//   }, [])
-//   allSpheres.push(data)
-//   return data.map((props, i) => <Fairy key={i} position={[props.x, props.y, props.z]} style={{ scale: props.s }}/>)
-// }
+function RandomFairies() {
+  const [geometry] = useState(() => new THREE.SphereGeometry(1, 32, 32), [])
+  const data = useMemo(() => {
+    return new Array(10).fill().map((_, i) => ({
+      x: Math.random() * 20,
+      y: Math.random() * 10,
+      z: Math.random() * -15,
+      s: Math.random() + .5,
+    }))
+  }, [])
+  allSpheres.push(data)
+  return data.map((props, i) => <Fairy key={i} position={[props.x, props.y, props.z]} style={{ scale: props.s }}/>)
+}
 
 
 function Main({ children }) {
@@ -62,32 +71,36 @@ function Main({ children }) {
 }
 
 const Nod_Modes = () => {
+  // const fbx = useLoader(FBXLoader, '../assets/obj/arc-scene/arc-scene.fbx')
+
   const ambientLight1 = useRef()
   const fairy = useRef()
   // if(!fairy.current) return null
   return (
     // 2, 1, 7
-    <Canvas linear camera={{ position: [2, 1, 25], fov: 60, rotation: [.3 , 0, 0] }} shadows>
+    <Canvas linear camera={{ position: [2, 1, 7], fov: 10, rotation: [.3 , 0, 0] }} shadows>
     <Main>
-      <pointLight />
-      <ambientLight ref={ ambientLight1 } intensity={1}/>
-      <directionalLight position={[0, 10, 25]} intensity={7}/>
+      {/* <pointLight /> */}
+      <ambientLight ref={ ambientLight1 } intensity={2}/>
+      <directionalLight position={[0, 10, 25]} intensity={4} castShadow/>
       <Suspense fallback={null}>
         {/* <Fantasy_Landscape scale={3}/> */}
-        <Fairy position={[0, 25, -55]} scale={1}/>
+        {/* <Fairy position={[0, 25, -55]} scale={1}/>
         <Fairy position={[0, 0, 0]} scale={1}/>
-        <Fairy position={[0, 0, -10]} scale={1}/>
+        <Fairy position={[0, 0, -10]} scale={1}/> */}
         {/* <RandomSpheres /> */}
         {/* <RandomFairies /> */}
+        {/* <primitive object={fbx} scale={1} rotation={[0, 0, 0]}/> */}
+        <ArcScene rotation={[-Math.PI/2, 0, 0]}/>
       </Suspense>
     </Main>
     
     <EffectComposer>
       <Bloom
-        intensity={1} // The bloom intensity.
+        intensity={100} // The bloom intensity.
         blurPass={undefined} // A blur pass.
         kernelSize={KernelSize.LARGE} // blur kernel size
-        luminanceThreshold={1} // luminance threshold. Raise this value to mask out darker elements in the scene.
+        luminanceThreshold={0} // luminance threshold. Raise this value to mask out darker elements in the scene.
         luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
         mipmapBlur={false} // Enables or disables mipmap blur.
         resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
@@ -101,6 +114,7 @@ const Nod_Modes = () => {
         bokehScale={1} // bokeh size
       />
     </EffectComposer>
+    <OrbitControls />
   </Canvas>
   )
 }
