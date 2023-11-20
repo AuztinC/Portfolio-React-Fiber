@@ -44,21 +44,23 @@ function App() {
   }
   
   
-  useMotionValueEvent(scrollY, "change", (latest) =>{
-    // console.log(latest)
-    if(latest >= 750){
-        setPoition("fixed")
-    } else {
-        setPoition("inherit")
-    }
-    //   console.log("Page scroll: ", latest)
-})
+//   useMotionValueEvent(scrollY, "change", (latest) =>{
+//     console.log(latest)
+//     if(latest >= 750){
+//         setPoition("fixed")
+//     } else {
+//         setPoition("inherit")
+//     }
+//       console.log("Page scroll: ", latest)
+// })
   const animationControls = useAnimation()
   useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     // console.log(latest)
     if(latest === 1){
+      setPoition("fixed")
       sectionPannels.current.style.height = '85vh'
     } else {
+      setPoition("inherit")
       
     }
   })

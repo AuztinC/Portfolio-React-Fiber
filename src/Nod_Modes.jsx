@@ -82,7 +82,7 @@ const Nod_Modes = ({ windowSize }) => {
       <Camera windowSize={ windowSize }/>
     <Main>
       <mesh position={[-1.9, .8, 0]}>
-        <pointLight intensity={3} position={[0, 0, 0]} castShadow/>
+        <pointLight intensity={3} position={[0, 0, 0]}/>
         <pointLight intensity={1} position={[0, 0, .3]} />
         {/* <LightBulb scale={ 0.1 } position={[0, 0, 0]} /> */}
       </mesh>
@@ -96,9 +96,9 @@ const Nod_Modes = ({ windowSize }) => {
             </mesh>
             <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
             <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
-            <Plant scale={.01} rotation={[0, -Math.PI/1.5, 0]} position={[4, 0, 0]}/>
+            {/* <Plant scale={.01} rotation={[0, -Math.PI/1.5, 0]} position={[4, 0, 0]}/> */}
         </mesh>
-        <SpaceDust count={2500} />
+        {/* <SpaceDust count={2500} /> */}
       </Suspense>
     </Main>
     
