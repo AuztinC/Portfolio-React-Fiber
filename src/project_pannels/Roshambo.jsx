@@ -8,7 +8,7 @@ const details = `This project was a blast. A first introduction to both servers 
 Tools used: HTML, CSS, React, Javascript, Express, Socket.io  <br/>
 <a href=${REPO} target='_blank'>Repo</a>  
 `
-function Roshambo({ setSelectedProject, selectedProject }) {
+function Roshambo({ setSelectedProject, selectedProject, windowSize }) {
     const roshambo = useRef()
     const video = useRef()
     const [hovered, setHovered] = useState(null)
@@ -28,7 +28,7 @@ function Roshambo({ setSelectedProject, selectedProject }) {
             video.current.play()
         } else {
             scale.set(1)
-            opacity.set(0)
+            opacity.set(windowSize.width <= 950 ? 1 : 0)
             video.current.pause()
             video.current.currentTime = 0
         }
@@ -66,7 +66,8 @@ function Roshambo({ setSelectedProject, selectedProject }) {
             Your browser does not support the video tag.
         </video>
         <motion.div className='project-overlay-bg' style={{ opacity }}>
-        
+        <span>RoShamBo</span>
+            <div className='project-overlay-bg-btns'>
                 <button className='project-overlay-btn'><a href='https://github.com/AuztinC/RoShamBo' target='_blank'>Repo</a></button>
                 {/* <button className='project-overlay-btn'>Deployed</button> */}
                 
@@ -74,7 +75,7 @@ function Roshambo({ setSelectedProject, selectedProject }) {
             
         
                 <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
-                
+            </div>
             
             
             

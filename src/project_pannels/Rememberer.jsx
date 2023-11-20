@@ -12,7 +12,7 @@ Tools used: HTML, CSS, React, <br/>
 <a href=${REPO} target='_blank'>Repo</a>  <br/>
 <a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a>
 `
-function Rememberer({ setSelectedProject, selectedProject }) {
+function Rememberer({ setSelectedProject, selectedProject, windowSize }) {
     const rememberer = useRef()
     const video = useRef()
     const [hovered, setHovered] = useState(null)
@@ -32,7 +32,7 @@ function Rememberer({ setSelectedProject, selectedProject }) {
             video.current.play()
         } else {
             scale.set(1)
-            opacity.set(0)
+            opacity.set(windowSize.width <= 950 ? 1 : 0)
             video.current.pause()
             video.current.currentTime = 0
         }
@@ -69,11 +69,14 @@ function Rememberer({ setSelectedProject, selectedProject }) {
             Your browser does not support the video tag.
         </video>
         <motion.div className='project-overlay-bg' style={{ opacity }}>
-            
-                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Rememberer' target='_blank'>Repo</a></button>
-                <button className='project-overlay-btn'><a href='https://auztinc.github.io/Rememberer/' target='_blank'>Deployed</a></button>
-                
-                <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
+                <span>Rememberer</span>
+                <div className='project-overlay-bg-btns'>
+                    <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Rememberer' target='_blank'>Repo</a></button>
+                    <button className='project-overlay-btn'><a href='https://auztinc.github.io/Rememberer/' target='_blank'>Deployed</a></button>
+                    
+                    <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
+                    
+                </div>
                 
         </motion.div>
     </motion.div>

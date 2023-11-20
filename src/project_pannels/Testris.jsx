@@ -44,7 +44,7 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
                 clearTimeout(btnTimer)
             }
             scale.set(1)
-            opacity.set(0)
+            opacity.set(windowSize.width <= 950 ? 1 : 0)
             video.current.pause()
             video.current.currentTime = 0
             // setDisplayInfo('none')
@@ -97,11 +97,12 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
         </video>
         
         <motion.div className='project-overlay-bg' style={{ opacity }} ref={ projectOverlay }>
-                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Testris_02' target='_blank'>Repo</a></button>
-                <button className='project-overlay-btn'><a href='https://testris.netlify.app/' target='_blank'>Deployed</a></button>
-                
-
-                <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
+        <span>Testris</span>
+        <div className='project-overlay-bg-btns'>
+            <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Testris_02' target='_blank'>Repo</a></button>
+            <button className='project-overlay-btn'><a href='https://testris.netlify.app/' target='_blank'>Deployed</a></button>
+            <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
+        </div>
                 
         </motion.div>
     

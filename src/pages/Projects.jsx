@@ -15,12 +15,62 @@ import Project_popout from '../project_pannels/Project_popout'
 //   position: [x, y]
 // }
 
+const PC_Projects = ({ windowSize })=>{
+  const [selectedProject, setSelectedProject] = useState(null)
+
+
+  return (
+    <>
+      <div className='projects-div'>
+        <div className='projects-column'>
+        <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+      </div>
+      
+      <div className='projects-column'>
+        <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
+        {/* <Chatapp /> */}
+      </div>
+      <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
+      </div>
+      { selectedProject ? <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject }/> : null}
+    </>
+  )
+}
+
+const Mobile_Projects = ({ windowSize })=>{
+  const [selectedProject, setSelectedProject] = useState(null)
+
+
+  return (
+    <>
+    <div className='projects-div'>
+      <div className='projects-column'>
+        <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+      </div>
+      
+      <div className='projects-column'>
+        <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
+        {/* <Chatapp /> */}
+      </div>
+      <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
+    </div>
+      { selectedProject ? <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject }/> : null}
+    </>
+  )
+}
+
 function Projects({ windowSize }) {
 
   const [selectedProject, setSelectedProject] = useState(null)
   useEffect(() => {
-    if(windowSize <= 750){ // 750 PIXELS
-      console.log(windowSize)
+    if(windowSize.width <= 750){ // 750 PIXELS
+      // console.log(windowSize)
     }
   }, [windowSize])
 
@@ -31,21 +81,13 @@ function Projects({ windowSize }) {
     animate={{ y: '0' }}
     exit={{ y: -window.innerWidth, transition: { duration: 0.3 } }}
     >
-        <div className='projects-div'>
-          <div className='projects-column'>
-            <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
-            <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
-            <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
-            
-        </div>
-          <div className='projects-column'>
-            <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
-            <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
-            {/* <Chatapp /> */}
-          </div>
-        <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
-        </div>
-        { selectedProject ? <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject }/> : null}
+      {
+        windowSize.width <= 950 ? 
+        <Mobile_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
+        :
+        <PC_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
+      }
+      
     </motion.div>
   )
 }

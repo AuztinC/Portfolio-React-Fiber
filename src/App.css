@@ -355,7 +355,6 @@ overflow-x: hidden;
 
 .project img{
   aspect-ratio: 3 / 2;
-  /* width: 100%; */
   height: 100%;
 }
 .project video{
@@ -364,11 +363,12 @@ overflow-x: hidden;
   /* height: 100%; */
 }
 .project-overlay-bg{
+  color: #fff;
   display: flex;
   /* padding-top: 10%; */
   position: absolute;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -378,8 +378,14 @@ overflow-x: hidden;
 .project-overlay-bg:last-child{
   width: 100%;
 }
+.project-overlay-bg-btns{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .project-overlay-btn{
-  margin: 2%;
+  width: fit-content;
+  margin: 6%;
   background-color: var(--background-color-main);
   padding: 8px;
   line-height: 1rem;
@@ -392,6 +398,12 @@ overflow-x: hidden;
 }
 .project-overlay-bg a {
   text-decoration: none;
+}
+.project-overlay-bg span {
+  padding: 3px;
+  background: rgba(0, 0, 0, .6);
+  font-weight: 700;
+  /* text-shadow: 0 1 5px 5px red; */
 }
 .project-popout{
   
@@ -412,6 +424,9 @@ overflow-x: hidden;
 }
 .popout-carousel {
   width: 100%;
+}
+.popout-carousel img {
+  aspect-ratio: 3 / 2;
 }
 .project-popout a {
   text-decoration: underline;
@@ -480,7 +495,33 @@ overflow-x: hidden;
 
 @media screen and (max-width: 400px) {
   .about-container {
-    padding-top: 150px;
+    /* padding-top: 150px; */
+  }
+  .project-overlay-bg{
+    font-size: .1rem;
+  }
+  .project-overlay-bg button{
+    font-size: .5rem;
+    padding: 3px;
+  }
+}
+@media screen and (max-width: 750px) {
+
+  .project-overlay-bg{
+    font-size: .8rem;
+  }
+  .project-overlay-bg button{
+    font-size: .5rem;
+    padding: 6px;
+  }
+}
+@media screen and (max-width: 950px) {
+  .project-overlay-bg{
+    /* font-size: .1rem; */
+  }
+  .project-overlay-bg button{
+    font-size: .6rem;
+    padding: 6px;
   }
 }
 

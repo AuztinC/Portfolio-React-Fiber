@@ -11,7 +11,7 @@ import Nod_Modes from './Nod_Modes'
 function App() {
   const [position, setPoition] = useState('')
   const [enteredWebsite, setEnteredWebsite] = useState(true)
-  const [windowSize, setWindowSize] = useState({})
+  const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
   const hero = useRef()
   const App = useRef()
   const skills = useRef()
