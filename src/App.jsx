@@ -79,7 +79,7 @@ function App() {
       sectionMargin.current = 0
     } else {
       animationControls.start({ opacity: 1 }, { duration: 1 })
-      sectionMargin.current = 20
+      sectionMargin.current = 0
     }
   }, [enteredWebsite])
     
