@@ -1,0 +1,209 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.2.20",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "nodes" : [
+                0
+            ],
+            "name" : "Scene"
+        }
+    ],
+    "nodes" : [
+        {
+            "translation" : [
+                0,
+                -0.25,
+                0
+            ],
+            "mesh" : 0,
+            "name" : "Text.001"
+        }
+    ],
+    "materials" : [
+        {
+            "pbrMetallicRoughness" : {
+                "metallicFactor" : 0,
+                "baseColorFactor" : [
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "roughnessFactor" : 1
+            },
+            "name" : "Arc-Base"
+        },
+        {
+            "emissiveTexture" : {
+                "texCoord" : 0,
+                "index" : 0
+            },
+            "pbrMetallicRoughness" : {},
+            "emissiveFactor" : [
+                1,
+                1,
+                1
+            ],
+            "name" : "Arc-Emit"
+        }
+    ],
+    "meshes" : [
+        {
+            "primitives" : [
+                {
+                    "indices" : 3,
+                    "material" : 0,
+                    "attributes" : {
+                        "TEXCOORD_0" : 0,
+                        "NORMAL" : 1,
+                        "POSITION" : 2
+                    }
+                },
+                {
+                    "indices" : 7,
+                    "material" : 1,
+                    "attributes" : {
+                        "TEXCOORD_0" : 4,
+                        "NORMAL" : 5,
+                        "POSITION" : 6
+                    }
+                }
+            ],
+            "name" : "CUText.001"
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "uri" : "Tex/arc-glow.png",
+            "name" : "arc-glow"
+        }
+    ],
+    "accessors" : [
+        {
+            "componentType" : 5126,
+            "type" : "VEC2",
+            "bufferView" : 0,
+            "count" : 1484
+        },
+        {
+            "componentType" : 5126,
+            "type" : "VEC3",
+            "bufferView" : 1,
+            "count" : 1484
+        },
+        {
+            "componentType" : 5126,
+            "max" : [
+                -0.27216947078704834,
+                0.10000000894069672,
+                0.7297722101211548
+            ],
+            "bufferView" : 2,
+            "min" : [
+                -0.8587560653686523,
+                -0.09999997913837433,
+                0.008050531148910522
+            ],
+            "type" : "VEC3",
+            "count" : 1484
+        },
+        {
+            "componentType" : 5123,
+            "type" : "SCALAR",
+            "bufferView" : 3,
+            "count" : 2646
+        },
+        {
+            "componentType" : 5126,
+            "type" : "VEC2",
+            "bufferView" : 4,
+            "count" : 835
+        },
+        {
+            "componentType" : 5126,
+            "type" : "VEC3",
+            "bufferView" : 5,
+            "count" : 835
+        },
+        {
+            "componentType" : 5126,
+            "max" : [
+                -0.27216947078704834,
+                -0.09999997913837433,
+                0.7297722101211548
+            ],
+            "bufferView" : 6,
+            "min" : [
+                -0.8587560653686523,
+                -0.09999997913837433,
+                0.008050531148910522
+            ],
+            "type" : "VEC3",
+            "count" : 835
+        },
+        {
+            "componentType" : 5123,
+            "type" : "SCALAR",
+            "bufferView" : 7,
+            "count" : 882
+        }
+    ],
+    "bufferViews" : [
+        {
+            "byteOffset" : 0,
+            "buffer" : 0,
+            "byteLength" : 11872
+        },
+        {
+            "byteOffset" : 11872,
+            "buffer" : 0,
+            "byteLength" : 17808
+        },
+        {
+            "byteOffset" : 29680,
+            "buffer" : 0,
+            "byteLength" : 17808
+        },
+        {
+            "byteOffset" : 47488,
+            "buffer" : 0,
+            "byteLength" : 5292
+        },
+        {
+            "byteOffset" : 52780,
+            "buffer" : 0,
+            "byteLength" : 6680
+        },
+        {
+            "byteOffset" : 59460,
+            "buffer" : 0,
+            "byteLength" : 10020
+        },
+        {
+            "byteOffset" : 69480,
+            "buffer" : 0,
+            "byteLength" : 10020
+        },
+        {
+            "byteOffset" : 79500,
+            "buffer" : 0,
+            "byteLength" : 1764
+        }
+    ],
+    "buffers" : [
+        {
+            "uri" : "arc-scene-a.bin",
+            "byteLength" : 81264
+        }
+    ]
+}

@@ -10,6 +10,7 @@ function AnimatedRoutes({ windowSize }) {
   return (
     <AnimatePresence>
         <Routes location={ location } key={ location.pathname }>
+            <Route path='/' element={ <About windowSize={ windowSize }/> } />
             <Route path='/About' element={ <About windowSize={ windowSize }/> } />
             <Route path='/Projects' element={ <Projects windowSize={ windowSize }/> } />
             <Route path='/Contact' element={ <Contact windowSize={ windowSize }/> } />

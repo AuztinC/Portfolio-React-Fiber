@@ -4,7 +4,8 @@ import Skills from './Skills'
 import Hero_Content from './Hero_Content'
 import AnimatedRoutes from './AnimatedRoutes'
 import Socials from './Socials'
-
+import './App.css'
+import Nod_Modes from './Nod_Modes'
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
   const { scrollY } = useScroll()
   const { scrollYProgress } = useScroll({
     target: hero,
-    offset: ["start 175px", "end 200px"]
+    offset: ["start start", "end 200px"]
   })
   const scaleImg = useSpring(scrollYProgress, {
     stiffness: 400,
@@ -44,7 +45,8 @@ function App() {
   
   
   useMotionValueEvent(scrollY, "change", (latest) =>{
-    if(latest >= 500){
+    // console.log(latest)
+    if(latest >= 750){
         setPoition("fixed")
     } else {
         setPoition("inherit")
@@ -55,14 +57,14 @@ function App() {
   useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     // console.log(latest)
     if(latest === 1){
-      sectionPannels.current.style.height = '82vh'
+      sectionPannels.current.style.height = '85vh'
     } else {
       
     }
   })
   useMotionValueEvent(scrollY, "change", (latest) =>{
     // console.log(latest)
-    if(latest >= 500){
+    if(latest >= 750){
       setEnteredWebsite(true)
     } else {
       setEnteredWebsite(false)
@@ -75,7 +77,7 @@ function App() {
       sectionMargin.current = 0
     } else {
       animationControls.start({ opacity: 1 }, { duration: 1 })
-      sectionMargin.current = 165
+      sectionMargin.current = 20
     }
   }, [enteredWebsite])
     
@@ -85,14 +87,17 @@ function App() {
   <div className='App' ref={App} style={{height: '100%'}}>
 
     <section className='hero-section' ref={hero}>
-      <Hero_Content  windowSize={ windowSize }/>
+    <div className='hero-canvas'>
+		  <Nod_Modes windowSize={ windowSize }/>
+	  </div>	
+      {/* <Hero_Content  windowSize={ windowSize }/> */}
     </section>
     
     <motion.section className='skills-section' ref={ skills } style={{ position }}>
       <Skills position={ position } windowSize={ windowSize }/>
     </motion.section> 
     
-    <motion.section className='section-pannels' ref={ sectionPannels } style={{marginTop: `${sectionMargin.current}px`, opacity}}>
+    <motion.section className='section-pannels' ref={ sectionPannels } style={{marginTop: `${sectionMargin.current}vh`, opacity}}>
       <AnimatedRoutes  windowSize={ windowSize }/>
     </motion.section>
     <Socials  windowSize={ windowSize }/>
@@ -104,4 +109,4 @@ function App() {
 
 export default App
 
-import './App.css'
+

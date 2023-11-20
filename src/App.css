@@ -16,7 +16,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0 0 0 0;
-  padding: 175px 0 0 0;
+  padding: 0 0 0 0;
   background-color: var(--background-color-accent2);
   height: 100vh;
 }
@@ -40,7 +40,7 @@ a {
 }
 .dummy{
   pointer-events: none;
-  z-index: 1;
+  z-index: 5;
   position: fixed;
   top: 0;
   display: flex;
@@ -51,15 +51,8 @@ a {
   /* background-color: var(--background-color-main); */
 }
 
-.dummy-image-backer{
-  opacity: 0;
-  position: absolute;
-  border-radius: 50%;
-  width: 400px;
-  height: 400px;
-  background-color: var(--background-color-main);
-}
 .dummy-image-container{
+  z-index: 5;
   position: relative;
   display: flex;
   justify-content: center;
@@ -81,22 +74,17 @@ a {
 }
 
 .hero-section {
-  padding-right: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 350px;
+
 }
 
 .hero-canvas {
   z-index: 0;
   /* background: url('/assets/images/cloud-backdrop.jpg'); */
   background-color: #333;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   left: 0;
-  height: 525px;
+  height: 80vh;
   width: 100%;
 }
 .hero-content {
@@ -111,12 +99,14 @@ a {
   font-size: 3em;
 }
 .skills-section {
+  position: inherit;
+  bottom: 0;
   border-top: 1px solid var(--background-color-content);
   border-bottom: 1px solid var(--background-color-content);
   background-color: white;
   margin: 0;
   height: 20vh;
-  z-index: 5;
+  z-index: 100;
 }
 
 @keyframes slideAnim {
@@ -157,7 +147,8 @@ a {
    top: 0;
 }
 .skills-container {
-  scroll-snap-align: center;
+  bottom: 0;
+  /* scroll-snap-align: center; */
   overflow: hidden;
   padding-top: 1.2%;
   width: 100%;

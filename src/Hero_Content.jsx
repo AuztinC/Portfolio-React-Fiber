@@ -2,12 +2,6 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, SpotLight, useDepthBuffer } from '@react-three/drei'
 import Nod_Modes from './Nod_Modes'
-import Stairs_Model from '../assets/obj/mossy_wooden_stairs/Scene'
-import Nintendo_Model from '../assets/obj/nintendo_64_logo/Scene'
-import Skateboard_Model from '../assets/obj/skateboard_01/Scene'
-import Pizza_Model from '../assets/obj/pizza/Scene'
-import DrumKit_Model from '../assets/obj/drum_kit_for_your_band/Scene'
-import CloudStrife_Model from '../assets/obj/cloud-strife/Scene'
 import { Vector3 } from 'three'
 
 const sizes = {
@@ -106,8 +100,8 @@ export default function Hero_Content() {
 		<Nod_Modes />
 	</div>	
 	<div className="hero-content">
-		<h1>Austin Cripe</h1>
-		<p>Full stack developer</p>
+		{/* <h1>Austin Cripe</h1>
+		<p>Full stack developer</p> */}
 		
 	</div>
 

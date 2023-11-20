@@ -1,66 +1,64 @@
 import * as THREE from 'three'
 import React, { useRef, useState, useMemo, useEffect, Suspense, useLayoutEffect } from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
-import { EffectComposer, Vignette, Bloom, DepthOfField } from '@react-three/postprocessing'
-import { KernelSize, Resolution  } from 'postprocessing'
-import { Fairy } from '../assets/obj/fairy/Scene'
-import Fantasy_Landscape from '../assets/obj/fantasy_landscape/Scene'
+import { EffectComposer, Vignette, Bloom, DepthOfField, SelectiveBloom, Select, Selection  } from '@react-three/postprocessing'
+import { KernelSize, Resolution, BlurPass, Resizer  } from 'postprocessing'
 import { Clone, OrbitControls } from '@react-three/drei'
-import { useLoader } from '@react-three/fiber'
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
-import ArcScene from '../assets/obj/arc-scene/Arc-scene'
+import ArcSceneBackdrop from '../assets/obj/arc-scene/Arc-scene-backdrop'
+import ArcSceneA from '../assets/obj/arc-scene/Arc-scene-a'
+import ArcSceneR from '../assets/obj/arc-scene/Arc-scene-r'
+import ArcSceneC from '../assets/obj/arc-scene/Arc-scene-c'
+import SpaceDust from './SpaceDust'
+import Plant from '../assets/obj/plant_in_pot/Scene'
+// import LightBulb from '../assets/obj/light_bulb/Scene'
 
+const sizes = {
+  width: window.innerWidth,
+  height: window.innerHeight
+};
 
-
-
-
-
-const allSpheres = []
-function Sphere({ geometry, x, y, z, s }) {
-  const ref = useRef()
-  useFrame((state) => {
-    ref.current.position.x = x + Math.sin((state.clock.getElapsedTime() * s) / 2)
-    ref.current.position.y = y + Math.sin((state.clock.getElapsedTime() * s) / 2)
-    ref.current.position.z = z + Math.sin((state.clock.getElapsedTime() * s) / 2)
-  })
+const cursor = {
+  x: 0,
+  y: 0
+};
+const Camera = ({ windowSize }) => {
+  const { camera } = useThree()
+  const cameraRef = useRef(camera);
+  let lookAtX = window.innerWidth <= 900 ? 0 : -1
+  let lookAtY = window.innerWidth <= 900 ? 1.4 : 1
+  var mouseTolerance = .3;
+  useEffect(()=>{
+    window.addEventListener("mousemove", (event)=>{
+      cursor.x = event.clientX / sizes.width - 0.5;
+      cursor.y = event.clientY / sizes.height - -8;
+    });
+    camera.rotateY(60);
+  }, [])
+  useEffect(()=>{
+    if(windowSize.width <= 900){
+      lookAtX = 0
+      lookAtY = 1.4
+    } else {
+      lookAtX = -1
+      lookAtY = 1
+    }
+    // console.log(lookAtX)
+  }, [ windowSize ])
+  useFrame(() => {
+    if (cameraRef.current) {
+      cameraRef.current.position.x = -cursor.x * mouseTolerance;
+      cameraRef.current.position.y = cursor.y * mouseTolerance;
+      cameraRef.current.lookAt(lookAtX, lookAtY, 0)
+    }
+  });
+  
   return (
-    <mesh ref={ref} position={[x, y, z]} scale={[s, s, s]} geometry={geometry}>
-      <meshStandardMaterial color="orange" roughness={1} />
-    </mesh>
-  )
-}
-
-function RandomSpheres() {
-  const [geometry] = useState(() => new THREE.SphereGeometry(1, 32, 32), [])
-  const data = useMemo(() => {
-    return new Array(35).fill().map((_, i) => ({
-      x: Math.random() * 200-100,
-      y: Math.random() * 60-30,
-      z: Math.random() * 10 - 50,
-      s: Math.random() + .3,
-    }))
-  }, [])
-  allSpheres.push(data)
-  return data.map((props, i) => <Sphere key={i} {...props} geometry={geometry} />)
-}
-function RandomFairies() {
-  const [geometry] = useState(() => new THREE.SphereGeometry(1, 32, 32), [])
-  const data = useMemo(() => {
-    return new Array(10).fill().map((_, i) => ({
-      x: Math.random() * 20,
-      y: Math.random() * 10,
-      z: Math.random() * -15,
-      s: Math.random() + .5,
-    }))
-  }, [])
-  allSpheres.push(data)
-  return data.map((props, i) => <Fairy key={i} position={[props.x, props.y, props.z]} style={{ scale: props.s }}/>)
-}
-
+    null
+  );
+};
 
 function Main({ children }) {
   const scene = useRef()
-  
   const { gl, camera } = useThree()
   useFrame(() => {
     gl.autoClear = false
@@ -70,42 +68,65 @@ function Main({ children }) {
   return <scene ref={scene}>{children}</scene>
 }
 
-const Nod_Modes = () => {
+const Nod_Modes = ({ windowSize }) => {
   // const fbx = useLoader(FBXLoader, '../assets/obj/arc-scene/arc-scene.fbx')
-
+  
+  const letterA = useRef()
   const ambientLight1 = useRef()
-  const fairy = useRef()
-  // if(!fairy.current) return null
+  const directionalLight1 = useRef()
+  
+
   return (
     // 2, 1, 7
-    <Canvas linear camera={{ position: [2, 1, 7], fov: 10, rotation: [.3 , 0, 0] }} shadows>
+    <Canvas linear camera={{ position: [0, 0, 20], fov: 10 }} rotation={[0,0,0]} shadows>
+      <Camera windowSize={ windowSize }/>
     <Main>
-      {/* <pointLight /> */}
+      <mesh position={[-1.9, .8, 0]}>
+        <pointLight intensity={3} position={[0, 0, 0]} castShadow/>
+        <pointLight intensity={1} position={[0, 0, .3]} />
+        {/* <LightBulb scale={ 0.1 } position={[0, 0, 0]} /> */}
+      </mesh>
       <ambientLight ref={ ambientLight1 } intensity={2}/>
-      <directionalLight position={[0, 10, 25]} intensity={4} castShadow/>
+      <directionalLight ref={ directionalLight1 } position={[0, 10, 25]} intensity={4} castShadow/>
       <Suspense fallback={null}>
-        {/* <Fantasy_Landscape scale={3}/> */}
-        {/* <Fairy position={[0, 25, -55]} scale={1}/>
-        <Fairy position={[0, 0, 0]} scale={1}/>
-        <Fairy position={[0, 0, -10]} scale={1}/> */}
-        {/* <RandomSpheres /> */}
-        {/* <RandomFairies /> */}
-        {/* <primitive object={fbx} scale={1} rotation={[0, 0, 0]}/> */}
-        <ArcScene rotation={[-Math.PI/2, 0, 0]}/>
+        <mesh rotation={[.2, 0, 0]} >
+          <ArcSceneBackdrop rotation={[-Math.PI/2, 0, 0]}/>
+            <mesh ref={ letterA }>
+              <ArcSceneA rotation={[-Math.PI/2, 0, 0]}/>
+            </mesh>
+            <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
+            <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
+            <Plant scale={.01} rotation={[0, -Math.PI/1.5, 0]} position={[4, 0, 0]}/>
+        </mesh>
+        <SpaceDust count={2500} />
       </Suspense>
     </Main>
     
     <EffectComposer>
-      <Bloom
-        intensity={100} // The bloom intensity.
+      {/* <Bloom
+        // renderOrder={1}
+        intensity={1} // The bloom intensity.
         blurPass={undefined} // A blur pass.
         kernelSize={KernelSize.LARGE} // blur kernel size
-        luminanceThreshold={0} // luminance threshold. Raise this value to mask out darker elements in the scene.
+        luminanceThreshold={0.3} // luminance threshold. Raise this value to mask out darker elements in the scene.
         luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
-        mipmapBlur={false} // Enables or disables mipmap blur.
+        mipmapBlur={true} // Enables or disables mipmap blur.
         resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
         resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
-      />
+      /> */}
+      {/* <SelectiveBloom
+        lights={[ambientLight1 ]} // ⚠️ REQUIRED! all relevant lights
+        selection={[letterA]} // selection of objects that will have bloom effect
+        selectionLayer={1} // selection layer
+        intensity={1.0} // The bloom intensity.
+        blurPass={undefined} // A blur pass.
+        width={Resizer.AUTO_SIZE} // render width
+        height={Resizer.AUTO_SIZE} // render height
+        kernelSize={KernelSize.LARGE} // blur kernel size
+        luminanceThreshold={0.9} // luminance threshold. Raise this value to mask out darker elements in the scene.
+        luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
+      /> */}
+      
       <Vignette eskil={false} offset={0.1} darkness={1.1} />  
       
       <DepthOfField
@@ -114,7 +135,7 @@ const Nod_Modes = () => {
         bokehScale={1} // bokeh size
       />
     </EffectComposer>
-    <OrbitControls />
+    {/* <OrbitControls /> */}
   </Canvas>
   )
 }

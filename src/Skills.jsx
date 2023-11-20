@@ -4,18 +4,6 @@ import InfiniteLooper from './InfiniteLooper'
 import { useFrame } from '@react-three/fiber'
 import { Link, useLocation } from 'react-router-dom'
 
-const logoImages = [
-<img className='skills-item' src="../assets/images/logo-express-js.png" alt="express" />,
-<img className='skills-item' src="../assets/images/logo-github.png" alt="" />,
-<img className='skills-item' src="../assets/images/logo-nodejs.png" alt="" />,
-<img className='skills-item' src="../assets/images/logo-postgreSQL.png" alt="" />,
-<img className='skills-item' src="../assets/images/logo-socketio.png" alt="" />,
-<img className='skills-item' src="../assets/images/logo-three-js.png" alt="" />,
-<img className='skills-item' src="../assets/images/logo-html-2" alt="" />,
-<img className='skills-item' src="../assets/images/logo-js-2" alt="" />,
-<img className='skills-item' src="../assets/images/logo-css-2" alt="" />,
-]
-
 
 const Loop_Container = ({ position })=>{
     
@@ -51,7 +39,7 @@ const Loop_Container = ({ position })=>{
     )
 }
 
-const Nav_Container = ({ position, enteredWebsite, windowSize })=>{
+const Nav_Container = ({ position, enteredWebsite, windowSize, Home })=>{
     const location = useLocation()
     const [navCont, animate] = useAnimate()
     
@@ -72,8 +60,8 @@ const Nav_Container = ({ position, enteredWebsite, windowSize })=>{
     // console.log(location.pathname === '/Projects')
     return (
     <motion.div className='nav-container' ref={ navCont }>
-        <Link to={'/'} className={`nav-link `} style={{ display: windowSize.width <= 900 ? 'none' : 'inline'}}></Link>
-        <Link to={'/About'} className={`nav-link ${ location.pathname === '/About' ? 'selected' : ''}`}><span></span>About</Link>
+        <Link to={'/'} className={`nav-link `} style={{ display: windowSize.width <= 900 ? 'none' : 'inline'}} onClick={ Home }></Link>
+        <Link to={'/About'} className={`nav-link ${ location.pathname === '/About' ||  location.pathname === '/' ? 'selected' : ''}`}><span></span>About</Link>
         <Link to={'/Projects'} className={`nav-link ${ location.pathname === '/Projects' ? 'selected' : ''}`}><span></span>Projects</Link>
         <Link to={'/Contact'} className={`nav-link ${ location.pathname === '/Contact' ? 'selected' : ''}`}><span></span>Contact</Link>
     </motion.div>
@@ -97,7 +85,7 @@ export default function Skills({ position, windowSize }) {
     })
     const scale = useTransform(scaleImg, [0, .8], [windowSize.width <= 900 ? .9 : 1.2 , windowSize.width <= 900 ? .3 : .5])
     const imgX = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 0 : 10, windowSize.width <= 900 ? 0 : 0])
-    const imgY = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 20 : 20, windowSize.width <= 900 ? 12 : 2])
+    const imgY = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 14 : 20, windowSize.width <= 900 ? 12 : 2])
     const opacity = useTransform(scrollYProgress, [.4, 1], [windowSize.width <= 400 ? 1 : 1, windowSize.width <= 400 ? 0 : 1])
     
     const imgXtemplate = useMotionTemplate`${imgX}vw`
@@ -105,8 +93,10 @@ export default function Skills({ position, windowSize }) {
     const [enteredWebsite, setEnteredWebsite] = useState(false)
     
     useEffect(() => {
-      if(windowSize <= 750){ // 750 PIXELS
-        
+      if(windowSize <= 900){ 
+        img.current.addEventListener('click', Home)
+      } else {
+        img.current.removeEventListener('click', Home)
       }
     }, [windowSize])
     
@@ -122,7 +112,10 @@ export default function Skills({ position, windowSize }) {
     useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     //   console.log("Page scroll: ", latest)
     })
-    
+    function Home(ev){
+      ev.preventDefault()
+      window.scrollTo(0, 0)
+    }
   return (
   <>
   <div className='dummy'>
@@ -146,7 +139,7 @@ export default function Skills({ position, windowSize }) {
 	<motion.div className='skills-container' ref={ skills } style={{ position }} >
 
         <Loop_Container position={ position } enteredWebsite={ enteredWebsite } />
-        <Nav_Container position={ position } enteredWebsite={ enteredWebsite } windowSize={ windowSize }/>
+        <Nav_Container position={ position } enteredWebsite={ enteredWebsite } windowSize={ windowSize } Home={ Home }/>
         
 	</motion.div>
     
