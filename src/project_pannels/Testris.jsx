@@ -38,11 +38,11 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
             scale.set(1.2)
             opacity.set(1)
             video.current.play()
-            btnTimer = setTimeout(()=>projectOverlay.current.style.pointerEvents = 'all', 100)
+            // btnTimer = setTimeout(()=>projectOverlay.current.style.pointerEvents = 'all', 100)
         } else {
-            if(btnTimer){
-                clearTimeout(btnTimer)
-            }
+            // if(btnTimer){
+            //     clearTimeout(btnTimer)
+            // }
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
             video.current.pause()
