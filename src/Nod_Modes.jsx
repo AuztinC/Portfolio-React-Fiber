@@ -1,15 +1,15 @@
-import * as THREE from 'three'
+// import * as THREE from 'three'
 import React, { useRef, useState, useMemo, useEffect, Suspense, useLayoutEffect } from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
-import { EffectComposer, Vignette, Bloom, DepthOfField, SelectiveBloom, Select, Selection  } from '@react-three/postprocessing'
-import { KernelSize, Resolution, BlurPass, Resizer  } from 'postprocessing'
+// import { EffectComposer, Vignette, Bloom, DepthOfField, SelectiveBloom, Select, Selection  } from '@react-three/postprocessing'
+// import { KernelSize, Resolution, BlurPass, Resizer  } from 'postprocessing'
 import { Clone, OrbitControls } from '@react-three/drei'
-import SpaceDust from './SpaceDust'
+// import SpaceDust from './SpaceDust'
 import ArcSceneBackdrop from '/public/assets/obj/arc-scene/Arc-scene-backdrop'
 import ArcSceneA from '/public/assets/obj/arc-scene/Arc-scene-a'
 import ArcSceneR from '/public/assets/obj/arc-scene/Arc-scene-r'
 import ArcSceneC from '/public/assets/obj/arc-scene/Arc-scene-c'
-import Plant from '/public/assets/obj/plant_in_pot/Scene'
+// import Plant from '/public/assets/obj/plant_in_pot/Scene'
 // import LightBulb from '../assets/obj/light_bulb/Scene'
 
 const sizes = {
@@ -70,14 +70,13 @@ function Main({ children }) {
 
 const Nod_Modes = ({ windowSize }) => {
   // const fbx = useLoader(FBXLoader, '../assets/obj/arc-scene/arc-scene.fbx')
-  const canvasRef = useRef()
   const letterA = useRef()
   const ambientLight1 = useRef()
   const directionalLight1 = useRef()
   
-  const Aimages = ["url('public/assets/images/2d/a/a-red.png')", "url('public/assets/images/2d/a/a-green.png')", "url('public/assets/images/2d/a/a-blue.png')"]
-  const Rimages = ["url('public/assets/images/2d/r/r-red.png')", "url('public/assets/images/2d/r/r-green.png')", "url('public/assets/images/2d/r/r-blue.png')"]
-  const Cimages = ["url('public/assets/images/2d/c/c-red.png')", "url('public/assets/images/2d/c/c-green.png')", "url('public/assets/images/2d/c/c-blue.png')"]
+  const Aimages = ["url('/assets/images/2d/a/a-red.png')", "url('/assets/images/2d/a/a-green.png')", "url('/assets/images/2d/a/a-blue.png')"]
+  const Rimages = ["url('/assets/images/2d/r/r-red.png')", "url('/assets/images/2d/r/r-green.png')", "url('/assets/images/2d/r/r-blue.png')"]
+  const Cimages = ["url('/assets/images/2d/c/c-red.png')", "url('/assets/images/2d/c/c-green.png')", "url('/assets/images/2d/c/c-blue.png')"]
   
   const ltrA = useRef()
   const ltrR = useRef()
@@ -94,21 +93,21 @@ const Nod_Modes = ({ windowSize }) => {
     // console.log(aIdx)
   }, [aIdx])
   
+  const heroCanvas = useRef()
   useEffect(()=>{
-    const heroCanvas = document.querySelector('.hero-canvas')
     if(window.innerWidth <= 950){
       // canvasRef.current.style.display = 'none'
-      heroCanvas.style.backgroundImage = "url('public/assets/images/2d/arc-white.png')"
+      heroCanvas.current.style.backgroundImage = "url('/assets/images/2d/arc-white.png')"
     } else {
       // canvasRef.current.style.display = 'block'
     }
-  }, [windowSize, canvasRef])
+  }, [windowSize])
   
   let letterTimer = null
   useEffect(()=>{
     if(letterTimer) clearTimeout(letterTimer)
     letterTimer = setTimeout(()=>{
-      console.log('in letter timer')
+      // console.log('in letter timer')
       const randomLetter = Math.round(Math.random() * 3)
       switch (randomLetter) {
         case 0:
@@ -141,7 +140,7 @@ const Nod_Modes = ({ windowSize }) => {
   return (
     // 2, 1, 7
     
-    <div className='hero-canvas'>
+    <div className='hero-canvas' ref={ heroCanvas }>
       
       {window.innerWidth <= 950 ? 
         <>
@@ -154,7 +153,7 @@ const Nod_Modes = ({ windowSize }) => {
         </>
         
       : 
-        <Canvas linear camera={{ position: [0, 0, 20], fov: 10 }} rotation={[0,0,0]} shadows ref={ canvasRef }>
+        <Canvas linear camera={{ position: [0, 0, 20], fov: 10 }} rotation={[0,0,0]} shadows >
           <Camera windowSize={ windowSize }/>
         <Main>
           <mesh position={[-1.9, .8, 0]}>
