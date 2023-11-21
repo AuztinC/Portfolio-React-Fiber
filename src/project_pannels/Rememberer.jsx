@@ -4,11 +4,11 @@ const DEPLOYED_SITE = 'https://auztinc.github.io/Rememberer/'
 const REPO = 'https://github.com/AuztinC/Rememberer'
 const imageSrc = [
     '../assets/images/projects/rememberer/home_page_full.PNG',
-    '../assets/images/projects/rememberer/ingame_mobile_01.PNG',
+    // '../assets/images/projects/rememberer/ingame_mobile_01.PNG',
     '../assets/images/projects/rememberer/ingame_full_01.PNG',
 ]
-const details = `Rememberer became a big project for me. I used React for this project and am very glad I did. With this project, I learned so much, including how to properly handle state, pass props, and use the window's hash. <br/>
-Tools used: HTML, CSS, React, <br/>
+const details = `Rememberer became a big project for me. With this project, I learned so much, including how to properly handle state, pass props, and use the window's hash. I also learned to dynamically send requests to an API for image categories.<br/>
+Tools used: HTML, CSS, React <br/>
 <a href=${REPO} target='_blank'>Repo</a>  <br/>
 <a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a>
 `

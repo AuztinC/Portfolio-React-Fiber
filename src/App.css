@@ -420,6 +420,7 @@ overflow: hidden;
   align-items: center;
 }
 .project-overlay-btn{
+  cursor: pointer;
   width: fit-content;
   margin: 3px;
   background-color: var(--background-color-main);
@@ -433,9 +434,11 @@ overflow: hidden;
   background-color: var(--background-color-accent2);
 }
 .project-overlay-bg a {
+  
   text-decoration: none;
 }
 .project-overlay-bg span {
+
   padding: 3px;
   background: rgba(0, 0, 0, .6);
   font-weight: 700;
@@ -460,7 +463,7 @@ overflow: hidden;
   max-height: 750px;
 }
 .popout-carousel {
-  width: 100%;
+  /* width: 100%; */
 }
 .popout-carousel img {
   /* aspect-ratio: 4 / 3; */
@@ -476,6 +479,7 @@ overflow: hidden;
   text-decoration-color: red;
 }
 .popout-close {
+  cursor: pointer;
   margin-right: 15px;
   float: right;
 }

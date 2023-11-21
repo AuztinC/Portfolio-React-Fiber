@@ -6,6 +6,7 @@ import Roshambo from '../project_pannels/Roshambo'
 import Hangman from '../project_pannels/Hangman'
 import Rememberer from '../project_pannels/Rememberer'
 import Project_popout from '../project_pannels/Project_popout'
+import FreshPicsYo from '../project_pannels/FreshPicsYo'
 
 
 //  selectedProject = {
@@ -31,6 +32,7 @@ const PC_Projects = ({ windowSize })=>{
       <div className='projects-column'>
         <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
         <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <FreshPicsYo  setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
         {/* <Chatapp /> */}
       </div>
       <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
@@ -56,6 +58,7 @@ const Mobile_Projects = ({ windowSize })=>{
       <div className='projects-column'>
         <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
         <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <FreshPicsYo  setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
         {/* <Chatapp /> */}
       </div>
       <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
@@ -81,13 +84,8 @@ function Projects({ windowSize }) {
     animate={{ y: '0' }}
     exit={{ y: -window.innerWidth, transition: { duration: 0.3 } }}
     >
-      {
-        windowSize.width <= 950 ? 
-        <Mobile_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
-        :
-        <PC_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
-      }
-      
+        {/* <Mobile_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/> */}
+      <PC_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
     </motion.div>
   )
 }
