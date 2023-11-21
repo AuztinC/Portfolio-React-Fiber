@@ -91,9 +91,9 @@ function App() {
   <div className='App' ref={App} style={{height: '100%'}}>
 
     <section className='hero-section' ref={hero}>
-    <div className='hero-canvas'>
+    {/* <div className='hero-canvas'> */}
 		  <Nod_Modes windowSize={ windowSize }/>
-	  </div>	
+	  {/* </div>	 */}
       {/* <Hero_Content  windowSize={ windowSize }/> */}
     </section>
     

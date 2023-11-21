@@ -48,7 +48,7 @@ const Nav_Container = ({ enteredWebsite, windowSize, Home })=>{
     useEffect(()=>{
         let timer = null
         if(enteredWebsite){
-          console.log(enteredWebsite)
+          // console.log(enteredWebsite)
             animate(navCont.current, { top: '0%' }, { duration: 1})
             animate(navCont.current, { opacity: 1 }, { duration: 1})
             navCont.current.style.display = 'flex'

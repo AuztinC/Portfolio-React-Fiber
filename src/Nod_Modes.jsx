@@ -70,73 +70,118 @@ function Main({ children }) {
 
 const Nod_Modes = ({ windowSize }) => {
   // const fbx = useLoader(FBXLoader, '../assets/obj/arc-scene/arc-scene.fbx')
-  
+  const canvasRef = useRef()
   const letterA = useRef()
   const ambientLight1 = useRef()
   const directionalLight1 = useRef()
   
-
+  const Aimages = ["url('public/assets/images/2d/a/a-red.png')", "url('public/assets/images/2d/a/a-green.png')", "url('public/assets/images/2d/a/a-blue.png')"]
+  const Rimages = ["url('public/assets/images/2d/r/r-red.png')", "url('public/assets/images/2d/r/r-green.png')", "url('public/assets/images/2d/r/r-blue.png')"]
+  const Cimages = ["url('public/assets/images/2d/c/c-red.png')", "url('public/assets/images/2d/c/c-green.png')", "url('public/assets/images/2d/c/c-blue.png')"]
+  
+  const ltrA = useRef()
+  const ltrR = useRef()
+  const ltrC = useRef()
+  const [aIdx, setAIdx] = useState(Math.round(Math.random() * 3))
+  const [rIdx, setRIdx] = useState(Math.round(Math.random() * 3))
+  const [cIdx, setCIdx] = useState(Math.round(Math.random() * 3))
+  
+  useEffect(()=>{ 
+    
+    
+  }, [])
+  useEffect(()=>{ 
+    // console.log(aIdx)
+  }, [aIdx])
+  
+  useEffect(()=>{
+    const heroCanvas = document.querySelector('.hero-canvas')
+    if(window.innerWidth <= 950){
+      // canvasRef.current.style.display = 'none'
+      heroCanvas.style.backgroundImage = "url('public/assets/images/2d/arc-white.png')"
+    } else {
+      // canvasRef.current.style.display = 'block'
+    }
+  }, [windowSize, canvasRef])
+  
+  let letterTimer = null
+  useEffect(()=>{
+    if(letterTimer) clearTimeout(letterTimer)
+    letterTimer = setTimeout(()=>{
+      console.log('in letter timer')
+      const randomLetter = Math.round(Math.random() * 3)
+      switch (randomLetter) {
+        case 0:
+          handleLetterA()
+          break;
+        case 1:
+          handleLetterR()
+          break;
+        case 2:
+          handleLetterC()
+          break;
+        default:
+          break;
+      }
+    }, Math.floor(Math.random() * (10000 - 5000 + 1) + 5000))
+  }, [aIdx, rIdx, cIdx])
+  
+  function handleLetterA(){
+    setAIdx(aIdx + 1)
+    if(aIdx === 3) setAIdx(0)
+  }
+  function handleLetterR(){
+    setRIdx(rIdx + 1)
+    if(rIdx === 3) setRIdx(0)
+  }
+  function handleLetterC(){
+    setCIdx(cIdx + 1)
+    if(cIdx === 3) setCIdx(0)
+  }
   return (
     // 2, 1, 7
-    <Canvas linear camera={{ position: [0, 0, 20], fov: 10 }} rotation={[0,0,0]} shadows>
-      <Camera windowSize={ windowSize }/>
-    <Main>
-      <mesh position={[-1.9, .8, 0]}>
-        <pointLight intensity={3} position={[0, 0, 0]}/>
-        <pointLight intensity={1} position={[0, 0, .3]} />
-        {/* <LightBulb scale={ 0.1 } position={[0, 0, 0]} /> */}
-      </mesh>
-      <ambientLight ref={ ambientLight1 } intensity={2}/>
-      <directionalLight ref={ directionalLight1 } position={[0, 10, 25]} intensity={4} castShadow/>
-      <Suspense fallback={null}>
-        <mesh rotation={[.2, 0, 0]} >
-          <ArcSceneBackdrop rotation={[-Math.PI/2, 0, 0]}/>
-            <mesh ref={ letterA }>
-              <ArcSceneA rotation={[-Math.PI/2, 0, 0]}/>
-            </mesh>
-            <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
-            <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
-            {/* <Plant scale={.01} rotation={[0, -Math.PI/1.5, 0]} position={[4, 0, 0]}/> */}
-        </mesh>
-        {/* <SpaceDust count={2500} /> */}
-      </Suspense>
-    </Main>
     
-    <EffectComposer>
-      {/* <Bloom
-        // renderOrder={1}
-        intensity={1} // The bloom intensity.
-        blurPass={undefined} // A blur pass.
-        kernelSize={KernelSize.LARGE} // blur kernel size
-        luminanceThreshold={0.3} // luminance threshold. Raise this value to mask out darker elements in the scene.
-        luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
-        mipmapBlur={true} // Enables or disables mipmap blur.
-        resolutionX={Resolution.AUTO_SIZE} // The horizontal resolution.
-        resolutionY={Resolution.AUTO_SIZE} // The vertical resolution.
-      /> */}
-      {/* <SelectiveBloom
-        lights={[ambientLight1 ]} // ⚠️ REQUIRED! all relevant lights
-        selection={[letterA]} // selection of objects that will have bloom effect
-        selectionLayer={1} // selection layer
-        intensity={1.0} // The bloom intensity.
-        blurPass={undefined} // A blur pass.
-        width={Resizer.AUTO_SIZE} // render width
-        height={Resizer.AUTO_SIZE} // render height
-        kernelSize={KernelSize.LARGE} // blur kernel size
-        luminanceThreshold={0.9} // luminance threshold. Raise this value to mask out darker elements in the scene.
-        luminanceSmoothing={0.025} // smoothness of the luminance threshold. Range is [0, 1]
-      /> */}
+    <div className='hero-canvas'>
       
-      <Vignette eskil={false} offset={0.1} darkness={1.1} />  
-      
-      <DepthOfField
-        focusDistance={1} // where to focus
-        focalLength={0.01} // focal length
-        bokehScale={1} // bokeh size
-      />
-    </EffectComposer>
-    {/* <OrbitControls /> */}
-  </Canvas>
+      {window.innerWidth <= 950 ? 
+        <>
+          <div className='letter-image' ref={ ltrA } style={{ backgroundImage: Aimages[aIdx]}}></div>
+          <div className='letter-image' ref={ ltrR } style={{ backgroundImage: Rimages[rIdx]}}></div>
+          <div className='letter-image' ref={ ltrC } style={{ backgroundImage: Cimages[cIdx]}}></div>
+          <div className='dummy-letter a' onClick={ handleLetterA }></div>
+          <div className='dummy-letter r' onClick={ handleLetterR }></div>
+          <div className='dummy-letter c' onClick={ handleLetterC }></div>
+        </>
+        
+      : 
+        <Canvas linear camera={{ position: [0, 0, 20], fov: 10 }} rotation={[0,0,0]} shadows ref={ canvasRef }>
+          <Camera windowSize={ windowSize }/>
+        <Main>
+          <mesh position={[-1.9, .8, 0]}>
+            <pointLight intensity={3} position={[0, 0, 0]}/>
+            <pointLight intensity={1} position={[0, 0, .3]} />
+            {/* <LightBulb scale={ 0.1 } position={[0, 0, 0]} /> */}
+          </mesh>
+          <ambientLight ref={ ambientLight1 } intensity={2}/>
+          <directionalLight ref={ directionalLight1 } position={[0, 10, 25]} intensity={4} castShadow/>
+          <Suspense fallback={null}>
+            <mesh rotation={[.2, 0, 0]} >
+              <ArcSceneBackdrop rotation={[-Math.PI/2, 0, 0]}/>
+                <mesh ref={ letterA }>
+                  <ArcSceneA rotation={[-Math.PI/2, 0, 0]}/>
+                </mesh>
+                <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
+                <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
+                {/* <Plant scale={.01} rotation={[0, -Math.PI/1.5, 0]} position={[4, 0, 0]}/> */}
+            </mesh>
+            {/* <SpaceDust count={2500} /> */}
+          </Suspense>
+        </Main>
+        
+        {/* <OrbitControls /> */}
+      </Canvas>
+    }
+  </div>
   )
 }
 export default Nod_Modes
