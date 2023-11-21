@@ -35,7 +35,7 @@ const Camera = ({ windowSize }) => {
     camera.rotateY(60);
   }, [])
   useEffect(()=>{
-    if(windowSize.width <= 900){
+    if(window.innerWidth <= 900){
       lookAtX = 0
       lookAtY = 1.4
     } else {

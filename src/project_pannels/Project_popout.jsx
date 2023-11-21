@@ -51,7 +51,10 @@ function Project_popout({ selectedProject, setSelectedProject }) {
                     images.map((img, i)=>{
                         // console.log(img)
                         return (
-                            <img src={img} key={ i }/>
+                            <div key={ i } style={{maxHeight: '320px'}}>
+                                <img src={img} key={ i }/>
+                                
+                            </div>
                         )
                     })
                     // <img src="../assets/images/projects/testris/ingame_full.PNG"/>

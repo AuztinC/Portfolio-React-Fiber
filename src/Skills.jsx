@@ -5,24 +5,25 @@ import { useFrame } from '@react-three/fiber'
 import { Link, useLocation } from 'react-router-dom'
 
 
-const Loop_Container = ({ position })=>{
+const Loop_Container = ({ enteredWebsite })=>{
     
     const animationControls = useAnimation()
     
     useEffect(()=>{
         // console.log(loopCont.current)
-        if(position === 'fixed'){
+        if(enteredWebsite){
             // navCont.current.style.display = 'flex'
             animationControls.start({ top: '-100%'}, { duration: 1 })
         } else {
             // navCont.current.style.position = 'relative'
             animationControls.start({ top: '0%'}, { duration: 1 })
         }
-    }, [position])
+    }, [enteredWebsite])
     
     return (
     <InfiniteLooper speed="150" direction="left"  > 
         <motion.div className='loop-container' animate={ animationControls }>
+          <div>
             <img className='skills-item' src="../assets/images/logo-express-js.png" alt="express" />
             <img className='skills-item' src="../assets/images/logo-github.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-html-2.png" alt="" />
@@ -33,29 +34,31 @@ const Loop_Container = ({ position })=>{
             <img className='skills-item' src="../assets/images/logo-socketio.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-three-js.png" alt="" />
             <img className='skills-item' src="../assets/images/logo-css-2.png" alt="" />
+          </div>
         </motion.div>
     </InfiniteLooper>
         
     )
 }
 
-const Nav_Container = ({ position, enteredWebsite, windowSize, Home })=>{
+const Nav_Container = ({ enteredWebsite, windowSize, Home })=>{
     const location = useLocation()
     const [navCont, animate] = useAnimate()
     
     useEffect(()=>{
         let timer = null
-        if(position === 'fixed'){
-            animate(navCont.current, { top: '-105%' }, { duration: 1})
+        if(enteredWebsite){
+          console.log(enteredWebsite)
+            animate(navCont.current, { top: '0%' }, { duration: 1})
             animate(navCont.current, { opacity: 1 }, { duration: 1})
             navCont.current.style.display = 'flex'
             clearTimeout(timer)
         } else {
-            navCont.current.style.position = 'relative'
-            animate(navCont.current, { top: '15%' }, { duration: 1})
+            // navCont.current.style.position = 'relative'
+            animate(navCont.current, { top: '110%' }, { duration: 1})
             animate(navCont.current, { opacity: 0 }, { duration: 1})
         }
-    }, [position])
+    }, [enteredWebsite])
     
     // console.log(location.pathname === '/Projects')
     return (
@@ -70,7 +73,7 @@ const Nav_Container = ({ position, enteredWebsite, windowSize, Home })=>{
 }
 
 
-export default function Skills({ position, windowSize }) {
+export default function Skills({ enteredWebsite, windowSize }) {
     const img = useRef()
     const skills = useRef()
     const { scrollY } = useScroll()
@@ -90,7 +93,7 @@ export default function Skills({ position, windowSize }) {
     
     const imgXtemplate = useMotionTemplate`${imgX}vw`
     const imgYtemplate = useMotionTemplate`${imgY}vh`
-    const [enteredWebsite, setEnteredWebsite] = useState(false)
+    // const [enteredWebsite, setEnteredWebsite] = useState(false)
     
     useEffect(() => {
       if(windowSize <= 900){ 
@@ -100,14 +103,6 @@ export default function Skills({ position, windowSize }) {
       }
     }, [windowSize])
     
-    useMotionValueEvent(scrollYProgress, "change", (latest) =>{
-        // console.log(latest)
-        if(latest === 1){
-          setEnteredWebsite(false)
-        } else {
-          setEnteredWebsite(true)
-        }
-      })
 
     useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     //   console.log("Page scroll: ", latest)
@@ -136,10 +131,10 @@ export default function Skills({ position, windowSize }) {
         </motion.div>
       
     </div>
-	<motion.div className='skills-container' ref={ skills } style={{ position }} >
+	<motion.div className='skills-container' ref={ skills }  >
 
-        <Loop_Container position={ position } enteredWebsite={ enteredWebsite } />
-        <Nav_Container position={ position } enteredWebsite={ enteredWebsite } windowSize={ windowSize } Home={ Home }/>
+        <Loop_Container  enteredWebsite={ enteredWebsite } />
+        <Nav_Container  enteredWebsite={ enteredWebsite } windowSize={ windowSize } Home={ Home }/>
         
 	</motion.div>
     

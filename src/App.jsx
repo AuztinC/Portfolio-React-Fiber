@@ -10,7 +10,7 @@ import Nod_Modes from './Nod_Modes'
 
 function App() {
   const [position, setPoition] = useState('')
-  const [enteredWebsite, setEnteredWebsite] = useState(true)
+  const [enteredWebsite, setEnteredWebsite] = useState(false)
   const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
   const hero = useRef()
   const App = useRef()
@@ -20,7 +20,7 @@ function App() {
   const { scrollY } = useScroll()
   const { scrollYProgress } = useScroll({
     target: hero,
-    offset: ["start start", "end 200px"]
+    offset: ["start start", "end start"]
   })
   const scaleImg = useSpring(scrollYProgress, {
     stiffness: 400,
@@ -28,7 +28,7 @@ function App() {
     restDelta: 0
   })
   const opacity = useTransform(scrollYProgress, [0, .7], [0, 1])
-  
+  // const scaleWindow = useTransform(scaleImg, [0, 1], )
   
   useEffect(()=>{
     window.addEventListener('resize', (event)=>handleResize(event))
@@ -57,21 +57,23 @@ function App() {
   useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     // console.log(latest)
     if(latest === 1){
-      setPoition("fixed")
-      sectionPannels.current.style.height = '85vh'
+      // setPoition("fixed")
+      setEnteredWebsite(true)
+      sectionPannels.current.style.height = '100vh'
     } else {
-      setPoition("inherit")
+      // setPoition("absolute")
+      setEnteredWebsite(false)
       
     }
   })
-  useMotionValueEvent(scrollY, "change", (latest) =>{
-    // console.log(latest)
-    if(latest >= 750){
-      setEnteredWebsite(true)
-    } else {
-      setEnteredWebsite(false)
-    }
-  })
+  // useMotionValueEvent(scrollY, "change", (latest) =>{
+  //   console.log(latest)
+  //   if(latest >= 750){
+  //     setEnteredWebsite(true)
+  //   } else {
+  //     setEnteredWebsite(false)
+  //   }
+  // })
   useEffect(()=>{
     // console.log(loopCont.current)
     if(enteredWebsite){
@@ -96,7 +98,7 @@ function App() {
     </section>
     
     <motion.section className='skills-section' ref={ skills } style={{ position }}>
-      <Skills position={ position } windowSize={ windowSize }/>
+      <Skills enteredWebsite={ enteredWebsite } windowSize={ windowSize }/>
     </motion.section> 
     
     <motion.section className='section-pannels' ref={ sectionPannels } style={{marginTop: `${sectionMargin.current}vh`, opacity}}>

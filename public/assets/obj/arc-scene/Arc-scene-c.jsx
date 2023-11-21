@@ -10,8 +10,10 @@ export default function ArcSceneC(props) {
   const { nodes, materials } = useGLTF('../assets/obj/arc-scene/arc-scene-c.gltf')
   const [hovered, setHovered] = useState(false)
   const [currentColorIdx, setCurrentColorIdx] = useState(2)
-  const colors = ['#800','#080','#00f']
-  const emissive = ['#f80','#df0','#0df']
+  const hoverColors = ['#600','#0f0','#00f']
+  const hoverEmissive = ['#f06','#ff0','#0ff']
+  // const hoverColors = ['#800','#0f0','#00f']
+  // const hoverEmissive = ['#f08','#ff0','#0ff']
   useEffect(()=>{
     materials['Arc-Emit'].metalness = 0
     
@@ -20,28 +22,27 @@ export default function ArcSceneC(props) {
     if(currentColorIdx === 3) {
       setCurrentColorIdx(0)
     }
-    
-    materials['Arc-Emit'].color.set(colors[currentColorIdx])
-    materials['Arc-Emit'].emissive.set(emissive[currentColorIdx])
+    materials['Arc-Emit'].color.set(hoverColors[currentColorIdx])
+    materials['Arc-Emit'].emissive.set(hoverEmissive[currentColorIdx])
     
   }, [ currentColorIdx ])
   useEffect(()=>{
-    if(hovered){
+    if(!hovered){
       if(currentColorIdx === 0){
-        materials['Arc-Emit'].color.set('#f00')
-        materials['Arc-Emit'].emissive.set('#f88')
+        materials['Arc-Emit'].color.set('#300')
+        materials['Arc-Emit'].emissive.set('#f00')
       } 
       if(currentColorIdx === 1){
-        materials['Arc-Emit'].color.set('#0f0')
-        materials['Arc-Emit'].emissive.set('#ff0')
+        materials['Arc-Emit'].color.set('#080')
+        materials['Arc-Emit'].emissive.set('#df0')
       } 
       if(currentColorIdx === 2){
         materials['Arc-Emit'].color.set('#00f')
-        materials['Arc-Emit'].emissive.set('#0ff')
+        materials['Arc-Emit'].emissive.set('#0df')
       } 
     } else {
-      materials['Arc-Emit'].color.set(colors[currentColorIdx])
-      materials['Arc-Emit'].emissive.set(emissive[currentColorIdx])
+      materials['Arc-Emit'].color.set(hoverColors[currentColorIdx])
+      materials['Arc-Emit'].emissive.set(hoverEmissive[currentColorIdx])
     }
   }, [ hovered ])
   function handleClick() {
