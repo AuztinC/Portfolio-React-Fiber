@@ -507,7 +507,7 @@ overflow: hidden;
   text-align: center;
   margin-top: 45px;
   padding: 15px;
-  padding-bottom: 75px;
+  /* padding-bottom: 75px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -549,9 +549,11 @@ overflow: hidden;
 }
 
 @media screen and (max-height: 750px) {
-  .about-container{
-    padding-top: 150px;
-    padding-bottom: 50px;
+  .about-container h1{
+    font-size: 1.5rem;
+  }
+  .about-container h2{
+    font-size: 1.2rem;
   }
   .contacts-container{
     padding-top: 75px
