@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState} from 'react'
-import { motion, useScroll, useSpring, useMotionValueEvent,useTransform, useAnimate, useAnimation, animationControls, useMotionTemplate } from 'framer-motion'
+import React, { useEffect, useRef } from 'react'
+import { motion, useScroll, useSpring, useMotionValueEvent,useTransform, useAnimate, useAnimation, useMotionTemplate } from 'framer-motion'
 import InfiniteLooper from './InfiniteLooper'
-import { useFrame } from '@react-three/fiber'
 import { Link, useLocation } from 'react-router-dom'
 
 
@@ -24,16 +23,16 @@ const Loop_Container = ({ enteredWebsite })=>{
     <InfiniteLooper speed="150" direction="left"  > 
         <motion.div className='loop-container' animate={ animationControls }>
           <div>
-            <img className='skills-item' src="../assets/images/logo-express-js.png" alt="express" />
-            <img className='skills-item' src="../assets/images/logo-github.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo-html-2.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo-nodejs.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo-react.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo-postgreSQL.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo-js-2.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo-socketio.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo-three-js.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo-css-2.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-express-js.png" alt="express" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-github.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-html-2.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-nodejs.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-react.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-postgreSQL.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-js-2.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-socketio.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-three-js.png" alt="" />
+            <img className='skills-item' src="dist/assets/images/logos/logo-css-2.png" alt="" />
           </div>
         </motion.div>
     </InfiniteLooper>

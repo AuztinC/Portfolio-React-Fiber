@@ -1,16 +1,10 @@
-// import * as THREE from 'three'
-import React, { useRef, useState, useMemo, useEffect, Suspense, useLayoutEffect } from 'react'
+
+import React, { useRef, useState, useEffect, Suspense } from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
-// import { EffectComposer, Vignette, Bloom, DepthOfField, SelectiveBloom, Select, Selection  } from '@react-three/postprocessing'
-// import { KernelSize, Resolution, BlurPass, Resizer  } from 'postprocessing'
-import { Clone, OrbitControls } from '@react-three/drei'
-// import SpaceDust from './SpaceDust'
-import ArcSceneBackdrop from '/public/assets/obj/arc-scene/Arc-scene-backdrop'
-import ArcSceneA from '/public/assets/obj/arc-scene/Arc-scene-a'
-import ArcSceneR from '/public/assets/obj/arc-scene/Arc-scene-r'
-import ArcSceneC from '/public/assets/obj/arc-scene/Arc-scene-c'
-// import Plant from '/public/assets/obj/plant_in_pot/Scene'
-// import LightBulb from '../assets/obj/light_bulb/Scene'
+import ArcSceneBackdrop from '/public/assets/obj/arc-scene/Arc-scene-backdrop.jsx'
+import ArcSceneA from '/public/assets/obj/arc-scene/Arc-scene-a.jsx'
+import ArcSceneR from '/public/assets/obj/arc-scene/Arc-scene-r.jsx'
+import ArcSceneC from '/public/assets/obj/arc-scene/Arc-scene-c.jsx'
 
 const sizes = {
   width: window.innerWidth,
@@ -70,7 +64,6 @@ function Main({ children }) {
 
 const Nod_Modes = ({ windowSize }) => {
   // const fbx = useLoader(FBXLoader, '../assets/obj/arc-scene/arc-scene.fbx')
-  const letterA = useRef()
   const ambientLight1 = useRef()
   const directionalLight1 = useRef()
   
@@ -78,9 +71,6 @@ const Nod_Modes = ({ windowSize }) => {
   const Rimages = ["url('/assets/images/2d/r/r-red.png')", "url('/assets/images/2d/r/r-green.png')", "url('/assets/images/2d/r/r-blue.png')"]
   const Cimages = ["url('/assets/images/2d/c/c-red.png')", "url('/assets/images/2d/c/c-green.png')", "url('/assets/images/2d/c/c-blue.png')"]
   
-  const ltrA = useRef()
-  const ltrR = useRef()
-  const ltrC = useRef()
   const [aIdx, setAIdx] = useState(Math.round(Math.random() * 3))
   const [rIdx, setRIdx] = useState(Math.round(Math.random() * 3))
   const [cIdx, setCIdx] = useState(Math.round(Math.random() * 3))
@@ -107,8 +97,8 @@ const Nod_Modes = ({ windowSize }) => {
   useEffect(()=>{
     if(letterTimer) clearTimeout(letterTimer)
     letterTimer = setTimeout(()=>{
-      // console.log('in letter timer')
-      const randomLetter = Math.round(Math.random() * 3)
+    const randomLetter = Math.floor(Math.random() * 3)
+  // console.log(randomLetter)
       switch (randomLetter) {
         case 0:
           handleLetterA()
@@ -122,7 +112,7 @@ const Nod_Modes = ({ windowSize }) => {
         default:
           break;
       }
-    }, Math.floor(Math.random() * (10000 - 5000 + 1) + 5000))
+    }, Math.floor(Math.random() * (10000 - 5000) + 5000))
   }, [aIdx, rIdx, cIdx])
   
   function handleLetterA(){
@@ -138,15 +128,14 @@ const Nod_Modes = ({ windowSize }) => {
     if(cIdx === 3) setCIdx(0)
   }
   return (
-    // 2, 1, 7
     
     <div className='hero-canvas' ref={ heroCanvas }>
       
       {window.innerWidth <= 950 ? 
         <>
-          <div className='letter-image' ref={ ltrA } style={{ backgroundImage: Aimages[aIdx]}}></div>
-          <div className='letter-image' ref={ ltrR } style={{ backgroundImage: Rimages[rIdx]}}></div>
-          <div className='letter-image' ref={ ltrC } style={{ backgroundImage: Cimages[cIdx]}}></div>
+          <div className='letter-image' style={{ backgroundImage: Aimages[aIdx]}}></div>
+          <div className='letter-image' style={{ backgroundImage: Rimages[rIdx]}}></div>
+          <div className='letter-image' style={{ backgroundImage: Cimages[cIdx]}}></div>
           <div className='dummy-letter a' onClick={ handleLetterA }></div>
           <div className='dummy-letter r' onClick={ handleLetterR }></div>
           <div className='dummy-letter c' onClick={ handleLetterC }></div>
@@ -166,18 +155,13 @@ const Nod_Modes = ({ windowSize }) => {
           <Suspense fallback={null}>
             <mesh rotation={[.2, 0, 0]} >
               <ArcSceneBackdrop rotation={[-Math.PI/2, 0, 0]}/>
-                <mesh ref={ letterA }>
-                  <ArcSceneA rotation={[-Math.PI/2, 0, 0]}/>
-                </mesh>
-                <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
-                <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
-                {/* <Plant scale={.01} rotation={[0, -Math.PI/1.5, 0]} position={[4, 0, 0]}/> */}
+              <ArcSceneA rotation={[-Math.PI/2, 0, 0]}/>
+              <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
+              <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
             </mesh>
-            {/* <SpaceDust count={2500} /> */}
           </Suspense>
         </Main>
         
-        {/* <OrbitControls /> */}
       </Canvas>
     }
   </div>

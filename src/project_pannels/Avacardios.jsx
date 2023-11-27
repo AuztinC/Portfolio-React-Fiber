@@ -11,11 +11,13 @@ const imageSrc = [
 const details = `Avacardios was my capstone project. Completed in 10 days in a group of 4 developers. We worked closely together and collaborted daily to maintain a cohesive feel. Although I did all the CSS and design, I also implemented the user authentication system using Firebase, as well as help my team-mates tie in their additions. <br/>
 Tools used: HTML, CSS, Javascript, Canvas  <br/>
 <a href=${REPO} target='_blank'>Repo</a>  <br/>
-<a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a>
+<a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a> <br/>
+Login as an admin! Username: ethyl, Password: 1234
 `
 function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
     const avacardios = useRef()
     const video = useRef()
+    const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
     const opacity = useSpring(0, {
@@ -23,19 +25,21 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
     })
     
     useEffect(() => {
-      video.current.muted = true
+    //   video.current.muted = true
     }, [video])
     
     useEffect(()=>{
         if(hovered){
             scale.set(1.2)
             opacity.set(1)
-            video.current.play()
+            // video.current.play()
+            gif.current.src = 'dist/assets/images/projects/avacardios/login-order-logout-resize-large.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
-            video.current.pause()
-            video.current.currentTime = 0
+            // video.current.pause()
+            // video.current.currentTime = 0
+            gif.current.src = 'dist/assets/images/projects/avacardios/home_page.PNG'
         }
     }, [hovered])
     function Popout(){
@@ -60,6 +64,7 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
         }
         return { top: _y, left: _x };
     }
+    // style={{width: '280px', height: '180px'}}
   return (
     <motion.div className='project avacardios' 
     ref={ avacardios } 
@@ -67,10 +72,11 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
     onPointerEnter={()=>setHovered(avacardios)} 
     style={ { scale } } 
     >
-        <video width="320" height="240" ref={ video } muted={true}>
+        <img src='dist/assets/images/projects/avacardios/home_page.PNG'  ref={ gif }/>
+        {/* <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/avacardios/login-order-logout.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
-        </video>
+        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity }}>
         <span>Avacardios</span>
         <div className='project-overlay-bg-btns'>

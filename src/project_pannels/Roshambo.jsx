@@ -71,9 +71,6 @@ function Roshambo({ setSelectedProject, selectedProject, windowSize }) {
                 <button className='project-overlay-btn'><a href='https://github.com/AuztinC/RoShamBo' target='_blank'>Repo</a></button>
                 {/* <button className='project-overlay-btn'>Deployed</button> */}
                 
-            
-            
-        
                 <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
             </div>
             

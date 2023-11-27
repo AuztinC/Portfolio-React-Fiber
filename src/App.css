@@ -383,12 +383,13 @@ overflow: hidden;
   text-decoration-color:var(--background-color-accent2);
 }
 .project{
+ 
   background-color: var(--background-color-main);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   overflow: hidden;
   box-shadow: var(--container-text-shadow);
   border: 1px solid black;
@@ -396,15 +397,14 @@ overflow: hidden;
   max-width:60%;
   height: 30%;
   margin: 2%;
-  /* scale: 5; */
 }
 
 .project img{
-  aspect-ratio: 3 / 2;
+  /* aspect-ratio: 3 / 2; */
   height: 100%;
 }
 .project video{
-  aspect-ratio: 3 / 2;
+  /* aspect-ratio: 3 / 2; */
   /* width: 100%; */
   /* height: 100%; */
 }
@@ -477,8 +477,8 @@ overflow: hidden;
   /* width: 100%; */
 }
 .popout-carousel img {
-  /* aspect-ratio: 4 / 3; */
-  
+  /* aspect-ratio: 16 / 9; */
+  /* height: 100%; */
 }
 .project-popout a {
   text-decoration: underline;

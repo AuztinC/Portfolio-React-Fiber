@@ -13,7 +13,7 @@ Tools used: HTML, CSS, Javascript, Canvas  <br/>
 function Testris({ setSelectedProject, selectedProject, windowSize }) {
     const testris = useRef()
     const video = useRef()
-    const projectOverlay = useRef()
+    // const projectOverlay = useRef()
  
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
@@ -21,12 +21,12 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
         stiffness: 50
     })
     
-    useEffect(()=>{
-        if(windowSize.width <= 750){
-            if(projectOverlay.current)
-            projectOverlay.current.style.pointerEvents = 'none'
-        }
-    }, [windowSize])
+    // useEffect(()=>{
+    //     if(windowSize.width <= 750){
+    //         if(projectOverlay.current)
+    //         projectOverlay.current.style.pointerEvents = 'none'
+    //     }
+    // }, [windowSize])
     
     useEffect(() => {
       video.current.muted = true
@@ -48,7 +48,7 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
             video.current.pause()
             video.current.currentTime = 0
             // setDisplayInfo('none')
-            projectOverlay.current.style.pointerEvents = 'none'
+            // projectOverlay.current.style.pointerEvents = 'none'
         }
         // console.log(btnTimer)
         
@@ -96,7 +96,7 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
             Your browser does not support the video tag.
         </video>
         
-        <motion.div className='project-overlay-bg' style={{ opacity }} ref={ projectOverlay }>
+        <motion.div className='project-overlay-bg' style={{ opacity }}>
         <span>Testris</span>
         <div className='project-overlay-bg-btns'>
             <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Testris_02' target='_blank'>Repo</a></button>

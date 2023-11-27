@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { motion, useMotionTemplate, useSpring } from 'framer-motion'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function Project_popout({ selectedProject, setSelectedProject }) {
     const { images, video, details, position } = selectedProject
@@ -43,7 +44,7 @@ function Project_popout({ selectedProject, setSelectedProject }) {
     <motion.div className='project-popout' ref={ popout } style={{top: topTemplate}}>
         <Carousel className='popout-carousel' showThumbs={false} dynamicHeight>
             
-                <video muted={true} controls ref={ videoRef } loop>
+                <video muted={true} controls ref={ videoRef }>
                     <source src={`../assets/images/projects/${ video }`} type="video/mp4"/>
                     Your browser does not support the video tag.
                 </video>
@@ -51,8 +52,8 @@ function Project_popout({ selectedProject, setSelectedProject }) {
                     images.map((img, i)=>{
                         // console.log(img)
                         return (
-                            <div key={ i } style={{maxHeight: '320px'}}>
-                                <img src={img} key={ i }/>
+                            <div key={ i } style={{height: 'fit-content'}}>
+                                <LazyLoadImage src={img} key={ i }/>
                                 
                             </div>
                         )
