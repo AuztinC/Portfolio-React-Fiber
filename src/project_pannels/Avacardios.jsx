@@ -33,13 +33,13 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
             scale.set(1.2)
             opacity.set(1)
             // video.current.play()
-            gif.current.src = 'dist/assets/images/projects/avacardios/login-order-logout-resize-large.gif'
+            gif.current.src = '../assets/images/projects/avacardios/login-order-logout-resize-crop.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
             // video.current.pause()
             // video.current.currentTime = 0
-            gif.current.src = 'dist/assets/images/projects/avacardios/home_page.PNG'
+            gif.current.src = '../assets/images/projects/avacardios/home_page.PNG'
         }
     }, [hovered])
     function Popout(){
@@ -72,7 +72,7 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
     onPointerEnter={()=>setHovered(avacardios)} 
     style={ { scale } } 
     >
-        <img src='dist/assets/images/projects/avacardios/home_page.PNG'  ref={ gif }/>
+        <img src='../assets/images/projects/avacardios/home_page.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
         {/* <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/avacardios/login-order-logout.mp4" type="video/mp4"/>
             Your browser does not support the video tag.

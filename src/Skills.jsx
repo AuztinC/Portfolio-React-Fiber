@@ -23,16 +23,16 @@ const Loop_Container = ({ enteredWebsite })=>{
     <InfiniteLooper speed="150" direction="left"  > 
         <motion.div className='loop-container' animate={ animationControls }>
           <div>
-            <img className='skills-item' src="dist/assets/images/logos/logo-express-js.png" alt="express" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-github.png" alt="" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-html-2.png" alt="" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-nodejs.png" alt="" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-react.png" alt="" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-postgreSQL.png" alt="" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-js-2.png" alt="" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-socketio.png" alt="" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-three-js.png" alt="" />
-            <img className='skills-item' src="dist/assets/images/logos/logo-css-2.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-express-js.png" alt="express" />
+            <img className='skills-item' src="../assets/images/logo/logo-github.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-html-2.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-nodejs.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-react.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-postgreSQL.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-js-2.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-socketio.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-three-js.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-css-2.png" alt="" />
           </div>
         </motion.div>
     </InfiniteLooper>

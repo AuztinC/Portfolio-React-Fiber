@@ -477,8 +477,8 @@ overflow: hidden;
   /* width: 100%; */
 }
 .popout-carousel img {
-  /* aspect-ratio: 16 / 9; */
-  /* height: 100%; */
+  aspect-ratio: 16 / 9;
+  max-height: 5%;
 }
 .project-popout a {
   text-decoration: underline;

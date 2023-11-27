@@ -53,7 +53,7 @@ function Project_popout({ selectedProject, setSelectedProject }) {
                         // console.log(img)
                         return (
                             <div key={ i } style={{height: 'fit-content'}}>
-                                <LazyLoadImage src={img} key={ i }/>
+                                <img src={img} key={ i }/>
                                 
                             </div>
                         )
