@@ -31,7 +31,7 @@ function Rememberer({ setSelectedProject, selectedProject, windowSize }) {
             scale.set(1.2)
             opacity.set(1)
             // video.current.play()
-            gif.current.src = 'public/assets/images/projects/rememberer/rememberer.gif'
+            gif.current.src = '../assets/images/projects/rememberer/rememberer.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)

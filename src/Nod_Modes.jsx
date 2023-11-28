@@ -5,6 +5,7 @@ import ArcSceneBackdrop from '/public/assets/obj/arc-scene/Arc-scene-backdrop.js
 import ArcSceneA from '/public/assets/obj/arc-scene/Arc-scene-a.jsx'
 import ArcSceneR from '/public/assets/obj/arc-scene/Arc-scene-r.jsx'
 import ArcSceneC from '/public/assets/obj/arc-scene/Arc-scene-c.jsx'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const sizes = {
   width: window.innerWidth,
@@ -28,16 +29,6 @@ const Camera = ({ windowSize }) => {
     });
     camera.rotateY(60);
   }, [])
-  useEffect(()=>{
-    if(window.innerWidth <= 900){
-      lookAtX = 0
-      lookAtY = 1.4
-    } else {
-      lookAtX = -1
-      lookAtY = 1
-    }
-    // console.log(lookAtX)
-  }, [ windowSize ])
   useFrame(() => {
     if (cameraRef.current) {
       cameraRef.current.position.x = -cursor.x * mouseTolerance;
@@ -141,28 +132,30 @@ const Nod_Modes = ({ windowSize }) => {
           <div className='dummy-letter c' onClick={ handleLetterC }></div>
         </>
         
-      : 
-        <Canvas linear camera={{ position: [0, 0, 20], fov: 10 }} rotation={[0,0,0]} shadows >
-          <Camera windowSize={ windowSize }/>
-        <Main>
-          <mesh position={[-1.9, .8, 0]}>
-            <pointLight intensity={3} position={[0, 0, 0]}/>
-            <pointLight intensity={1} position={[0, 0, .3]} />
-            {/* <LightBulb scale={ 0.1 } position={[0, 0, 0]} /> */}
-          </mesh>
-          <ambientLight ref={ ambientLight1 } intensity={2}/>
-          <directionalLight ref={ directionalLight1 } position={[0, 10, 25]} intensity={4} castShadow/>
-          <Suspense fallback={null}>
-            <mesh rotation={[.2, 0, 0]} >
-              <ArcSceneBackdrop rotation={[-Math.PI/2, 0, 0]}/>
-              <ArcSceneA rotation={[-Math.PI/2, 0, 0]}/>
-              <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
-              <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
+      : <>
+          <LazyLoadImage src="../assets/images/arc-scene-2d3d.png" placeholderSrc='../assets/images/arc-scene-2d3d-small.jpg' alt="" style={{width: '100%', height: '100%', position: 'absolute', top: 0, left: 0}}/>
+          
+          <Canvas linear camera={{ position: [0, 0, 20], fov: 10 }} rotation={[0,0,0]} shadows >
+            <Camera windowSize={ windowSize }/>
+          <Main>
+            <mesh position={[-1.9, .8, 0]}>
+              <pointLight intensity={3} position={[0, 0, 0]}/>
+              <pointLight intensity={1} position={[0, 0, .3]} />
             </mesh>
-          </Suspense>
-        </Main>
-        
-      </Canvas>
+            <ambientLight ref={ ambientLight1 } intensity={2}/>
+            <directionalLight ref={ directionalLight1 } position={[0, 10, 25]} intensity={4} castShadow/>
+            <Suspense fallback={null}>
+              <mesh rotation={[.2, 0, 0]} >
+                <ArcSceneBackdrop rotation={[-Math.PI/2, 0, 0]}/>
+                <ArcSceneA rotation={[-Math.PI/2, 0, 0]}/>
+                <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
+                <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
+              </mesh>
+            </Suspense>
+          </Main>
+          
+        </Canvas>
+      </>
     }
   </div>
   )
