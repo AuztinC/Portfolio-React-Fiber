@@ -27,13 +27,13 @@ function Roshambo({ setSelectedProject, selectedProject, windowSize }) {
             scale.set(1.2)
             opacity.set(1)
             // video.current.play()
-            gif.current.src = 'public/assets/images/projects/roshambo/roshambo-large.gif'
+            gif.current.src = '../assets/images/projects/roshambo/roshambo-large.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
             // video.current.pause()
             // video.current.currentTime = 0
-            gif.current.src = 'public/assets/images/projects/roshambo/gif-cover.PNG'
+            gif.current.src = '../assets/images/projects/roshambo/gif-cover.PNG'
         }
     }, [hovered])
     function Popout(){
@@ -63,7 +63,7 @@ function Roshambo({ setSelectedProject, selectedProject, windowSize }) {
         style={ { scale } } 
         muted={true}
     >
-        <img src="public/assets/images/projects/roshambo/gif-cover.PNG" alt="Rock Paper Scissors game" ref={ gif } style={{width: '280px', height: '180px'}}/>
+        <img src="../assets/images/projects/roshambo/gif-cover.PNG" alt="Rock Paper Scissors game" ref={ gif } style={{width: '280px', height: '180px'}}/>
         {/* <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/roshambo/no-edit.mp4" type="video/mp4"/>
             Your browser does not support the video tag.

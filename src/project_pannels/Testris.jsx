@@ -40,7 +40,7 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
             opacity.set(1)
             // video.current.play()
             // btnTimer = setTimeout(()=>projectOverlay.current.style.pointerEvents = 'all', 100)
-            gif.current.src = 'public/assets/images/projects/testris/testris.gif'
+            gif.current.src = '../assets/images/projects/testris/testris.gif'
         } else {
             // if(btnTimer){
             //     clearTimeout(btnTimer)
@@ -51,7 +51,7 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
             // video.current.currentTime = 0
             // setDisplayInfo('none')
             // projectOverlay.current.style.pointerEvents = 'none'
-            gif.current.src = 'public/assets/images/projects/testris/gif-cover.PNG'
+            gif.current.src = '../assets/images/projects/testris/gif-cover.PNG'
         }
         // console.log(btnTimer)
         
@@ -94,7 +94,7 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
     onPointerEnter={()=>setHovered(testris)} 
     style={ { scale } } 
     >
-        <img src='public/assets/images/projects/testris/gif-cover.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
+        <img src='../assets/images/projects/testris/gif-cover.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
         {/* <video width="320" height="240" loop ref={ video } muted={true}>
             <source src="../assets/images/projects/testris/ingame_full.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
