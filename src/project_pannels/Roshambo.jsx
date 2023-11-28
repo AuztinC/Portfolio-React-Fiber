@@ -11,6 +11,7 @@ Tools used: HTML, CSS, React, Javascript, Express, Socket.io  <br/>
 function Roshambo({ setSelectedProject, selectedProject, windowSize }) {
     const roshambo = useRef()
     const video = useRef()
+    const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
     const opacity = useSpring(0, {
@@ -18,19 +19,21 @@ function Roshambo({ setSelectedProject, selectedProject, windowSize }) {
     })
     
     useEffect(() => {
-      video.current.muted = true
+    //   video.current.muted = true
     }, [video])
     
     useEffect(()=>{
         if(hovered){
             scale.set(1.2)
             opacity.set(1)
-            video.current.play()
+            // video.current.play()
+            gif.current.src = 'public/assets/images/projects/roshambo/roshambo-large.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
-            video.current.pause()
-            video.current.currentTime = 0
+            // video.current.pause()
+            // video.current.currentTime = 0
+            gif.current.src = 'public/assets/images/projects/roshambo/gif-cover.PNG'
         }
     }, [hovered])
     function Popout(){
@@ -60,11 +63,11 @@ function Roshambo({ setSelectedProject, selectedProject, windowSize }) {
         style={ { scale } } 
         muted={true}
     >
-        {/* <img src="../assets/images/projects/testris/ingame_full.PNG" alt="memember" /> */}
-        <video width="320" height="240" ref={ video } muted={true}>
+        <img src="public/assets/images/projects/roshambo/gif-cover.PNG" alt="Rock Paper Scissors game" ref={ gif } style={{width: '280px', height: '180px'}}/>
+        {/* <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/roshambo/no-edit.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
-        </video>
+        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity }}>
         <span>RoShamBo</span>
             <div className='project-overlay-bg-btns'>

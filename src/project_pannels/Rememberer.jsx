@@ -15,6 +15,7 @@ Tools used: HTML, CSS, React <br/>
 function Rememberer({ setSelectedProject, selectedProject, windowSize }) {
     const rememberer = useRef()
     const video = useRef()
+    const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
     const opacity = useSpring(0, {
@@ -22,19 +23,21 @@ function Rememberer({ setSelectedProject, selectedProject, windowSize }) {
     })
     
     useEffect(() => {
-      video.current.muted = true
+    //   video.current.muted = true
     }, [video])
     
     useEffect(()=>{
         if(hovered){
             scale.set(1.2)
             opacity.set(1)
-            video.current.play()
+            // video.current.play()
+            gif.current.src = 'public/assets/images/projects/rememberer/rememberer.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
-            video.current.pause()
-            video.current.currentTime = 0
+            // video.current.pause()
+            // video.current.currentTime = 0
+            gif.current.src = '../assets/images/projects/rememberer/home_page_full.PNG'
         }
     }, [hovered])
     function Popout(){
@@ -64,10 +67,11 @@ function Rememberer({ setSelectedProject, selectedProject, windowSize }) {
     onPointerEnter={()=>setHovered(rememberer)} 
     style={ { scale } } 
     >
-        <video width="320" height="240" ref={ video } muted={true}>
+        <img src='../assets/images/projects/rememberer/home_page_full.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
+        {/* <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/rememberer/full-run-quick.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
-        </video>
+        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity }}>
                 <span>Rememberer</span>
                 <div className='project-overlay-bg-btns'>

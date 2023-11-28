@@ -15,6 +15,7 @@ Tools used: HTML, CSS, Javascript, React  <br/>
 function FreshPicsYo({ setSelectedProject , selectedProject, windowSize }) {
     const avacardios = useRef()
     const video = useRef()
+    const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
     const opacity = useSpring(0, {
@@ -22,19 +23,21 @@ function FreshPicsYo({ setSelectedProject , selectedProject, windowSize }) {
     })
     
     useEffect(() => {
-      video.current.muted = true
+    //   video.current.muted = true
     }, [video])
     
     useEffect(()=>{
         if(hovered){
             scale.set(1.2)
             opacity.set(1)
-            video.current.play()
+            // video.current.play()
+            gif.current.src = '../assets/images/projects/freshpicsyo/fresh-pix.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
-            video.current.pause()
-            video.current.currentTime = 0
+            // video.current.pause()
+            // video.current.currentTime = 0
+            gif.current.src = '../assets/images/projects/freshpicsyo/home_full.PNG'
         }
     }, [hovered])
     function Popout(){
@@ -66,10 +69,11 @@ function FreshPicsYo({ setSelectedProject , selectedProject, windowSize }) {
     onPointerEnter={()=>setHovered(avacardios)} 
     style={ { scale } } 
     >
-        <video width="320" height="240" ref={ video } muted={true}>
+        <img src='../assets/images/projects/freshpicsyo/home_full.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
+        {/* <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/freshpicsyo/freshpix.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
-        </video>
+        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity }}>
         <span>FreshPicsYo</span>
         <div className='project-overlay-bg-btns'>

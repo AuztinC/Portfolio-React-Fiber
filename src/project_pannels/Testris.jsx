@@ -13,6 +13,7 @@ Tools used: HTML, CSS, Javascript, Canvas  <br/>
 function Testris({ setSelectedProject, selectedProject, windowSize }) {
     const testris = useRef()
     const video = useRef()
+    const gif = useRef()
     // const projectOverlay = useRef()
  
     const [hovered, setHovered] = useState(null)
@@ -29,7 +30,7 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
     // }, [windowSize])
     
     useEffect(() => {
-      video.current.muted = true
+    //   video.current.muted = true
     }, [video])
     
     useEffect(()=>{
@@ -37,18 +38,20 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
         if(hovered){
             scale.set(1.2)
             opacity.set(1)
-            video.current.play()
+            // video.current.play()
             // btnTimer = setTimeout(()=>projectOverlay.current.style.pointerEvents = 'all', 100)
+            gif.current.src = 'public/assets/images/projects/testris/testris.gif'
         } else {
             // if(btnTimer){
             //     clearTimeout(btnTimer)
             // }
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
-            video.current.pause()
-            video.current.currentTime = 0
+            // video.current.pause()
+            // video.current.currentTime = 0
             // setDisplayInfo('none')
             // projectOverlay.current.style.pointerEvents = 'none'
+            gif.current.src = 'public/assets/images/projects/testris/gif-cover.PNG'
         }
         // console.log(btnTimer)
         
@@ -91,10 +94,11 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
     onPointerEnter={()=>setHovered(testris)} 
     style={ { scale } } 
     >
-        <video width="320" height="240" loop ref={ video } muted={true}>
+        <img src='public/assets/images/projects/testris/gif-cover.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
+        {/* <video width="320" height="240" loop ref={ video } muted={true}>
             <source src="../assets/images/projects/testris/ingame_full.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
-        </video>
+        </video> */}
         
         <motion.div className='project-overlay-bg' style={{ opacity }}>
         <span>Testris</span>
