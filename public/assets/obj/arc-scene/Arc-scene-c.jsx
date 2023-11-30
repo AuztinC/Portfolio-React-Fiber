@@ -12,20 +12,27 @@ export default function ArcSceneC(props) {
   const [currentColorIdx, setCurrentColorIdx] = useState(2)
   const hoverColors = ['#600','#0f0','#00f']
   const hoverEmissive = ['#f06','#ff0','#0ff']
-  // const hoverColors = ['#800','#0f0','#00f']
-  // const hoverEmissive = ['#f08','#ff0','#0ff']
+  const colors = ['#300','#080','#00f']
+  const emissive = ['#f00','#df0','#0df']
   useEffect(()=>{
     materials['Arc-Emit'].metalness = 0
-    
   }, [])
   useEffect(()=>{
     if(currentColorIdx === 3) {
       setCurrentColorIdx(0)
     }
-    materials['Arc-Emit'].color.set(hoverColors[currentColorIdx])
-    materials['Arc-Emit'].emissive.set(hoverEmissive[currentColorIdx])
-    
+    if(hovered){
+      materials['Arc-Emit'].color.set(hoverColors[currentColorIdx])
+      materials['Arc-Emit'].emissive.set(hoverEmissive[currentColorIdx])
+    } else {
+      materials['Arc-Emit'].color.set(colors[currentColorIdx])
+      materials['Arc-Emit'].emissive.set(emissive[currentColorIdx])
+    }
   }, [ currentColorIdx ])
+  useEffect(()=>{
+    setCurrentColorIdx(props.cIdx)
+    // console.log(props.aIdx)
+  }, [props.cIdx])
   useEffect(()=>{
     if(!hovered){
       if(currentColorIdx === 0){
@@ -47,7 +54,6 @@ export default function ArcSceneC(props) {
   }, [ hovered ])
   function handleClick() {
     setCurrentColorIdx(currentColorIdx + 1)
-    
   }
   return (
     <group {...props} dispose={null}

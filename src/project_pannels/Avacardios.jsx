@@ -8,7 +8,7 @@ const imageSrc = [
     '../assets/images/projects/avacardios/addresses.PNG',
     '../assets/images/projects/avacardios/toast.PNG',
 ]
-const details = `Avacardios was my capstone project. Completed in 10 days in a group of 4 developers. We worked closely together and collaborted daily to maintain a cohesive feel. Although I did all the CSS and design, I also implemented the user authentication system using Firebase, as well as help my team-mates tie in their additions. <br/>
+const details = `Avacardios was my capstone project. Completed in 10 days in a group of 4 developers. We worked closely together and collaborted daily to maintain a cohesive feel. While doing CSS and designing the user experience, I also implemented the user authentication system using Firebase, as well as help my team-mates tie in their additions. <br/>
 Tools used: HTML, CSS, Javascript, Canvas  <br/>
 <a href=${REPO} target='_blank'>Repo</a>  <br/>
 <a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a> <br/>

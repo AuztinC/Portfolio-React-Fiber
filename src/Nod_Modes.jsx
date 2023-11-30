@@ -19,20 +19,26 @@ const cursor = {
 const Camera = ({ windowSize }) => {
   const { camera } = useThree()
   const cameraRef = useRef(camera);
-  let lookAtX = window.innerWidth <= 900 ? 0 : -1
-  let lookAtY = window.innerWidth <= 900 ? 1.4 : 1
+  let lookAtX =  -1
+  let lookAtY =  1
   var mouseTolerance = .3;
   useEffect(()=>{
     window.addEventListener("mousemove", (event)=>{
+      // console.log(event.clientX)
       cursor.x = event.clientX / sizes.width - 0.5;
       cursor.y = event.clientY / sizes.height - -8;
     });
-    camera.rotateY(60);
+    if(cameraRef.current){
+      cameraRef.current.position.y = 3
+    }
   }, [])
+
   useFrame(() => {
-    if (cameraRef.current) {
+    if(cursor.x === 0 && cursor.y === 0 && cameraRef.current) ;
+    if(cameraRef.current) {
       cameraRef.current.position.x = -cursor.x * mouseTolerance;
-      cameraRef.current.position.y = cursor.y * mouseTolerance;
+      cameraRef.current.position.y = cursor.y * mouseTolerance || 2.5;
+      cameraRef.current.position.z = 20
       cameraRef.current.lookAt(lookAtX, lookAtY, 0)
     }
   });
@@ -88,8 +94,9 @@ const Nod_Modes = ({ windowSize }) => {
   useEffect(()=>{
     if(letterTimer) clearTimeout(letterTimer)
     letterTimer = setTimeout(()=>{
+    // const randomLetter = 0
     const randomLetter = Math.floor(Math.random() * 3)
-  // console.log(randomLetter)
+  console.log(randomLetter)
       switch (randomLetter) {
         case 0:
           handleLetterA()
@@ -104,19 +111,32 @@ const Nod_Modes = ({ windowSize }) => {
           break;
       }
     }, Math.floor(Math.random() * (10000 - 5000) + 5000))
+    
   }, [aIdx, rIdx, cIdx])
   
   function handleLetterA(){
-    setAIdx(aIdx + 1)
-    if(aIdx === 3) setAIdx(0)
+    if(aIdx === 3){
+      setAIdx(0)
+      
+    } else {
+      setAIdx(aIdx + 1)
+    }
   }
   function handleLetterR(){
-    setRIdx(rIdx + 1)
-    if(rIdx === 3) setRIdx(0)
+    if(rIdx === 3){
+      setRIdx(0)
+      
+    } else {
+      setRIdx(rIdx + 1)
+    }
   }
   function handleLetterC(){
-    setCIdx(cIdx + 1)
-    if(cIdx === 3) setCIdx(0)
+    if(cIdx === 3){
+      setCIdx(0)
+      
+    } else {
+      setCIdx(cIdx + 1)
+    }
   }
   return (
     
@@ -135,7 +155,7 @@ const Nod_Modes = ({ windowSize }) => {
       : <>
           <LazyLoadImage src="../assets/images/arc-scene-2d3d.png" placeholderSrc='../assets/images/arc-scene-2d3d-small.jpg' alt="" style={{width: '100%', height: '100%', position: 'absolute', top: 0, left: 0}}/>
           
-          <Canvas linear camera={{ position: [0, 0, 20], fov: 10 }} rotation={[0,0,0]} shadows >
+          <Canvas linear camera={{ position: [0, 3, 0], fov: 10 }} shadows >
             <Camera windowSize={ windowSize }/>
           <Main>
             <mesh position={[-1.9, .8, 0]}>
@@ -147,9 +167,9 @@ const Nod_Modes = ({ windowSize }) => {
             <Suspense fallback={null}>
               <mesh rotation={[.2, 0, 0]} >
                 <ArcSceneBackdrop rotation={[-Math.PI/2, 0, 0]}/>
-                <ArcSceneA rotation={[-Math.PI/2, 0, 0]}/>
-                <ArcSceneR rotation={[-Math.PI/2, 0, 0]}/>
-                <ArcSceneC rotation={[-Math.PI/2, 0, 0]}/>
+                <ArcSceneA rotation={[-Math.PI/2, 0, 0]} aIdx={ aIdx }/>
+                <ArcSceneR rotation={[-Math.PI/2, 0, 0]} rIdx={ rIdx }/>
+                <ArcSceneC rotation={[-Math.PI/2, 0, 0]} cIdx={ cIdx }/>
               </mesh>
             </Suspense>
           </Main>

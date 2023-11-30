@@ -115,7 +115,7 @@ export default function Skills({ enteredWebsite, windowSize }) {
   <div className='dummy'>
       {/* <span>Austin Cripe</span> */}
       
-        <motion.div className='dummy-image-container'
+        {/* <motion.div className='dummy-image-container'
           ref={img} 
           style={{
               scale,
@@ -125,9 +125,16 @@ export default function Skills({ enteredWebsite, windowSize }) {
               opacity
           }}
         >
+        </motion.div> */}
           {/* <div className='dummy-image-backer' animate={ animationControls }></div> */}
-          <div className='dummy-image' ></div>
-        </motion.div>
+      <motion.div className='dummy-image' ref={img} 
+      style={{
+          scale,
+        //   position,
+          left: imgXtemplate,
+          top: imgYtemplate,
+          opacity
+      }}></motion.div>
       
     </div>
 	<motion.div className='skills-container' ref={ skills }  >

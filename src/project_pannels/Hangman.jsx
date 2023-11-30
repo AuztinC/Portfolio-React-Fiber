@@ -6,7 +6,7 @@ const imageSrc = [
     '../assets/images/projects/hangman/home_full.PNG',
     '../assets/images/projects/hangman/loss_full.PNG'
 ]
-const details = `Hangman was a fantastic project that was pivotal for my growth as a developer. Handling state, implementing and iterating through arrays, using an API for random words. This project helped me overcome many introduction lessons. Plus it was a blast!  <br/>
+const details = `Hangman was a fantastic project that was pivotal for my growth as a developer. Handling state, implementing and iterating through arrays, using an API for random words. This project helped me overcome many introductory lessons. Plus it was a blast!  <br/>
 Tools used: HTML, CSS, Javascript  <br/>
 <a href=${REPO} target='_blank'>Repo</a>  <br/>
 <a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a>

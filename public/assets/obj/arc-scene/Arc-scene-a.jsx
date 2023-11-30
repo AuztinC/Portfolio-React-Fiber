@@ -12,34 +12,34 @@ export default function ArcSceneA(props) {
   const [currentColorIdx, setCurrentColorIdx] = useState(0)
   const hoverColors = ['#600','#0f0','#00f']
   const hoverEmissive = ['#f06','#ff0','#0ff']
-  // const hoverColors = ['#800','#0f0','#00f']
-  // const hoverEmissive = ['#f08','#ff0','#0ff']
+  const colors = ['#300','#080','#00f']
+  const emissive = ['#f00','#df0','#0df']
   useEffect(()=>{
     materials['Arc-Emit'].metalness = 0
-    
   }, [])
   useEffect(()=>{
     if(currentColorIdx === 3) {
       setCurrentColorIdx(0)
     }
-    materials['Arc-Emit'].color.set(hoverColors[currentColorIdx])
-    materials['Arc-Emit'].emissive.set(hoverEmissive[currentColorIdx])
-    
+    if(hovered){
+      // console.log(currentColorIdx)
+      materials['Arc-Emit'].color.set(hoverColors[currentColorIdx])
+      materials['Arc-Emit'].emissive.set(hoverEmissive[currentColorIdx])
+    } else {
+      materials['Arc-Emit'].color.set(colors[currentColorIdx])
+      materials['Arc-Emit'].emissive.set(emissive[currentColorIdx])
+    }
   }, [ currentColorIdx ])
+  
+  useEffect(()=>{
+    setCurrentColorIdx(props.aIdx)
+    // console.log(props.aIdx)
+  }, [props.aIdx])
+  
   useEffect(()=>{
     if(!hovered){
-      if(currentColorIdx === 0){
-        materials['Arc-Emit'].color.set('#300')
-        materials['Arc-Emit'].emissive.set('#f00')
-      } 
-      if(currentColorIdx === 1){
-        materials['Arc-Emit'].color.set('#080')
-        materials['Arc-Emit'].emissive.set('#df0')
-      } 
-      if(currentColorIdx === 2){
-        materials['Arc-Emit'].color.set('#00f')
-        materials['Arc-Emit'].emissive.set('#0df')
-      } 
+      materials['Arc-Emit'].color.set(colors[currentColorIdx])
+      materials['Arc-Emit'].emissive.set(emissive[currentColorIdx])
     } else {
       materials['Arc-Emit'].color.set(hoverColors[currentColorIdx])
       materials['Arc-Emit'].emissive.set(hoverEmissive[currentColorIdx])
@@ -47,7 +47,6 @@ export default function ArcSceneA(props) {
   }, [ hovered ])
   function handleClick() {
     setCurrentColorIdx(currentColorIdx + 1)
-    
   }
   return (
     

@@ -56,17 +56,19 @@ a {
   justify-content: space-between;
   align-items: center;
   height: 150px;
-  width: 100%;
+  width: 100vw;
   /* background-color: var(--background-color-main); */
 }
 
-.dummy-image-container{
+/* .dummy-image-container{
   z-index: 5;
+  width: 100%;
   position: relative;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 /*  width: 350px;
   height: 350px; */
 .dummy-image {
@@ -117,7 +119,7 @@ a {
 .hero-canvas {
   position: relative;
   z-index: 0;
-  background-image: url('../assets/images/arc-scene-2d3d-small.png');
+  background-image: url('../assets/images/arc-scene-2d3d.png');
   /* background: url('public/assets/images/2d/arc-white.png'); */
   background-size: cover;
   background-position: bottom;
@@ -383,7 +385,7 @@ overflow: hidden;
   text-decoration-color:var(--background-color-accent2);
 }
 .project{
- 
+ z-index: 1;
   background-color: var(--background-color-main);
   position: relative;
   display: flex;
@@ -457,7 +459,7 @@ overflow: hidden;
   /* text-shadow: 0 1 5px 5px red; */
 }
 .project-popout{
-  
+  z-index: 5;
   text-align: center;
   background-color: var(--background-color-main);
   position: absolute;

@@ -24,18 +24,21 @@ const PC_Projects = ({ windowSize })=>{
     <>
       <div className='projects-div'>
         <div className='projects-column'>
-        <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
-        <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
-        <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
-      </div>
+          <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+          <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+          <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+        </div>
       
-      <div className='projects-column'>
-        <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
-        <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
-        <FreshPicsYo  setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
-        {/* <Chatapp /> */}
-      </div>
-      <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
+        <div className='projects-column'>
+          <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+          <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
+          <FreshPicsYo  setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
+          {/* <Chatapp /> */}
+        </div>
+        <div style={{width: '100%', textAlign: 'center'}}>
+          <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
+          <div className='projects-github'>Download my resume: <a href={'../assets/Austin-Cripe-Software-Dev-Resume.pdf'} download="Austin-Cripe-Resume">Resume</a></div>
+        </div>
       </div>
       { selectedProject ? <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject }/> : null}
     </>
@@ -59,9 +62,10 @@ const Mobile_Projects = ({ windowSize })=>{
         <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
         <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
         <FreshPicsYo  setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
-        {/* <Chatapp /> */}
+        <Chatapp />
       </div>
       <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
+      <div className='projects-resume'>Download my resume: <a download={'../assets/Austin-Cripe-Software-Dev-Resume.pdf'}>Resume</a></div>
     </div>
       { selectedProject ? <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject }/> : null}
     </>
