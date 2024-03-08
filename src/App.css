@@ -413,11 +413,8 @@ overflow: hidden;
 .project-overlay-bg{
   color: #fff;
   display: flex;
-  /* padding-top: 10%; */
   position: absolute;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, .6);
@@ -427,7 +424,6 @@ overflow: hidden;
   width: 100%;
 }
 .project-overlay-bg-btns{
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;

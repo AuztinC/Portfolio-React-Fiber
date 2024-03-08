@@ -37,7 +37,7 @@ const PC_Projects = ({ windowSize })=>{
         </div>
         <div style={{width: '100%', textAlign: 'center'}}>
           <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
-          <div className='projects-github'>Download my resume: <a href={'../assets/Austin-Cripe-Software-Dev-Resume.pdf'} download="Austin-Cripe-Resume">Resume</a></div>
+          <div className='projects-github'>Download my resume: <a href={'../assets/Austin_Cripe_Software_Dev_Resume.pdf'} download="Austin-Cripe-Resume">Resume</a></div>
         </div>
       </div>
       { selectedProject ? <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject }/> : null}
