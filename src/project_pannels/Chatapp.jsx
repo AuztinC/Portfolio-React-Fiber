@@ -1,6 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { motion, useSpring } from 'framer-motion'
 
+const DEPLOYED_SITE = 'https://pern-chat-3s6h.onrender.com/'
+const REPO = 'https://github.com/AuztinC/PERN-ChatApp'
+const imageSrc = [
+    '../assets/images/projects/avacardios/home_page.PNG',
+    '../assets/images/projects/avacardios/admin.PNG',
+    '../assets/images/projects/avacardios/addresses.PNG',
+    '../assets/images/projects/avacardios/toast.PNG',
+]
+const details = `ChatterBox <br/>
+Tools used: React, HTML, CSS, SQL, Express, Node  <br/>
+<a href=${REPO} target='_blank'>Repo</a>  <br/>
+<a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a> <br/>
+`
+
 function Chatapp() {
     const chatapp = useRef()
     const video = useRef()

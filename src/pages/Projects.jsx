@@ -7,6 +7,7 @@ import Hangman from '../project_pannels/Hangman'
 import Rememberer from '../project_pannels/Rememberer'
 import Project_popout from '../project_pannels/Project_popout'
 import FreshPicsYo from '../project_pannels/FreshPicsYo'
+import Chatapp from '../project_pannels/Chatapp'
 
 
 //  selectedProject = {
@@ -27,13 +28,13 @@ const PC_Projects = ({ windowSize })=>{
           <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
           <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
           <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+          {/* <Chatapp setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/> */}
         </div>
       
         <div className='projects-column'>
           <Avacardios setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
           <Testris setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
           <FreshPicsYo  setSelectedProject={ setSelectedProject } selectedProject={ selectedProject } windowSize={ windowSize }/>
-          {/* <Chatapp /> */}
         </div>
         <div style={{width: '100%', textAlign: 'center'}}>
           <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>

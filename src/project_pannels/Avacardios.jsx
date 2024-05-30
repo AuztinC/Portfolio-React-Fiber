@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { motion, useSpring } from 'framer-motion'
-const DEPLOYED_SITE = 'https://testris.netlify.app/'
-const REPO = 'https://github.com/AuztinC/Testris_02'
+const DEPLOYED_SITE = 'https://avacardios-store-2gl1.onrender.com/'
+const REPO = 'https://github.com/AuztinC/Avacardios'
 const imageSrc = [
     '../assets/images/projects/avacardios/home_page.PNG',
     '../assets/images/projects/avacardios/admin.PNG',
@@ -81,7 +81,7 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
         <span>Avacardios</span>
         <div className='project-overlay-bg-btns'>
             <button className='project-overlay-btn'><a href='https://github.com/Avacardios/Avacardios' target='_blank'>Repo</a></button>
-            <button className='project-overlay-btn'><a href='https://avacardios-store.onrender.com/' target='_blank'>Deployed</a></button>
+            <button className='project-overlay-btn'><a href='https://avacardios-store-2gl1.onrender.com/' target='_blank'>Deployed</a></button>
             <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
         </div>
                 
