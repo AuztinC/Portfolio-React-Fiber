@@ -5,6 +5,7 @@ import CSS_Logo from '../assets/obj/css_logo/CSS_Logo'
 import  HTML_Logo  from '../assets/obj/html_logo/Scene'
 import JS_Logo from '../assets/obj/javascript_1/Scene'
 import React_Logo from '../assets/obj/react_logo_circle/Scene'
+import DownArrow from '../public/assets/obj/DownArrow'
 import { MeshDistortMaterial } from '@react-three/drei'
 import { OrbitControls } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/web'
@@ -97,7 +98,9 @@ useEffect(()=>{
           </Suspense>
           {/* <OrbitControls/> */}
       </Canvas>
-        
+        <button className='scroll-down-btn'>
+          <DownArrow />
+        </button>
     </div>
   )
 }

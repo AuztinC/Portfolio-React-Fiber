@@ -96,7 +96,7 @@ const Nod_Modes = ({ windowSize }) => {
     letterTimer = setTimeout(()=>{
     // const randomLetter = 0
     const randomLetter = Math.floor(Math.random() * 3)
-  console.log(randomLetter)
+  // console.log(randomLetter)
       switch (randomLetter) {
         case 0:
           handleLetterA()
@@ -173,8 +173,9 @@ const Nod_Modes = ({ windowSize }) => {
               </mesh>
             </Suspense>
           </Main>
-          
+        
         </Canvas>
+        
       </>
     }
   </div>

@@ -6,12 +6,14 @@ import AnimatedRoutes from './AnimatedRoutes'
 import Socials from './Socials'
 import './App.css'
 import Nod_Modes from './Nod_Modes'
+import DownArrow from '../public/assets/obj/DownArrow'
 
 
 function App() {
   const [position, setPoition] = useState('')
   const [enteredWebsite, setEnteredWebsite] = useState(false)
   const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
+  const [btnHovered, setBtnHovered] = useState(false)
   const hero = useRef()
   const App = useRef()
   const skills = useRef()
@@ -28,6 +30,7 @@ function App() {
     restDelta: 0
   })
   const opacity = useTransform(scrollYProgress, [0, .7], [0, 1])
+  const scale = useSpring(1)
   // const scaleWindow = useTransform(scaleImg, [0, 1], )
   
   useEffect(()=>{
@@ -43,6 +46,18 @@ function App() {
     setWindowSize({width: event.target.innerWidth, height: event.target.innerHeight})
   }
   
+  useEffect(() => {
+    if(btnHovered){
+      scale.set(1.2)
+    } else {
+      scale.set(1)
+      
+    }
+  
+    
+  }, [btnHovered])
+  
+  
   
 //   useMotionValueEvent(scrollY, "change", (latest) =>{
 //     console.log(latest)
@@ -56,7 +71,7 @@ function App() {
   const animationControls = useAnimation()
   useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     // console.log(latest)
-    if(latest === 1){
+    if(latest >= 0.95){
       // setPoition("fixed")
       setEnteredWebsite(true)
       sectionPannels.current.style.height = '100vh'
@@ -89,10 +104,17 @@ function App() {
   return (
     
   <div className='App' ref={App} style={{height: '100%'}}>
-
+    <motion.button className='scroll-down-btn'
+    onPointerLeave={()=>setBtnHovered(false)} 
+    onPointerEnter={()=>setBtnHovered(true)} 
+    style={ { scale } } 
+    >
+      <DownArrow />
+    </motion.button>
     <section className='hero-section' ref={hero}>
     {/* <div className='hero-canvas'> */}
 		  <Nod_Modes windowSize={ windowSize }/>
+      
 	  {/* </div>	 */}
       {/* <Hero_Content  windowSize={ windowSize }/> */}
     </section>

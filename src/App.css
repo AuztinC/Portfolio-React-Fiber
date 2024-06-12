@@ -115,7 +115,34 @@ a {
   width: 100%;
   height: 100%;
 }
-
+.scroll-down-btn{
+  position: absolute;
+  height: 75px;
+  width: 75px;
+  bottom: 55%;
+  left: calc(50% - 32.5px);
+  z-index: 20;
+  border: 1px solid black;
+  border-radius: 50%;
+  animation-name: downArrow;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  box-shadow: 0px 5px 9px var(--background-color-accent1);
+}
+@keyframes downArrow {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.down-arrow-svg{
+  height: 100%;
+  width: 100%;
+}
 .hero-canvas {
   position: relative;
   z-index: 0;
@@ -152,7 +179,7 @@ a {
 
   height: 20vh;
   width: 100%;
-  z-index: 100;
+  z-index: 10;
 }
 
 @keyframes slideAnim {
@@ -341,11 +368,18 @@ overflow: hidden;
 .projects-container{
   margin-top: 50px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   background-color: var(--background-color-accent2);
   width: 100%;
   height: 100%;
+}
+.projects-p1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .projects-div{
   box-shadow: var(--container-text-shadow);
@@ -447,7 +481,7 @@ overflow: hidden;
   text-decoration: none;
 }
 .project-overlay-bg span {
-
+  font-size: 12pt;
   padding: 3px;
   background: rgba(0, 0, 0, .6);
   font-weight: 700;
@@ -559,6 +593,14 @@ overflow: hidden;
   .project-overlay-bg{
     font-size: .5rem;
   }
+  .project-overlay-btn{
+    margin: 1px;
+    padding: 4px;
+    line-height: 0.5rem;
+  }
+  .project-overlay-bg span{
+    font-size: 7pt;
+  }
   .project-overlay-bg button{
     /* font-size: .4rem; */
     padding: 10px;
@@ -572,6 +614,7 @@ overflow: hidden;
   .project-overlay-bg{
     font-size: .8rem;
   }
+  
   .project-overlay-bg-btns{
     flex-direction: row;
     flex-wrap: wrap;
@@ -589,5 +632,6 @@ overflow: hidden;
     font-size: .6rem;
     padding: 6px;
   }
+  
 }
 
