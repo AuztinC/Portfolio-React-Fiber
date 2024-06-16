@@ -14,11 +14,14 @@ function App() {
   const [enteredWebsite, setEnteredWebsite] = useState(false)
   const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
   const [btnHovered, setBtnHovered] = useState(false)
+  const [btnTimerId, setBtnTimerId] = useState(null)
   const hero = useRef()
   const App = useRef()
   const skills = useRef()
   const sectionMargin = useRef(0)
   const sectionPannels = useRef(0)
+  const scrollDownBtn = useRef()
+  
   const { scrollY } = useScroll()
   const { scrollYProgress } = useScroll({
     target: hero,
@@ -41,6 +44,7 @@ function App() {
     }
     return(window.removeEventListener('resize', handleResize))
   }, [])
+  
   function handleResize(event){
     // console.log(event.target.innerWidth)
     setWindowSize({width: event.target.innerWidth, height: event.target.innerHeight})
@@ -54,7 +58,6 @@ function App() {
       
     }
   
-    
   }, [btnHovered])
   
   
@@ -72,12 +75,15 @@ function App() {
   useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     // console.log(latest)
     if(latest >= 0.95){
-      // setPoition("fixed")
-      setEnteredWebsite(true)
-      sectionPannels.current.style.height = '100vh'
-    } else {
-      // setPoition("absolute")
-      setEnteredWebsite(false)
+        // setPoition("fixed")
+        setEnteredWebsite(true)
+        scrollDownBtn.current.style.opacity = "0"
+        scrollDownBtn.current.style.animation = "none"
+        sectionPannels.current.style.height = '100vh'
+        setBtnTimerId(null)
+      } else {
+        setBtnTimerId(1)
+        setEnteredWebsite(false)
       
     }
   })
@@ -99,6 +105,27 @@ function App() {
       sectionMargin.current = 0
     }
   }, [enteredWebsite])
+  
+  useEffect(()=>{
+    if(btnTimerId > 0 && !enteredWebsite){
+      if(btnTimerId >= 500){
+        scrollDownBtn.current.style.animation = "downArrow 2s alternate infinite cubic-bezier(0.755, 0.05, 0.855, 0.06)"
+        setBtnTimerId(0)
+      } else {
+        
+        setBtnTimerId(btnTimerId + 1)
+      }
+    }
+  }, [btnTimerId])
+  
+  
+  function handleScrollDown(click){
+    window.scrollBy({
+      top: window.innerHeight,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
     
       // console.log("Page scroll: ", latest)
   return (
@@ -108,6 +135,7 @@ function App() {
     onPointerLeave={()=>setBtnHovered(false)} 
     onPointerEnter={()=>setBtnHovered(true)} 
     style={ { scale } } 
+    onClick={handleScrollDown} ref={scrollDownBtn}
     >
       <DownArrow />
     </motion.button>
