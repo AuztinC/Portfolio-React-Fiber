@@ -98,9 +98,7 @@ useEffect(()=>{
           </Suspense>
           {/* <OrbitControls/> */}
       </Canvas>
-        <button className='scroll-down-btn'>
-          <DownArrow />
-        </button>
+
     </div>
   )
 }

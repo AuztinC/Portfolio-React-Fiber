@@ -9,6 +9,7 @@ import Project_popout from '../project_pannels/Project_popout'
 import FreshPicsYo from '../project_pannels/FreshPicsYo'
 import Chatapp from '../project_pannels/Chatapp'
 import Projects_P1 from '../project_pannels/Projects_P1'
+import Projects_P2 from '../project_pannels/Projects_P2'
 
 
 //  selectedProject = {
@@ -20,12 +21,21 @@ import Projects_P1 from '../project_pannels/Projects_P1'
 
 const PC_Projects = ({ windowSize })=>{
   const [selectedProject, setSelectedProject] = useState(null)
-
+  const [page, setPage] = useState(1)
+  
+  
+  
 
   return (
     <>
       <div className='projects-div'>
-        <Projects_P1 setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+        <div className='project-page-btn-webdev' onClick={()=>setPage(1)}>Web Development</div>
+        <div className='project-page-btn-logic' onClick={()=>setPage(2)}>Logic Based</div>
+        
+        { page === 1 ? <Projects_P1 setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+         : 
+         <Projects_P2 setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>}
+        
         
         <div style={{width: '100%', textAlign: 'center'}}>
           <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
@@ -49,7 +59,7 @@ const Mobile_Projects = ({ windowSize })=>{
         <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
         <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
         {/* <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/> */}
-        <Chatapp />
+        <Chatapp setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
       </div>
       
       <div className='projects-column'>

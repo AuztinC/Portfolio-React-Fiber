@@ -4,20 +4,20 @@ import { motion, useSpring } from 'framer-motion'
 const DEPLOYED_SITE = 'https://pern-chat-3s6h.onrender.com/'
 const REPO = 'https://github.com/AuztinC/PERN-ChatApp'
 const imageSrc = [
-    '../assets/images/projects/avacardios/home_page.PNG',
-    '../assets/images/projects/avacardios/admin.PNG',
-    '../assets/images/projects/avacardios/addresses.PNG',
-    '../assets/images/projects/avacardios/toast.PNG',
+    '../assets/images/projects/chatterbox/userSearch.PNG',
+    '../assets/images/projects/chatterbox/typingBubbles.PNG',
+    '../assets/images/projects/chatterbox/login.PNG',
 ]
-const details = `ChatterBox is a real-time chat application. This project had many challenges including the creation of chat rooms both group and private. <br/>
+const details = `ChatterBox is a real-time chat application. This project had many challenges including server and client interaction in many ways. <br/>
 Tools used: React, HTML, CSS, SQL, Express, Node  <br/>
 <a href=${REPO} target='_blank'>Repo</a>  <br/>
 <a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a> <br/>
 `
 
-function Chatapp() {
+function Chatapp({ setSelectedProject, selectedProject, windowSize }) {
     const chatapp = useRef()
     const video = useRef()
+    const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
     const opacity = useSpring(0, {
@@ -25,48 +25,68 @@ function Chatapp() {
     })
     
     useEffect(() => {
-      video.current.muted = true
+    //   video.current.muted = true
     }, [video])
     
     useEffect(()=>{
         if(hovered){
             scale.set(1.2)
             opacity.set(1)
-            video.current.play()
+            // video.current.play()
+            gif.current.src = '../assets/images/projects/roshambo/roshambo-large.gif'
         } else {
             scale.set(1)
-            opacity.set(0)
-            video.current.pause()
-            video.current.currentTime = 0
+            opacity.set(windowSize.width <= 950 ? 1 : 0)
+            // video.current.pause()
+            // video.current.currentTime = 0
+            gif.current.src = 'public/assets/images/projects/chatterbox/login.PNG'
         }
     }, [hovered])
-    useEffect(()=>{
-        if(hovered){
-            scale.set(1.2)
-        } else {
-            scale.set(1)
+    function Popout(){
+        if(selectedProject === null){
+            setSelectedProject({ 
+                images: imageSrc, 
+                video: 'roshambo/no-edit.mp4', 
+                details, position: [getOffset(chatapp.current).left, getOffset(chatapp.current).top] 
+            })
+        } else return 
+    }
+    function getOffset( el ) {
+        var _x = 0;
+        var _y = 0;
+        while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+            _x += el.offsetLeft - el.scrollLeft;
+            _y += el.offsetTop - el.scrollTop;
+            el = el.offsetParent;
         }
-    }, [hovered])
+        return { top: _y, left: _x };
+    }
   return (
-    <motion.div className='project' ref={ chatapp } onPointerLeave={()=>setHovered(null)} onPointerEnter={()=>setHovered(chatapp)} style={ { scale } } >
-        <video width="320" height="240" ref={ video } muted={true}>
+    <motion.div className='project' 
+        ref={ chatapp } 
+        onPointerLeave={()=>setHovered(null)} 
+        onPointerEnter={()=>setHovered(chatapp)} 
+        style={ { scale } } 
+        muted={true}
+    >
+        <img src="../assets/images/projects/chatterbox/login.PNG" alt="Rock Paper Scissors game" ref={ gif } style={{width: '280px', height: '180px'}}/>
+        {/* <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/roshambo/no-edit.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
-        </video>
+        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity }}>
-            
-                <button className='project-overlay-btn'>Repo</button>
-                <button className='project-overlay-btn'>Deployed</button>
+        <span>Chatterbox</span>
+            <div className='project-overlay-bg-btns'>
+                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/RoShamBo' target='_blank'>Repo</a></button>
+                <button className='project-overlay-btn'><a href='https://pern-chat-3s6h.onrender.com/' target='_blank'>Deployed</a></button>
                 
-            
-            
-            
-                <button className='project-overlay-btn'>More Info</button>
-                
+                <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
+            </div>
             
             
             
         </motion.div>
+        
     </motion.div>
   )
 }
