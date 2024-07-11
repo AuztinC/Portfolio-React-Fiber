@@ -20,6 +20,7 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
     const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
+    // const scale = '1';
     const opacity = useSpring(0, {
         stiffness: 50
     })
@@ -47,7 +48,7 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
             setSelectedProject({ 
                 images: imageSrc, 
                 video: 'avacardios/login-order-logout.mp4', 
-                details, position: [getOffset(avacardios.current).left, getOffset(avacardios.current).top] 
+                details, position: [getOffset(avacardios.current).left, getOffset(avacardios.current).top]
             })
         } else{
             return
@@ -77,13 +78,13 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
             <source src="../assets/images/projects/avacardios/login-order-logout.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
         </video> */}
-        <motion.div className='project-overlay-bg' style={{ opacity }}>
+        <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
         <span>Avacardios</span>
-        <div className='project-overlay-bg-btns'>
+        <motion.div className='project-overlay-bg-btns' style={{ opacity }}>
             <button className='project-overlay-btn'><a href='https://github.com/Avacardios/Avacardios' target='_blank'>Repo</a></button>
             <button className='project-overlay-btn'><a href='https://avacardios-store-2gl1.onrender.com/' target='_blank'>Deployed</a></button>
             <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
-        </div>
+        </motion.div>
                 
         </motion.div>
     </motion.div>

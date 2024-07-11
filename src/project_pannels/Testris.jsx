@@ -100,13 +100,13 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
             Your browser does not support the video tag.
         </video> */}
         
-        <motion.div className='project-overlay-bg' style={{ opacity }}>
-        <span>Testris</span>
-        <div className='project-overlay-bg-btns'>
-            <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Testris_02' target='_blank'>Repo</a></button>
-            <button className='project-overlay-btn'><a href='https://testris.netlify.app/' target='_blank'>Deployed</a></button>
-            <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
-        </div>
+        <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
+            <span>Testris</span>
+            <motion.div className='project-overlay-bg-btns' style={{ opacity }}>
+                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Testris_02' target='_blank'>Repo</a></button>
+                <button className='project-overlay-btn'><a href='https://testris.netlify.app/' target='_blank'>Deployed</a></button>
+                <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
+            </motion.div>
                 
         </motion.div>
     

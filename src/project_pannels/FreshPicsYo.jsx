@@ -74,13 +74,13 @@ function FreshPicsYo({ setSelectedProject , selectedProject, windowSize }) {
             <source src="../assets/images/projects/freshpicsyo/freshpix.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
         </video> */}
-        <motion.div className='project-overlay-bg' style={{ opacity }}>
-        <span>FreshPicsYo</span>
-        <div className='project-overlay-bg-btns'>
-            <button className='project-overlay-btn'><a href='https://github.com/AuztinC/fresh-pics-yo' target='_blank'>Repo</a></button>
-            <button className='project-overlay-btn'><a href='https://auztinc.github.io/fresh-pics-yo/' target='_blank'>Deployed</a></button>
-            <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
-        </div>
+        <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
+            <span>FreshPicsYo</span>
+            <motion.div className='project-overlay-bg-btns' style={{ opacity }}>
+                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/fresh-pics-yo' target='_blank'>Repo</a></button>
+                <button className='project-overlay-btn'><a href='https://auztinc.github.io/fresh-pics-yo/' target='_blank'>Deployed</a></button>
+                <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
+            </motion.div>
                 
         </motion.div>
     </motion.div>

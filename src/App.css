@@ -364,6 +364,7 @@ overflow: hidden;
   background-color: grey;
 }
 .projects-container{
+  position: relative;
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
@@ -373,19 +374,31 @@ overflow: hidden;
   width: 100%;
   height: 100%;
 }
+.project-page-btns {
+  position: absolute;
+  width: 80%;
+  margin-left: 10%;
+  font-size: .8em;
+  display: flex;
+  top: 10vh;
+  left: 0%;
+}
 .project-page-btn-webdev{
-  padding: 4px;
+  width: 50%;
+  text-align: center;
+  padding: 6px 6px 6px 10px;
   border: 1px solid black;
   border-right-width: 50%;
   border-top-left-radius: 25%;
   
 }
 .project-page-btn-logic{
-  padding: 4px;
+  width: 50%;
+  padding: 6px 10px 6px 6px;
+  text-align: center;
   border: 1px solid black;
   border-left-width: 50%;
   border-top-right-radius: 25%;
-
   
 }
 .projects-p1{
@@ -414,7 +427,7 @@ overflow: hidden;
 .projects-column {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   height: 100%;
   width: 50%;
@@ -433,6 +446,21 @@ overflow: hidden;
   color: white;
   text-decoration-color:var(--background-color-accent2);
 }
+.projects-resume {
+  position: absolute;
+  left: calc(50% - 120px);
+  bottom: 20px;
+  
+}
+.projects-resume a {
+  padding-bottom: 1px;
+  color: black;
+  transition: all 0.3s
+}
+.projects-resume a:hover {
+  color: white;
+  text-decoration-color:var(--background-color-accent2);
+}
 .project{
  z-index: 1;
   background-color: var(--background-color-main);
@@ -446,7 +474,7 @@ overflow: hidden;
   border: 1px solid black;
   border-radius: var(--container-border-radius);
   max-width:60%;
-  height: 30%;
+  /* height: 30%; */
   margin: 2%;
 }
 
@@ -502,6 +530,18 @@ overflow: hidden;
   font-weight: 700;
   width: 100%;
   /* text-shadow: 0 1 5px 5px red; */
+}
+.exit-SVG{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: hidden;
+  border-radius: 50%;
+  position: absolute;
+  right: 10vw;
+  top: 18vh;
+  z-index: 10;
 }
 .project-popout{
   z-index: 5;
@@ -624,6 +664,10 @@ overflow: hidden;
     /* font-size: .4rem; */
     padding: 10px;
     font-size: .9rem;
+  }
+  .exit-SVG{
+    right: 30vw;
+    top: 18vh;
   }
 }
 @media screen and (max-width: 750px) {

@@ -72,15 +72,15 @@ function Rememberer({ setSelectedProject, selectedProject, windowSize }) {
             <source src="../assets/images/projects/rememberer/full-run-quick.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
         </video> */}
-        <motion.div className='project-overlay-bg' style={{ opacity }}>
+        <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
                 <span>Rememberer</span>
-                <div className='project-overlay-bg-btns'>
+                <motion.div className='project-overlay-bg-btns' style={{ opacity }}>
                     <button className='project-overlay-btn'><a href='https://github.com/AuztinC/Rememberer' target='_blank'>Repo</a></button>
                     <button className='project-overlay-btn'><a href='https://auztinc.github.io/Rememberer/' target='_blank'>Deployed</a></button>
                     
                     <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
                     
-                </div>
+                </motion.div>
                 
         </motion.div>
     </motion.div>

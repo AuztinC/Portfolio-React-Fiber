@@ -9,7 +9,7 @@ import Project_popout from '../project_pannels/Project_popout'
 import FreshPicsYo from '../project_pannels/FreshPicsYo'
 import Chatapp from '../project_pannels/Chatapp'
 
-function Projects_P1({ setSelectedProject, selectedProject, windowSize }) {
+function Projects_P1({ setSelectedProject, selectedProject, windowSize, exitProject }) {
   return (
     <motion.div className='projects-p1'>
         <div className='projects-column'>

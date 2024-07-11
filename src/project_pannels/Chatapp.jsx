@@ -69,19 +69,19 @@ function Chatapp({ setSelectedProject, selectedProject, windowSize }) {
         style={ { scale } } 
         muted={true}
     >
-        <img src="../assets/images/projects/chatterbox/login.PNG" alt="Rock Paper Scissors game" ref={ gif } style={{width: '280px', height: '180px'}}/>
+        <img src="../assets/images/projects/chatterbox/login.PNG" alt="Chatterbox Login Page" ref={ gif } style={{width: '280px', height: '180px'}}/>
         {/* <video width="320" height="240" ref={ video } muted={true}>
             <source src="../assets/images/projects/roshambo/no-edit.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
         </video> */}
-        <motion.div className='project-overlay-bg' style={{ opacity }}>
+        <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
         <span>Chatterbox</span>
-            <div className='project-overlay-bg-btns'>
-                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/RoShamBo' target='_blank'>Repo</a></button>
+            <motion.div className='project-overlay-bg-btns' style={{ opacity }}>
+                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/PERN-ChatApp' target='_blank'>Repo</a></button>
                 <button className='project-overlay-btn'><a href='https://pern-chat-3s6h.onrender.com/' target='_blank'>Deployed</a></button>
                 
                 <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
-            </div>
+            </motion.div>
             
             
             

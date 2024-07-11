@@ -73,13 +73,13 @@ function Hangman({ setSelectedProject, selectedProject, windowSize }) {
             <source src="../assets/images/projects/hangman/quick-full.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
         </video> */}
-        <motion.div className='project-overlay-bg' style={{ opacity }}>
-        <span>Hangman</span>
-        <div className='project-overlay-bg-btns'>
-            <button className='project-overlay-btn'><a href='https://github.com/AuztinC/HangMan' target='_blank'>Repo</a></button>
-            <button className='project-overlay-btn'><a href='https://ac-hangman.netlify.app/' target='_blank'>Deployed</a></button>
-            <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
-        </div>
+        <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
+            <span>Hangman</span>
+            <motion.div className='project-overlay-bg-btns' style={{ opacity }}>
+                <button className='project-overlay-btn'><a href='https://github.com/AuztinC/HangMan' target='_blank'>Repo</a></button>
+                <button className='project-overlay-btn'><a href='https://ac-hangman.netlify.app/' target='_blank'>Deployed</a></button>
+                <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
+            </motion.div>
             
             
             

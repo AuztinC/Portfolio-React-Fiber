@@ -10,6 +10,7 @@ import FreshPicsYo from '../project_pannels/FreshPicsYo'
 import Chatapp from '../project_pannels/Chatapp'
 import Projects_P1 from '../project_pannels/Projects_P1'
 import Projects_P2 from '../project_pannels/Projects_P2'
+import ExitSvg from '../../public/assets/images/ExitSvg'
 
 
 //  selectedProject = {
@@ -21,16 +22,30 @@ import Projects_P2 from '../project_pannels/Projects_P2'
 
 const PC_Projects = ({ windowSize })=>{
   const [selectedProject, setSelectedProject] = useState(null)
+  const [exitProject, setExitProject] = useState(true)
   const [page, setPage] = useState(1)
+  const opacity = useSpring(0, {
+    stiffness: 50
+})
   
   
-  
+  useEffect(()=>{
+    if(selectedProject){
+      opacity.set(1)
+      setExitProject(false)
+    } else {
+      opacity.set(0)
+      // setExitProject(true)
+    }
+  }, selectedProject)
 
   return (
     <>
       <div className='projects-div'>
-        <div className='project-page-btn-webdev' onClick={()=>setPage(1)}>Web Development</div>
-        <div className='project-page-btn-logic' onClick={()=>setPage(2)}>Logic Based</div>
+        {/* <div className='project-page-btns'>
+          <div className='project-page-btn-webdev' onClick={()=>setPage(1)}>Web Dev</div>
+          <div className='project-page-btn-logic' onClick={()=>setPage(2)}>Logic Project</div>
+        </div> */}
         
         { page === 1 ? <Projects_P1 setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
          : 
@@ -39,11 +54,30 @@ const PC_Projects = ({ windowSize })=>{
         
         <div style={{width: '100%', textAlign: 'center'}}>
           <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
-          <div className='projects-github'>Download my resume: <a href={'../assets/Austin_Cripe_Software_Dev_Resume.pdf'} download="Austin-Cripe-Resume">Resume</a></div>
+          {/* <div className='projects-github'>Download my resume: <a href={'../assets/Austin_Cripe_Software_Dev_Resume.pdf'} download="Austin-Cripe-Resume">Resume</a></div> */}
         </div>
         
       </div>
-      { selectedProject ? <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject }/> : null}
+      { selectedProject ? <>
+        <motion.div className='exit-SVG' style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "white",
+            border: "hidden",
+            borderRadius: "50%",
+            position: 'absolute',
+            right: "10vw",
+            top: '18vh',
+            zIndex: 10,
+            opacity
+            }}
+            onClick={()=>setSelectedProject(null)}>
+            <ExitSvg />
+        </motion.div>
+      <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } exitProject={ exitProject }/> 
+      
+      </>: null}
     </>
   )
 }
@@ -87,14 +121,18 @@ function Projects({ windowSize }) {
 
 
   return (
-    <motion.div className='projects-container' 
-    initial={{ y: '100%' }}
-    animate={{ y: '0' }}
-    exit={{ y: -window.innerWidth, transition: { duration: 0.3 } }}
-    >
-        {/* <Mobile_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/> */}
-      <PC_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
-    </motion.div>
+    <>
+      <motion.div className='projects-container' 
+      initial={{ y: '100%' }}
+      animate={{ y: '0' }}
+      exit={{ y: -window.innerWidth, transition: { duration: 0.3 } }}
+      >
+          {/* <Mobile_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/> */}
+        <PC_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
+        
+      </motion.div>
+      <div className='projects-resume'>Download my resume: <a href={'../assets/Austin_Cripe_Software_Dev_Resume.pdf'} download="Austin-Cripe-Resume">Resume</a></div>
+    </>
   )
 }
 
@@ -104,5 +142,6 @@ export default Projects
 // Avacardios
 // Rememberer
 // RoShamBo
-// WebChatter
+// ChatterBox
 // Hangman
+// The Southern Grill

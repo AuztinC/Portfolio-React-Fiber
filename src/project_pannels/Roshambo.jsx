@@ -68,14 +68,14 @@ function Roshambo({ setSelectedProject, selectedProject, windowSize }) {
             <source src="../assets/images/projects/roshambo/no-edit.mp4" type="video/mp4"/>
             Your browser does not support the video tag.
         </video> */}
-        <motion.div className='project-overlay-bg' style={{ opacity }}>
+        <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
         <span>RoShamBo</span>
-            <div className='project-overlay-bg-btns'>
+            <motion.div className='project-overlay-bg-btns' style={{ opacity }}>
                 <button className='project-overlay-btn'><a href='https://github.com/AuztinC/RoShamBo' target='_blank'>Repo</a></button>
                 {/* <button className='project-overlay-btn'>Deployed</button> */}
                 
                 <button className='project-overlay-btn' onClick={ Popout }>More Info</button>
-            </div>
+            </motion.div>
             
             
             
