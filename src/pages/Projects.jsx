@@ -60,16 +60,6 @@ const PC_Projects = ({ windowSize })=>{
       </div>
       { selectedProject ? <>
         <motion.div className='exit-SVG' style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "white",
-            border: "hidden",
-            borderRadius: "50%",
-            position: 'absolute',
-            right: "10vw",
-            top: '18vh',
-            zIndex: 10,
             opacity
             }}
             onClick={()=>setSelectedProject(null)}>

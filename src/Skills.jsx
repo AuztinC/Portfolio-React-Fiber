@@ -85,9 +85,9 @@ export default function Skills({ enteredWebsite, windowSize }) {
       damping: 100,
       restDelta: 0
     })
-    const scale = useTransform(scaleImg, [0, .8], [windowSize.width <= 900 ? .9 : 1.2 , windowSize.width <= 900 ? .3 : .5])
-    const imgX = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 0 : 10, windowSize.width <= 900 ? 0 : 0])
-    const imgY = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 14 : 20, windowSize.width <= 900 ? 12 : 2])
+    const scale = useTransform(scaleImg, [0, .8], [windowSize.width <= 900 ? .7 : 1.2 , windowSize.width <= 900 ? .3 : .5])
+    const imgX = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 5 : 10, windowSize.width <= 900 ? 0 : 0])
+    const imgY = useTransform(scrollYProgress, [0, 1], [windowSize.width <= 900 ? 16 : 20, windowSize.width <= 900 ? 12 : 2])
     const opacity = useTransform(scrollYProgress, [.4, 1], [windowSize.width <= 400 ? 1 : 1, windowSize.width <= 400 ? 0 : 1])
     
     const imgXtemplate = useMotionTemplate`${imgX}vw`

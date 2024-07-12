@@ -131,6 +131,9 @@ function App() {
   return (
     
   <div className='App' ref={App} style={{height: '100%'}}>
+    <motion.div className='personal-info-banner'>
+      <span> Austin R Cripe | 904-469-1213 | <a href="mailto:austincripe.business@gmail.com">austincripe.business@gmail.com</a></span>
+    </motion.div>
     <motion.button className='scroll-down-btn'
     onPointerLeave={()=>setBtnHovered(false)} 
     onPointerEnter={()=>setBtnHovered(true)} 

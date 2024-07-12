@@ -37,15 +37,26 @@ body {
   background-color: var(--background-color-accent2);
   position: relative;
   scroll-snap-align: start;
-  /* scroll-snap-type: y mandatory; */
-  
-  /* overflow-y: auto;
-  overscroll-behavior-y: contain;
-  min-height: 100%; */
-  
+
 }
 a {
   color: white
+}
+.personal-info-banner{
+  text-align: center;
+  position: absolute;
+  z-index: 5;
+  right: 0px;
+  top: 0px;
+  padding-right: 40px;
+  padding-left: 20px;
+  /* background-color: grey; */
+  background: rgba(200, 200, 200, .6);
+  font-weight: 600;
+  font-size: 15pt;
+  border: solid 1px black;
+  border-top-style: none;
+  border-right-style: none;
 }
 .dummy{
   pointer-events: none;
@@ -60,23 +71,12 @@ a {
   /* background-color: var(--background-color-main); */
 }
 
-/* .dummy-image-container{
-  z-index: 5;
-  width: 100%;
-  position: relative;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-/*  width: 350px;
-  height: 350px; */
 .dummy-image {
   z-index: 5;
   position: relative;
   background-image: url("../assets/images/linkedin-oct-2023.jpg");
   background-size: 115%;
-  background-position: 25% 45%;
+  background-position: 25% 55%;
   width: 350px;
   height: 350px;
   border: 1px solid black;
@@ -539,9 +539,14 @@ overflow: hidden;
   border: hidden;
   border-radius: 50%;
   position: absolute;
-  right: 10vw;
-  top: 18vh;
+  right: 25vw;
+  top: 20vh;
   z-index: 10;
+  transition: all 500ms;
+}
+.exit-SVG:hover{
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 1);
 }
 .project-popout{
   z-index: 5;
@@ -686,6 +691,7 @@ overflow: hidden;
     font-size: .6rem;
     padding: 6px;
   }
+  
 }
 @media screen and (max-width: 950px) {
   .project-overlay-bg{
@@ -694,6 +700,13 @@ overflow: hidden;
   .project-overlay-bg button{
     font-size: .6rem;
     padding: 6px;
+  }
+  .personal-info-banner{
+    font-size: 12pt;
+    margin: 0px;
+  }
+  .exit-SVG{
+    right: 10vw;
   }
   
 }
