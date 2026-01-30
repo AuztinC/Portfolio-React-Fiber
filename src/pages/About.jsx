@@ -29,7 +29,9 @@ function About() {
         <h4>Playing video games with friends 🎮</h4>
         <h4>Skateboarding to stay active 🛹</h4>
       </div>
+
     </motion.div>
+    
   )
 }
 

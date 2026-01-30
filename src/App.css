@@ -446,21 +446,6 @@ overflow: hidden;
   color: white;
   text-decoration-color:var(--background-color-accent2);
 }
-.projects-resume {
-  position: absolute;
-  left: calc(50% - 120px);
-  bottom: 20px;
-  
-}
-.projects-resume a {
-  padding-bottom: 1px;
-  color: black;
-  transition: all 0.3s
-}
-.projects-resume a:hover {
-  color: white;
-  text-decoration-color:var(--background-color-accent2);
-}
 .project{
  z-index: 1;
   background-color: var(--background-color-main);
@@ -639,6 +624,39 @@ overflow: hidden;
 }
 .socials-container img{
   max-width: 100%;
+}
+.socials-resume-link{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.socials-resume-link svg {
+  width: 30px;
+  height: 30px;
+  color: white;
+  transition: all 0.3s;
+}
+.socials-resume-text{
+  font-size: .8rem;
+  position: absolute;
+  text-decoration: underline;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  left: 5px;
+  bottom: 35px;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.socials-resume-link:hover svg {
+  color: black;
+}
+
+.socials-resume-link:hover .socials-resume-text {
+  color: black;
+  text-decoration-color: var(--background-color-accent2);
 }
 
 @media screen and (max-height: 750px) {

@@ -93,7 +93,6 @@ const Mobile_Projects = ({ windowSize })=>{
         
       </div>
       <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
-      <div className='projects-resume'>Download my resume: <a download={'../assets/Austin-Cripe-Software-Dev-Resume.pdf'}>Resume</a></div>
     </div>
       { selectedProject ? <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject }/> : null}
     </>
@@ -121,7 +120,6 @@ function Projects({ windowSize }) {
         <PC_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
         
       </motion.div>
-      <div className='projects-resume'>Download my resume: <a href={'../assets/Austin_Cripe_Software_Dev_Resume.pdf'} download="Austin-Cripe-Resume">Resume</a></div>
     </>
   )
 }

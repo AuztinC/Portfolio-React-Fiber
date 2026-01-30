@@ -24,7 +24,6 @@ const Camera = ({ windowSize }) => {
   var mouseTolerance = .3;
   useEffect(()=>{
     window.addEventListener("mousemove", (event)=>{
-      // console.log(event.clientX)
       cursor.x = event.clientX / sizes.width - 0.5;
       cursor.y = event.clientY / sizes.height - -8;
     });
@@ -60,7 +59,6 @@ function Main({ children }) {
 }
 
 const Nod_Modes = ({ windowSize }) => {
-  // const fbx = useLoader(FBXLoader, '../assets/obj/arc-scene/arc-scene.fbx')
   const ambientLight1 = useRef()
   const directionalLight1 = useRef()
   
@@ -71,14 +69,7 @@ const Nod_Modes = ({ windowSize }) => {
   const [aIdx, setAIdx] = useState(Math.round(Math.random() * 3))
   const [rIdx, setRIdx] = useState(Math.round(Math.random() * 3))
   const [cIdx, setCIdx] = useState(Math.round(Math.random() * 3))
-  
-  useEffect(()=>{ 
-    
-    
-  }, [])
-  useEffect(()=>{ 
-    // console.log(aIdx)
-  }, [aIdx])
+
   
   const heroCanvas = useRef()
   useEffect(()=>{
