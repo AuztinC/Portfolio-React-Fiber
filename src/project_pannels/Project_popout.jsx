@@ -1,13 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { motion, useMotionTemplate, useSpring } from 'framer-motion'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import ExitSvg from '../../public/assets/images/ExitSvg';
 
 function Project_popout({ selectedProject, setSelectedProject, exitProject }) {
-    const { images, video, details, position } = selectedProject
-    // console.log(position)
+    const { images, video, details } = selectedProject
     const popout = useRef()
     const detailsRef = useRef()
     const videoRef = useRef()
@@ -41,17 +38,8 @@ function Project_popout({ selectedProject, setSelectedProject, exitProject }) {
     if(!images){
         return null
     }
-    // style={{ left: `${position[0]}px`, top: `${position[1]}px`}}
   return (
     <motion.div className='project-popout' ref={ popout } style={{top: topTemplate}}>
-        {/* <div style={{
-            position: 'absolute',
-            right: "0",
-            top: '-20px',
-            zIndex: 10
-            }}>
-            <ExitSvg/>
-        </div> */}
         <Carousel className='popout-carousel' showThumbs={false} dynamicHeight>
             
                 <video muted={true} controls ref={ videoRef }>

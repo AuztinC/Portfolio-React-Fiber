@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useSpring, useAnimation, useMotionValueEvent, useTransform, animate } from 'framer-motion'
+import { motion, useScroll, useSpring, useAnimation, useMotionValueEvent, useTransform } from 'framer-motion'
 import Skills from './Skills'
-import Hero_Content from './Hero_Content'
 import AnimatedRoutes from './AnimatedRoutes'
 import Socials from './Socials'
 import './App.css'
@@ -14,25 +13,17 @@ function App() {
   const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
   const [btnHovered, setBtnHovered] = useState(false)
   const hero = useRef()
-  const App = useRef()
   const skills = useRef()
   const sectionMargin = useRef(0)
   const sectionPannels = useRef(0)
   const scrollDownBtn = useRef()
-  
-  const { scrollY } = useScroll()
+
   const { scrollYProgress } = useScroll({
     target: hero,
     offset: ["start start", "end start"]
   })
-  const scaleImg = useSpring(scrollYProgress, {
-    stiffness: 400,
-    damping: 100,
-    restDelta: 0
-  })
   const opacity = useTransform(scrollYProgress, [0, .7], [0, 1])
   const scale = useSpring(1)
-  // const scaleWindow = useTransform(scaleImg, [0, 1], )
   
   useEffect(()=>{
     window.addEventListener('resize', (event)=>handleResize(event))
@@ -44,6 +35,11 @@ function App() {
   
   function handleResize(event){
     setWindowSize({width: event.target.innerWidth, height: event.target.innerHeight})
+  }
+
+  function hideScrollDownBtn(){
+    scrollDownBtn.current.style.opacity = "0"
+    scrollDownBtn.current.style.animation = "none"
   }
   
   useEffect(() => {
@@ -58,8 +54,7 @@ function App() {
   useMotionValueEvent(scrollYProgress, "change", (latest) =>{
     if(latest >= 0.95){
         setEnteredWebsite(true)
-        scrollDownBtn.current.style.opacity = "0"
-        scrollDownBtn.current.style.animation = "none"
+        hideScrollDownBtn()
         sectionPannels.current.style.height = '100vh'
       } else {
         setEnteredWebsite(false)
@@ -67,10 +62,10 @@ function App() {
   })
 
   useEffect(()=>{
-    // console.log(loopCont.current)
     if(enteredWebsite){
       animationControls.start({ opacity: 0 }, { duration: 1 })
       sectionMargin.current = 0
+      hideScrollDownBtn()
     } else {
       scrollDownBtn.current.style.animation = "downArrow 2s alternate infinite cubic-bezier(0.755, 0.05, 0.855, 0.06)"
       animationControls.start({ opacity: 1 }, { duration: 1 })
@@ -86,10 +81,9 @@ function App() {
     });
   }
     
-      // console.log("Page scroll: ", latest)
   return (
     
-  <div className='App' ref={App} style={{height: '100%'}}>
+  <div className='App' style={{height: '100%'}}>
     <motion.div className='personal-info-banner'>
       <span> Austin R Cripe | 904-469-1213 | <a href="mailto:austincripe.business@gmail.com">austincripe.business@gmail.com</a></span>
     </motion.div>
@@ -102,11 +96,7 @@ function App() {
       <DownArrow />
     </motion.button>
     <section className='hero-section' ref={hero}>
-    {/* <div className='hero-canvas'> */}
 		  <Nod_Modes windowSize={ windowSize }/>
-      
-	  {/* </div>	 */}
-      {/* <Hero_Content  windowSize={ windowSize }/> */}
     </section>
     
     <motion.section className='skills-section' ref={ skills } >

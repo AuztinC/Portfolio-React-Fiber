@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { motion, useSpring, useMotionTemplate } from 'framer-motion'
+import { motion, useSpring } from 'framer-motion'
 const DEPLOYED_SITE = 'https://testris.netlify.app/'
 const REPO = 'https://github.com/AuztinC/Testris_02'
 const imageSrc = [
@@ -12,9 +12,7 @@ Tools used: HTML, CSS, Javascript, Canvas  <br/>
 `
 function Testris({ setSelectedProject, selectedProject, windowSize }) {
     const testris = useRef()
-    const video = useRef()
     const gif = useRef()
-    // const projectOverlay = useRef()
  
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
@@ -22,39 +20,16 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
         stiffness: 50
     })
     
-    // useEffect(()=>{
-    //     if(windowSize.width <= 750){
-    //         if(projectOverlay.current)
-    //         projectOverlay.current.style.pointerEvents = 'none'
-    //     }
-    // }, [windowSize])
-    
-    useEffect(() => {
-    //   video.current.muted = true
-    }, [video])
-    
     useEffect(()=>{
-        let btnTimer = null
         if(hovered){
             scale.set(1.2)
             opacity.set(1)
-            // video.current.play()
-            // btnTimer = setTimeout(()=>projectOverlay.current.style.pointerEvents = 'all', 100)
             gif.current.src = '../assets/images/projects/testris/testris.gif'
         } else {
-            // if(btnTimer){
-            //     clearTimeout(btnTimer)
-            // }
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
-            // video.current.pause()
-            // video.current.currentTime = 0
-            // setDisplayInfo('none')
-            // projectOverlay.current.style.pointerEvents = 'none'
             gif.current.src = '../assets/images/projects/testris/gif-cover.PNG'
         }
-        // console.log(btnTimer)
-        
     }, [hovered])
 
     function Popout(){
@@ -80,12 +55,6 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
         return { top: _y, left: _x };
     }
 
-//  selectedProject = {
-//   images: [],
-//   video: '',
-//   details: '',
-//   position: [x, y]
-// }
   return (
     // width="320" height="240" 4/3
     <motion.div className='project' 
@@ -95,10 +64,6 @@ function Testris({ setSelectedProject, selectedProject, windowSize }) {
     style={ { scale } } 
     >
         <img src='../assets/images/projects/testris/gif-cover.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
-        {/* <video width="320" height="240" loop ref={ video } muted={true}>
-            <source src="../assets/images/projects/testris/ingame_full.mp4" type="video/mp4"/>
-            Your browser does not support the video tag.
-        </video> */}
         
         <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
             <span>Testris</span>

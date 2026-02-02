@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion, useSpring } from 'framer-motion'
 const DEPLOYED_SITE = 'https://avacardios-store-2gl1.onrender.com/'
 const REPO = 'https://github.com/AuztinC/Avacardios'
@@ -16,7 +16,6 @@ Login as an admin! Username: ethyl, Password: 1234
 `
 function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
     const avacardios = useRef()
-    const video = useRef()
     const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
@@ -24,10 +23,6 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
     const opacity = useSpring(0, {
         stiffness: 50
     })
-    
-    useEffect(() => {
-    //   video.current.muted = true
-    }, [video])
     
     useEffect(()=>{
         if(hovered){
@@ -74,10 +69,6 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
     style={ { scale } } 
     >
         <img src='../assets/images/projects/avacardios/home_page.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
-        {/* <video width="320" height="240" ref={ video } muted={true}>
-            <source src="../assets/images/projects/avacardios/login-order-logout.mp4" type="video/mp4"/>
-            Your browser does not support the video tag.
-        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
         <span>Avacardios</span>
         <motion.div className='project-overlay-bg-btns' style={{ opacity }}>

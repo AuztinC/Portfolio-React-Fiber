@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, useSpring } from 'framer-motion'
 import Avacardios from '../project_pannels/Avacardios'
 import Testris from '../project_pannels/Testris'
@@ -12,13 +12,6 @@ import Projects_P1 from '../project_pannels/Projects_P1'
 import Projects_P2 from '../project_pannels/Projects_P2'
 import ExitSvg from '../../public/assets/images/ExitSvg'
 
-
-//  selectedProject = {
-//   images: [],
-//   video: '',
-//   details: '',
-//   position: [x, y]
-// }
 
 const PC_Projects = ({ windowSize })=>{
   const [selectedProject, setSelectedProject] = useState(null)
@@ -54,7 +47,6 @@ const PC_Projects = ({ windowSize })=>{
         
         <div style={{width: '100%', textAlign: 'center'}}>
           <div className='projects-github'>Find more of my projects on <a href='https://github.com/AuztinC' target='_blank'>Github</a></div>
-          {/* <div className='projects-github'>Download my resume: <a href={'../assets/Austin_Cripe_Software_Dev_Resume.pdf'} download="Austin-Cripe-Resume">Resume</a></div> */}
         </div>
         
       </div>
@@ -100,15 +92,6 @@ const Mobile_Projects = ({ windowSize })=>{
 }
 
 function Projects({ windowSize }) {
-
-  const [selectedProject, setSelectedProject] = useState(null)
-  useEffect(() => {
-    if(windowSize.width <= 750){ // 750 PIXELS
-      // console.log(windowSize)
-    }
-  }, [windowSize])
-
-
   return (
     <>
       <motion.div className='projects-container' 
@@ -116,8 +99,7 @@ function Projects({ windowSize }) {
       animate={{ y: '0' }}
       exit={{ y: -window.innerWidth, transition: { duration: 0.3 } }}
       >
-          {/* <Mobile_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/> */}
-        <PC_Projects selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } windowSize={ windowSize }/>
+        <PC_Projects windowSize={ windowSize }/>
         
       </motion.div>
     </>
@@ -125,11 +107,3 @@ function Projects({ windowSize }) {
 }
 
 export default Projects
-
-// Testris
-// Avacardios
-// Rememberer
-// RoShamBo
-// ChatterBox
-// Hangman
-// The Southern Grill

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion, useSpring } from 'framer-motion'
 
 const DEPLOYED_SITE = 'https://pern-chat-3s6h.onrender.com/'
@@ -16,17 +16,12 @@ Tools used: React, HTML, CSS, SQL, Express, Node  <br/>
 
 function Chatapp({ setSelectedProject, selectedProject, windowSize }) {
     const chatapp = useRef()
-    const video = useRef()
     const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
     const opacity = useSpring(0, {
         stiffness: 50
     })
-    
-    useEffect(() => {
-    //   video.current.muted = true
-    }, [video])
     
     useEffect(()=>{
         if(hovered){
@@ -70,10 +65,6 @@ function Chatapp({ setSelectedProject, selectedProject, windowSize }) {
         muted={true}
     >
         <img src="../assets/images/projects/chatterbox/login.PNG" alt="Chatterbox Login Page" ref={ gif } style={{width: '280px', height: '180px'}}/>
-        {/* <video width="320" height="240" ref={ video } muted={true}>
-            <source src="../assets/images/projects/roshambo/no-edit.mp4" type="video/mp4"/>
-            Your browser does not support the video tag.
-        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
         <span>Chatterbox</span>
             <motion.div className='project-overlay-bg-btns' style={{ opacity }}>

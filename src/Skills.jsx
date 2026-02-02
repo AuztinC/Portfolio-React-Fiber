@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { motion, useScroll, useSpring, useMotionValueEvent,useTransform, useAnimate, useAnimation, useMotionTemplate } from 'framer-motion'
+import { motion, useScroll, useSpring, useTransform, useAnimate, useAnimation, useMotionTemplate } from 'framer-motion'
 import InfiniteLooper from './InfiniteLooper'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -75,7 +75,6 @@ const Nav_Container = ({ enteredWebsite, windowSize, Home })=>{
 export default function Skills({ enteredWebsite, windowSize }) {
     const img = useRef()
     const skills = useRef()
-    const { scrollY } = useScroll()
     const { scrollYProgress } = useScroll({
       target: skills,
       offset: ["start 525px", "start 0px"]
@@ -103,9 +102,6 @@ export default function Skills({ enteredWebsite, windowSize }) {
     }, [windowSize])
     
 
-    useMotionValueEvent(scrollYProgress, "change", (latest) =>{
-    //   console.log("Page scroll: ", latest)
-    })
     function Home(ev){
       ev.preventDefault()
       window.scrollTo(0, 0)
@@ -113,24 +109,9 @@ export default function Skills({ enteredWebsite, windowSize }) {
   return (
   <>
   <div className='dummy'>
-      {/* <span>Austin Cripe</span> */}
-      
-        {/* <motion.div className='dummy-image-container'
-          ref={img} 
-          style={{
-              scale,
-            //   position,
-              left: imgXtemplate,
-              top: imgYtemplate,
-              opacity
-          }}
-        >
-        </motion.div> */}
-          {/* <div className='dummy-image-backer' animate={ animationControls }></div> */}
       <motion.div className='dummy-image' ref={img} 
       style={{
           scale,
-        //   position,
           left: imgXtemplate,
           top: imgYtemplate,
           opacity

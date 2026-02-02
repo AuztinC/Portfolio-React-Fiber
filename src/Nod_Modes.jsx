@@ -1,4 +1,3 @@
-
 import React, { useRef, useState, useEffect, Suspense } from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import ArcSceneBackdrop from '/public/assets/obj/arc-scene/Arc-scene-backdrop.jsx'
@@ -16,7 +15,7 @@ const cursor = {
   x: 0,
   y: 0
 };
-const Camera = ({ windowSize }) => {
+const Camera = () => {
   const { camera } = useThree()
   const cameraRef = useRef(camera);
   let lookAtX =  -1
@@ -59,9 +58,6 @@ function Main({ children }) {
 }
 
 const Nod_Modes = ({ windowSize }) => {
-  const ambientLight1 = useRef()
-  const directionalLight1 = useRef()
-  
   const Aimages = ["url('/assets/images/2d/a/a-red.png')", "url('/assets/images/2d/a/a-green.png')", "url('/assets/images/2d/a/a-blue.png')"]
   const Rimages = ["url('/assets/images/2d/r/r-red.png')", "url('/assets/images/2d/r/r-green.png')", "url('/assets/images/2d/r/r-blue.png')"]
   const Cimages = ["url('/assets/images/2d/c/c-red.png')", "url('/assets/images/2d/c/c-green.png')", "url('/assets/images/2d/c/c-blue.png')"]
@@ -74,10 +70,7 @@ const Nod_Modes = ({ windowSize }) => {
   const heroCanvas = useRef()
   useEffect(()=>{
     if(window.innerWidth <= 950){
-      // canvasRef.current.style.display = 'none'
       heroCanvas.current.style.backgroundImage = "url('/assets/images/2d/arc-white.png')"
-    } else {
-      // canvasRef.current.style.display = 'block'
     }
   }, [windowSize])
   
@@ -147,14 +140,14 @@ const Nod_Modes = ({ windowSize }) => {
           <LazyLoadImage src="../assets/images/arc-scene-2d3d.png" placeholderSrc='../assets/images/arc-scene-2d3d-small.jpg' alt="" style={{width: '100%', height: '100%', position: 'absolute', top: 0, left: 0}}/>
           
           <Canvas linear camera={{ position: [0, 3, 0], fov: 10 }} shadows >
-            <Camera windowSize={ windowSize }/>
+            <Camera />
           <Main>
             <mesh position={[-1.9, .8, 0]}>
               <pointLight intensity={3} position={[0, 0, 0]}/>
               <pointLight intensity={1} position={[0, 0, .3]} />
             </mesh>
-            <ambientLight ref={ ambientLight1 } intensity={2}/>
-            <directionalLight ref={ directionalLight1 } position={[0, 10, 25]} intensity={4} castShadow/>
+            <ambientLight intensity={2}/>
+            <directionalLight position={[0, 10, 25]} intensity={4} castShadow/>
             <Suspense fallback={null}>
               <mesh rotation={[.2, 0, 0]} >
                 <ArcSceneBackdrop rotation={[-Math.PI/2, 0, 0]}/>

@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { motion, useSpring } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
 import Avacardios from './Avacardios'
 import Testris from './Testris'
 import Roshambo from './Roshambo'
 import Hangman from './Hangman'
 import Rememberer from './Rememberer'
-import Project_popout from './Project_popout'
 import FreshPicsYo from './FreshPicsYo'
-import Chatapp from './Chatapp'
 
 function Projects_P2({ setSelectedProject, selectedProject, windowSize }) {
   return (

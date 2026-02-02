@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { motion, useSpring } from 'framer-motion'
+import React, { useState, useRef } from 'react'
+import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Contact() {
-  const [result, setResult] = useState('')
   const [message, setMessage] = useState('')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -16,11 +15,8 @@ function Contact() {
 const sendEmail = (e) => {
 e.preventDefault();
 
-const notify = (props) => toast(props)
-
 emailjs.sendForm(`${ SERVICE_ID }`, `${ TEMPLATE_ID }`, form.current, `${ PUBLIC_KEY }`)
   .then((result) => {
-    setResult(`Message Sent`);
     toast.success('Message Sent', {
       position: "bottom-center",
       autoClose: 5000,
@@ -66,7 +62,6 @@ emailjs.sendForm(`${ SERVICE_ID }`, `${ TEMPLATE_ID }`, form.current, `${ PUBLIC
       <textarea name="message" required value={message} onChange={(ev)=>setMessage(ev.target.value)}/>
       <button type="submit" value="Send" disabled={ !message || !name || !email ? true : false}>Submit</button>
     </form>
-    {/* { result ? result : null} */}
     <ToastContainer
       position="bottom-center"
       autoClose={5000}

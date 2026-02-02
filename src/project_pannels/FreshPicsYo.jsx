@@ -14,17 +14,12 @@ Tools used: HTML, CSS, Javascript, React  <br/>
 `
 function FreshPicsYo({ setSelectedProject , selectedProject, windowSize }) {
     const avacardios = useRef()
-    const video = useRef()
     const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
     const opacity = useSpring(0, {
         stiffness: 50
     })
-    
-    useEffect(() => {
-    //   video.current.muted = true
-    }, [video])
     
     useEffect(()=>{
         if(hovered){
@@ -70,10 +65,6 @@ function FreshPicsYo({ setSelectedProject , selectedProject, windowSize }) {
     style={ { scale } } 
     >
         <img src='../assets/images/projects/freshpicsyo/home_full.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
-        {/* <video width="320" height="240" ref={ video } muted={true}>
-            <source src="../assets/images/projects/freshpicsyo/freshpix.mp4" type="video/mp4"/>
-            Your browser does not support the video tag.
-        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
             <span>FreshPicsYo</span>
             <motion.div className='project-overlay-bg-btns' style={{ opacity }}>

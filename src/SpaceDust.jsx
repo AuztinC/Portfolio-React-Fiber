@@ -1,11 +1,9 @@
 import * as THREE from 'three';
 import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-// import Random from 'canvas-sketch-util/random';
 
 export default function SpaceDust({ count }) {
   const mesh = useRef();
-  const light = useRef();
 
   // Generate some random positions, speed factors and timings
   const particles = useMemo(() => {
@@ -56,10 +54,8 @@ export default function SpaceDust({ count }) {
   });
   return (
     <>
-      {/* <pointLight ref={light} distance={40} intensity={8} color="lightblue" /> */}
       <instancedMesh ref={mesh} args={[null, null, count]} position={[15,15,15]} style={{ opacity: 0}} >
         <dodecahedronGeometry args={[0.005, 0]} />
-        {/* <meshPhongMaterial color="#ccc" /> */}
         <meshToonMaterial color="#ccc" transparent opacity={.2}/>
       </instancedMesh>
     </>

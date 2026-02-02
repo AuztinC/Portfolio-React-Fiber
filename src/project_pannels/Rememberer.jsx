@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion, useSpring } from 'framer-motion'
 const DEPLOYED_SITE = 'https://auztinc.github.io/Rememberer/'
 const REPO = 'https://github.com/AuztinC/Rememberer'
@@ -14,17 +14,12 @@ Tools used: HTML, CSS, React <br/>
 `
 function Rememberer({ setSelectedProject, selectedProject, windowSize }) {
     const rememberer = useRef()
-    const video = useRef()
     const gif = useRef()
     const [hovered, setHovered] = useState(null)
     const scale = useSpring(1)
     const opacity = useSpring(0, {
         stiffness: 50
     })
-    
-    useEffect(() => {
-    //   video.current.muted = true
-    }, [video])
     
     useEffect(()=>{
         if(hovered){
@@ -68,10 +63,6 @@ function Rememberer({ setSelectedProject, selectedProject, windowSize }) {
     style={ { scale } } 
     >
         <img src='../assets/images/projects/rememberer/home_page_full.PNG'  ref={ gif } style={{width: '280px', height: '180px'}}/>
-        {/* <video width="320" height="240" ref={ video } muted={true}>
-            <source src="../assets/images/projects/rememberer/full-run-quick.mp4" type="video/mp4"/>
-            Your browser does not support the video tag.
-        </video> */}
         <motion.div className='project-overlay-bg' style={{ opacity: 1 }}>
                 <span>Rememberer</span>
                 <motion.div className='project-overlay-bg-btns' style={{ opacity }}>
