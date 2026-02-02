@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { motion, useMotionTemplate, useSpring } from 'framer-motion'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import ExitSvg from '../../public/assets/images/ExitSvg'
 
 function Project_popout({ selectedProject, setSelectedProject, exitProject }) {
     const { images, video, details } = selectedProject
@@ -40,6 +41,9 @@ function Project_popout({ selectedProject, setSelectedProject, exitProject }) {
     }
   return (
     <motion.div className='project-popout' ref={ popout } style={{top: topTemplate}}>
+        <button className='exit-SVG' type='button' onClick={ closeWindow } aria-label='Close'>
+            <ExitSvg />
+        </button>
         <Carousel className='popout-carousel' showThumbs={false} dynamicHeight>
             
                 <video muted={true} controls ref={ videoRef }>

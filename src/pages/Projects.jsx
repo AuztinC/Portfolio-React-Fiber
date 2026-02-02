@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { motion, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Avacardios from '../project_pannels/Avacardios'
 import Testris from '../project_pannels/Testris'
 import Roshambo from '../project_pannels/Roshambo'
@@ -10,24 +10,18 @@ import FreshPicsYo from '../project_pannels/FreshPicsYo'
 import Chatapp from '../project_pannels/Chatapp'
 import Projects_P1 from '../project_pannels/Projects_P1'
 import Projects_P2 from '../project_pannels/Projects_P2'
-import ExitSvg from '../../public/assets/images/ExitSvg'
 
 
 const PC_Projects = ({ windowSize })=>{
   const [selectedProject, setSelectedProject] = useState(null)
   const [exitProject, setExitProject] = useState(true)
   const [page, setPage] = useState(1)
-  const opacity = useSpring(0, {
-    stiffness: 50
-})
   
   
   useEffect(()=>{
     if(selectedProject){
-      opacity.set(1)
       setExitProject(false)
     } else {
-      opacity.set(0)
       // setExitProject(true)
     }
   }, [selectedProject])
@@ -50,16 +44,9 @@ const PC_Projects = ({ windowSize })=>{
         </div>
         
       </div>
-      { selectedProject ? <>
-        <motion.div className='exit-SVG' style={{
-            opacity
-            }}
-            onClick={()=>setSelectedProject(null)}>
-            <ExitSvg />
-        </motion.div>
-      <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } exitProject={ exitProject }/> 
-      
-      </>: null}
+      { selectedProject ? (
+        <Project_popout selectedProject={ selectedProject } setSelectedProject={ setSelectedProject } exitProject={ exitProject }/>
+      ) : null}
     </>
   )
 }

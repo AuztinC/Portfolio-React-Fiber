@@ -567,7 +567,7 @@ a {
 .project-popout {
   z-index: 5;
   text-align: center;
-  background-color: var(--background-color-main);
+  background-color: black;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -577,17 +577,33 @@ a {
   border-radius: var(--container-border-radius);
   width: 75%;
   max-width: 750px;
-  max-height: 500px;
+  max-height: 80vh;
   overflow-y: scroll;
 }
 
 .popout-carousel {
   width: 100%;
+  background-color: black;
 }
 
-.popout-carousel img {
-  aspect-ratio: 16 / 9;
-  max-height: 5%;
+.project-popout .carousel-status {
+  top: auto;
+  bottom: 10px;
+  right: 10px;
+  left: auto;
+}
+
+.popout-carousel .slide {
+  background-color: black;
+}
+
+.popout-carousel .slide img,
+.popout-carousel .slide video {
+  width: 100%;
+  height: 45vh;
+  max-height: 400px;
+  object-fit: contain;
+  display: block;
 }
 
 .project-popout a {
@@ -619,14 +635,22 @@ a {
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: hidden;
+  border: none;
   border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   position: absolute;
-  right: 25vw;
-  top: 20vh;
+  right: 0px;
+  top: 10px;
   z-index: 10;
   transition: all 500ms;
   cursor: pointer;
+}
+
+.exit-SVG svg {
+  width: 32px;
+  height: 32px;
 }
 
 .exit-SVG:hover {
@@ -759,10 +783,6 @@ a {
     font-size: 0.9rem;
   }
 
-  .exit-SVG {
-    right: 30vw;
-    top: 18vh;
-  }
 }
 
 @media screen and (max-width: 750px) {
@@ -796,8 +816,5 @@ a {
     margin: 0px;
   }
 
-  .exit-SVG {
-    right: 10vw;
-  }
 }
 
