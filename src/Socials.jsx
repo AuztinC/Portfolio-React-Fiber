@@ -35,7 +35,7 @@ function Socials() {
       className='socials-resume-link'
       href={latestResume}
       download='Austin-Cripe-Resume'>
-        <span> <FontAwesomeIcon icon={faFile} />  </span>
+        <FontAwesomeIcon icon={faFile} />
       <span className='socials-resume-text'>Resume</span>
     </a>
         <a href='https://www.linkedin.com/in/austin-cripe/' target='_blank'>

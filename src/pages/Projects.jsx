@@ -37,7 +37,7 @@ const PC_Projects = ({ windowSize })=>{
       opacity.set(0)
       // setExitProject(true)
     }
-  }, selectedProject)
+  }, [selectedProject])
 
   return (
     <>

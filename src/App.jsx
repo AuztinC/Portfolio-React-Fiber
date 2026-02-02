@@ -10,11 +10,9 @@ import DownArrow from '../public/assets/obj/DownArrow'
 
 
 function App() {
-  const [position, setPoition] = useState('')
   const [enteredWebsite, setEnteredWebsite] = useState(false)
   const [windowSize, setWindowSize] = useState({width: window.innerWidth, height: window.innerHeight})
   const [btnHovered, setBtnHovered] = useState(false)
-  const [btnTimerId, setBtnTimerId] = useState(null)
   const hero = useRef()
   const App = useRef()
   const skills = useRef()
@@ -39,14 +37,12 @@ function App() {
   useEffect(()=>{
     window.addEventListener('resize', (event)=>handleResize(event))
     if(window.innerWidth <= 750){
-        // projectOverlay.current.style.pointerEvents = 'none'
         setWindowSize({width: window.innerWidth, height: window.innerHeight})
     }
     return(window.removeEventListener('resize', handleResize))
   }, [])
   
   function handleResize(event){
-    // console.log(event.target.innerWidth)
     setWindowSize({width: event.target.innerWidth, height: event.target.innerHeight})
   }
   
@@ -55,69 +51,32 @@ function App() {
       scale.set(1.2)
     } else {
       scale.set(1)
-      
     }
-  
   }, [btnHovered])
   
-  
-  
-//   useMotionValueEvent(scrollY, "change", (latest) =>{
-//     console.log(latest)
-//     if(latest >= 750){
-//         setPoition("fixed")
-//     } else {
-//         setPoition("inherit")
-//     }
-//       console.log("Page scroll: ", latest)
-// })
   const animationControls = useAnimation()
   useMotionValueEvent(scrollYProgress, "change", (latest) =>{
-    // console.log(latest)
     if(latest >= 0.95){
-        // setPoition("fixed")
         setEnteredWebsite(true)
         scrollDownBtn.current.style.opacity = "0"
         scrollDownBtn.current.style.animation = "none"
         sectionPannels.current.style.height = '100vh'
-        setBtnTimerId(null)
       } else {
-        setBtnTimerId(1)
         setEnteredWebsite(false)
-      
     }
   })
-  // useMotionValueEvent(scrollY, "change", (latest) =>{
-  //   console.log(latest)
-  //   if(latest >= 750){
-  //     setEnteredWebsite(true)
-  //   } else {
-  //     setEnteredWebsite(false)
-  //   }
-  // })
+
   useEffect(()=>{
     // console.log(loopCont.current)
     if(enteredWebsite){
       animationControls.start({ opacity: 0 }, { duration: 1 })
       sectionMargin.current = 0
     } else {
+      scrollDownBtn.current.style.animation = "downArrow 2s alternate infinite cubic-bezier(0.755, 0.05, 0.855, 0.06)"
       animationControls.start({ opacity: 1 }, { duration: 1 })
       sectionMargin.current = 0
     }
   }, [enteredWebsite])
-  
-  useEffect(()=>{
-    if(btnTimerId > 0 && !enteredWebsite){
-      if(btnTimerId >= 500){
-        scrollDownBtn.current.style.animation = "downArrow 2s alternate infinite cubic-bezier(0.755, 0.05, 0.855, 0.06)"
-        setBtnTimerId(0)
-      } else {
-        
-        setBtnTimerId(btnTimerId + 1)
-      }
-    }
-  }, [btnTimerId])
-  
   
   function handleScrollDown(click){
     window.scrollBy({
@@ -150,7 +109,7 @@ function App() {
       {/* <Hero_Content  windowSize={ windowSize }/> */}
     </section>
     
-    <motion.section className='skills-section' ref={ skills } style={{ position }}>
+    <motion.section className='skills-section' ref={ skills } >
       <Skills enteredWebsite={ enteredWebsite } windowSize={ windowSize }/>
     </motion.section> 
     
