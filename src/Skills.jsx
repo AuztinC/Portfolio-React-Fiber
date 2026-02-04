@@ -23,16 +23,21 @@ const Loop_Container = ({ enteredWebsite })=>{
     <InfiniteLooper speed="150" direction="left"  > 
         <motion.div className='loop-container' animate={ animationControls }>
           <div>
-            <img className='skills-item' src="../assets/images/logo/logo-express-js.png" alt="express" />
             <img className='skills-item' src="../assets/images/logo/logo-github.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo/logo-html-2.png" alt="" />
+            {/* <img className='skills-item' src="../assets/images/logo/logo-html-2.png" alt="" /> */}
+            <img className='skills-item' src="../assets/images/logo/java-logo.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/clojure-logo.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/docker-logo.png" alt="" />
             <img className='skills-item' src="../assets/images/logo/logo-nodejs.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/redis-logo.png" alt="" />
             <img className='skills-item' src="../assets/images/logo/logo-react.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/aws-logo.png" alt="" />
+            <img className='skills-item' src="../assets/images/logo/logo-express-js.png" alt="express" />
             <img className='skills-item' src="../assets/images/logo/logo-postgreSQL.png" alt="" />
             <img className='skills-item' src="../assets/images/logo/logo-js-2.png" alt="" />
             <img className='skills-item' src="../assets/images/logo/logo-socketio.png" alt="" />
             <img className='skills-item' src="../assets/images/logo/logo-three-js.png" alt="" />
-            <img className='skills-item' src="../assets/images/logo/logo-css-2.png" alt="" />
+            {/* <img className='skills-item' src="../assets/images/logo/logo-css-2.png" alt="" /> */}
           </div>
         </motion.div>
     </InfiniteLooper>

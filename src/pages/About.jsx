@@ -20,14 +20,14 @@ function About() {
     exit={{ x: -window.innerWidth, transition: { duration: 0.1 } }}
     >
       <div>
-        <h1>Hello, I'm Austin Cripe<motion.span ref={ handshake } style={{position: 'relative', left: shakerXtemplate}}>🖐</motion.span></h1>
-        <h2>Full-Stack Web Developer and Software Engineer</h2>
+        <h1>Hello, I'm Austin Cripe <motion.span ref={ handshake } style={{position: 'relative', left: shakerXtemplate}}>🖐</motion.span></h1>
+        <h2>Full-Stack Software Engineer</h2>
         <h2>I enjoy making interactive and unique experiences for users</h2>
         <h2>Professional Audio Engineer and Former Poker Dealer</h2>
         <h3>When I'm not developing a project, I keep myself busy by:</h3>
         <h4>Spending time with my cat, Jaws😸 </h4>
         <h4>Playing video games with friends 🎮</h4>
-        <h4>Skateboarding to stay active 🛹</h4>
+        <h4>Bicycling to stay active 🚴‍♂️</h4>
       </div>
 
     </motion.div>
