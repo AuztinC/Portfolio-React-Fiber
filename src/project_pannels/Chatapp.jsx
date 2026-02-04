@@ -4,11 +4,11 @@ import { motion, useSpring } from 'framer-motion'
 const DEPLOYED_SITE = 'https://pern-chat-3s6h.onrender.com/'
 const REPO = 'https://github.com/AuztinC/PERN-ChatApp'
 const imageSrc = [
-    '../assets/images/projects/chatterbox/userSearch.PNG',
-    '../assets/images/projects/chatterbox/typingBubbles.PNG',
+    '../assets/images/projects/chatterbox/usersearch.PNG',
+    '../assets/images/projects/chatterbox/typingbubbles.PNG',
     '../assets/images/projects/chatterbox/login.PNG',
 ]
-const details = `ChatterBox is a real-time chat application. This project had many challenges including server and client interaction in many ways. <br/>
+const details = `ChatterBox is a real-time chat application. During this project I faced many challenges including building an Express server to manage Socket.IO WebSocket connections, User authentication using PostgreSQL, and front-end state management. <br/>
 Tools used: React, HTML, CSS, SQL, Express, Node  <br/>
 <a href=${REPO} target='_blank'>Repo</a>  <br/>
 <a href=${DEPLOYED_SITE} target='_blank'>Deployed Site</a> <br/>
@@ -28,7 +28,7 @@ function Chatapp({ setSelectedProject, selectedProject, windowSize }) {
             scale.set(1.2)
             opacity.set(1)
             // video.current.play()
-            gif.current.src = '../assets/images/projects/roshambo/roshambo-large.gif'
+            gif.current.src = 'public/assets/images/projects/chatterbox/login-lobbychat.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
@@ -41,7 +41,7 @@ function Chatapp({ setSelectedProject, selectedProject, windowSize }) {
         if(selectedProject === null){
             setSelectedProject({ 
                 images: imageSrc, 
-                video: 'roshambo/no-edit.mp4', 
+                video: 'chatterbox/login-lobbychat.mov', 
                 details, position: [getOffset(chatapp.current).left, getOffset(chatapp.current).top] 
             })
         } else return 
