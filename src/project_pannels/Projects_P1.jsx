@@ -6,12 +6,14 @@ import Hangman from '../project_pannels/Hangman'
 import Rememberer from '../project_pannels/Rememberer'
 import FreshPicsYo from '../project_pannels/FreshPicsYo'
 import Chatapp from '../project_pannels/Chatapp'
+import ClojureTTT from '../project_pannels/ClojureTTT'
 
 function Projects_P1({ setSelectedProject, selectedProject, windowSize, exitProject }) {
   return (
     <motion.div className='projects-p1'>
         <div className='projects-column'>
-          <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
+          {/* <Hangman setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/> */}
+          <ClojureTTT setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
           <Rememberer setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>
           {/* <Roshambo setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/> */}
           <Chatapp setSelectedProject={ setSelectedProject }  selectedProject={ selectedProject } windowSize={ windowSize }/>

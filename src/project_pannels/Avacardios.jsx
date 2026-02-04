@@ -60,7 +60,7 @@ function Avacardios({ setSelectedProject , selectedProject, windowSize }) {
         }
         return { top: _y, left: _x };
     }
-    // style={{width: '280px', height: '180px'}}
+    
   return (
     <motion.div className='project avacardios' 
     ref={ avacardios } 

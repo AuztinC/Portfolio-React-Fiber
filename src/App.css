@@ -790,6 +790,10 @@ a {
     font-size: 1.5em;
   }
 
+    .dummy-image {
+    left: calc(50% - 75px);
+  }
+
   .project-overlay-bg {
     font-size: 0.8rem;
   }
