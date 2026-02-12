@@ -27,13 +27,10 @@ function Chatapp({ setSelectedProject, selectedProject, windowSize }) {
         if(hovered){
             scale.set(1.2)
             opacity.set(1)
-            // video.current.play()
             gif.current.src = '../assets/images/projects/chatterbox/login-lobbychat.gif'
         } else {
             scale.set(1)
             opacity.set(windowSize.width <= 950 ? 1 : 0)
-            // video.current.pause()
-            // video.current.currentTime = 0
             gif.current.src = '../assets/images/projects/chatterbox/login.PNG'
         }
     }, [hovered])

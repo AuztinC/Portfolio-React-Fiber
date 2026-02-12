@@ -4,7 +4,7 @@ import Skills from './Skills'
 import AnimatedRoutes from './AnimatedRoutes'
 import Socials from './Socials'
 import './App.css'
-import Nod_Modes from './Nod_Modes'
+import Hero_Content from './Hero_Content'
 import DownArrow from '../public/assets/obj/DownArrow'
 
 
@@ -96,7 +96,7 @@ function App() {
       <DownArrow />
     </motion.button>
     <section className='hero-section' ref={hero}>
-		  <Nod_Modes windowSize={ windowSize }/>
+		  <Hero_Content windowSize={ windowSize }/>
     </section>
     
     <motion.section className='skills-section' ref={ skills } >

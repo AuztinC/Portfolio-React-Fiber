@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import Projects from './pages/Projects'
 import Contact from './pages/Contact'
 import About from './pages/About'
+import Blog from './pages/Blog'
 
 function AnimatedRoutes({ windowSize }) {
     const location = useLocation()
@@ -11,6 +12,7 @@ function AnimatedRoutes({ windowSize }) {
         <Routes location={ location } key={ location.pathname }>
             <Route path='/' element={ <About windowSize={ windowSize }/> } />
             <Route path='/About' element={ <About windowSize={ windowSize }/> } />
+            <Route path='/Blog' element={ <Blog windowSize={ windowSize }/> } />
             <Route path='/Projects' element={ <Projects windowSize={ windowSize }/> } />
             <Route path='/Contact' element={ <Contact windowSize={ windowSize }/> } />
         </Routes>
