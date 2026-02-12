@@ -698,6 +698,19 @@ a {
   height: 350px;
   z-index: 5;
 }
+/* ========================================
+   BLOG SECTION
+   ======================================== */
+.blog-container {
+  padding-top: 110px;
+  height: 100%;
+  width: 100%;
+}
+
+   .blog-iframe {
+  height: 100%;
+  width: 100%;
+}
 
 /* ========================================
    SOCIALS SECTION
