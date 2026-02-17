@@ -38,10 +38,10 @@ export default function Nav_Container ({ enteredWebsite, windowSize, Home }) {
         className={`nav-link ${location.pathname === '/Contact' ? 'selected' : ''}`}>
         Contact
       </Link>
-      <Link to={'/Blog'}
+      {/* <Link to={'/Blog'}
         className={`nav-link ${location.pathname === '/Blog' ? 'selected' : ''}`}>
         Blog
-      </Link>
+      </Link> */}
     </motion.div>
 
   )
