@@ -5,6 +5,7 @@ import ArcSceneA from '/public/assets/obj/arc-scene/Arc-scene-a.jsx'
 import ArcSceneR from '/public/assets/obj/arc-scene/Arc-scene-r.jsx'
 import ArcSceneC from '/public/assets/obj/arc-scene/Arc-scene-c.jsx'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { hasUsableWebGL } from './utils/webgl'
 
 const sizes = {
   width: window.innerWidth,
@@ -57,6 +58,34 @@ function Main({ children }) {
   return <scene ref={scene}>{children}</scene>
 }
 
+function ContextLossHandler({ onContextLost }) {
+  const { gl } = useThree()
+
+  useEffect(() => {
+    const canvas = gl.domElement
+    const handleContextLost = (event) => {
+      event.preventDefault()
+      onContextLost()
+    }
+
+    canvas.addEventListener('webglcontextlost', handleContextLost)
+    return () => canvas.removeEventListener('webglcontextlost', handleContextLost)
+  }, [gl, onContextLost])
+
+  return null
+}
+
+function StaticHero() {
+  return (
+    <LazyLoadImage
+      className="hero-static-image"
+      src="/assets/images/arc-scene-2d3d.png"
+      placeholderSrc="/assets/images/arc-scene-2d3d-small.jpg"
+      alt="Stylized ARC initials in a red architectural scene"
+    />
+  )
+}
+
 const Hero_Content = ({ windowSize }) => {
   const Aimages = ["url('/assets/images/2d/a/a-red.png')", "url('/assets/images/2d/a/a-green.png')", "url('/assets/images/2d/a/a-blue.png')"]
   const Rimages = ["url('/assets/images/2d/r/r-red.png')", "url('/assets/images/2d/r/r-green.png')", "url('/assets/images/2d/r/r-blue.png')"]
@@ -65,14 +94,21 @@ const Hero_Content = ({ windowSize }) => {
   const [aIdx, setAIdx] = useState(Math.round(Math.random() * 3))
   const [rIdx, setRIdx] = useState(Math.round(Math.random() * 3))
   const [cIdx, setCIdx] = useState(Math.round(Math.random() * 3))
+  const [webGLSupported, setWebGLSupported] = useState(null)
 
   
   const heroCanvas = useRef()
   useEffect(()=>{
     if(window.innerWidth <= 950){
       heroCanvas.current.style.backgroundImage = "url('/assets/images/2d/arc-white.png')"
+    } else {
+      heroCanvas.current.style.backgroundImage = "url('/assets/images/arc-scene-2d3d.png')"
     }
   }, [windowSize])
+
+  useEffect(() => {
+    setWebGLSupported(hasUsableWebGL())
+  }, [])
   
   let letterTimer = null
   useEffect(()=>{
@@ -126,7 +162,7 @@ const Hero_Content = ({ windowSize }) => {
     
     <div className='hero-canvas' ref={ heroCanvas }>
       
-      {window.innerWidth <= 950 ? 
+      {windowSize.width <= 950 ?
         <>
           <div className='letter-image' style={{ backgroundImage: Aimages[aIdx]}}></div>
           <div className='letter-image' style={{ backgroundImage: Rimages[rIdx]}}></div>
@@ -136,10 +172,17 @@ const Hero_Content = ({ windowSize }) => {
           <div className='dummy-letter c' onClick={ handleLetterC }></div>
         </>
         
-      : <>
-          <LazyLoadImage src="../assets/images/arc-scene-2d3d.png" placeholderSrc='../assets/images/arc-scene-2d3d-small.jpg' alt="" style={{width: '100%', height: '100%', position: 'absolute', top: 0, left: 0}}/>
-          
-          <Canvas linear camera={{ position: [0, 3, 0], fov: 10 }} shadows >
+      : webGLSupported === true ? <>
+          <StaticHero />
+
+          <Canvas
+            linear
+            camera={{ position: [0, 3, 0], fov: 10 }}
+            shadows
+            gl={{ failIfMajorPerformanceCaveat: true }}
+            fallback={<StaticHero />}
+          >
+            <ContextLossHandler onContextLost={() => setWebGLSupported(false)} />
             <Camera />
           <Main>
             <mesh position={[-1.9, .8, 0]}>
@@ -160,7 +203,7 @@ const Hero_Content = ({ windowSize }) => {
         
         </Canvas>
         
-      </>
+      </> : <StaticHero />
     }
   </div>
   )
